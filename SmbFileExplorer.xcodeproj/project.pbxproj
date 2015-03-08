@@ -1,0 +1,625 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
+		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
+		FABDBA141AA8631800595AFA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA131AA8631800595AFA /* main.m */; };
+		FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA161AA8631800595AFA /* AppDelegate.m */; };
+		FABDBA1F1AA8631800595AFA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FABDBA1E1AA8631800595AFA /* Images.xcassets */; };
+		FABDBA221AA8631800595AFA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = FABDBA201AA8631800595AFA /* LaunchScreen.xib */; };
+		FABDBA2E1AA8631800595AFA /* SmbFileExplorerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA2D1AA8631800595AFA /* SmbFileExplorerTests.m */; };
+		FABDBA491AA863C700595AFA /* SmbAuthMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA391AA863C700595AFA /* SmbAuthMessageViewController.m */; };
+		FABDBA4A1AA863C700595AFA /* SmbDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA3B1AA863C700595AFA /* SmbDetailViewController.m */; };
+		FABDBA4B1AA863C700595AFA /* SmbMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA3D1AA863C700595AFA /* SmbMasterViewController.m */; };
+		FABDBA4D1AA863C700595AFA /* ArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA421AA863C700595AFA /* ArrayDataSource.m */; };
+		FABDBA4E1AA863C700595AFA /* SmbAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA441AA863C700595AFA /* SmbAuth.m */; };
+		FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA481AA863C700595AFA /* SmbAuthCell.m */; };
+		FABDBA521AA8648C00595AFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FABDBA511AA8648C00595AFA /* Main.storyboard */; };
+		FABDBA5E1AA8663E00595AFA /* KxSMBProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBA541AA8663E00595AFA /* KxSMBProvider.m */; };
+		FABDBA5F1AA8663E00595AFA /* libsmbclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA561AA8663E00595AFA /* libsmbclient.a */; };
+		FABDBA601AA8663E00595AFA /* libtalloc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA581AA8663E00595AFA /* libtalloc.a */; };
+		FABDBA611AA8663E00595AFA /* libtdb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA591AA8663E00595AFA /* libtdb.a */; };
+		FABDBA621AA8663E00595AFA /* libtevent.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA5A1AA8663E00595AFA /* libtevent.a */; };
+		FABDBA631AA8663E00595AFA /* libwbclient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA5B1AA8663E00595AFA /* libwbclient.a */; };
+		FABDBA651AA8683500595AFA /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA641AA8683500595AFA /* libresolv.dylib */; };
+		FABDBA671AA8684200595AFA /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA661AA8684200595AFA /* libz.dylib */; };
+		FABDBA691AA8685000595AFA /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA681AA8685000595AFA /* libiconv.dylib */; };
+		FABDBA6B1AA8686300595AFA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA6A1AA8686300595AFA /* UIKit.framework */; };
+		FABDBA6D1AA8687200595AFA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA6C1AA8687200595AFA /* CoreGraphics.framework */; };
+		FABDBA6F1AA8687E00595AFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA6E1AA8687E00595AFA /* Foundation.framework */; };
+		FABDBAAF1AA8862500595AFA /* SmbFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAAE1AA8862500595AFA /* SmbFileCell.m */; };
+		FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAB11AA888DF00595AFA /* SmbManager.m */; };
+		FAFA6CA81AA9BE0B00959974 /* SmbFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */; };
+		FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FABDBA281AA8631800595AFA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FABDBA061AA8631800595AFA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FABDBA0D1AA8631800595AFA;
+			remoteInfo = SmbFileExplorer;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
+		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
+		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
+		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
+		FABDBA0E1AA8631800595AFA /* SmbFileExplorer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SmbFileExplorer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FABDBA121AA8631800595AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABDBA131AA8631800595AFA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FABDBA151AA8631800595AFA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = SmbFileExplorer/AppDelegate.h; sourceTree = "<group>"; };
+		FABDBA161AA8631800595AFA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = SmbFileExplorer/AppDelegate.m; sourceTree = "<group>"; };
+		FABDBA1E1AA8631800595AFA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = SmbFileExplorer/Images.xcassets; sourceTree = "<group>"; };
+		FABDBA211AA8631800595AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		FABDBA271AA8631800595AFA /* SmbFileExplorerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SmbFileExplorerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FABDBA2C1AA8631800595AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FABDBA2D1AA8631800595AFA /* SmbFileExplorerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SmbFileExplorerTests.m; sourceTree = "<group>"; };
+		FABDBA381AA863C700595AFA /* SmbAuthMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthMessageViewController.h; sourceTree = "<group>"; };
+		FABDBA391AA863C700595AFA /* SmbAuthMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthMessageViewController.m; sourceTree = "<group>"; };
+		FABDBA3A1AA863C700595AFA /* SmbDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbDetailViewController.h; sourceTree = "<group>"; };
+		FABDBA3B1AA863C700595AFA /* SmbDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbDetailViewController.m; sourceTree = "<group>"; };
+		FABDBA3C1AA863C700595AFA /* SmbMasterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbMasterViewController.h; sourceTree = "<group>"; };
+		FABDBA3D1AA863C700595AFA /* SmbMasterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbMasterViewController.m; sourceTree = "<group>"; };
+		FABDBA411AA863C700595AFA /* ArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayDataSource.h; sourceTree = "<group>"; };
+		FABDBA421AA863C700595AFA /* ArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArrayDataSource.m; sourceTree = "<group>"; };
+		FABDBA431AA863C700595AFA /* SmbAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuth.h; sourceTree = "<group>"; };
+		FABDBA441AA863C700595AFA /* SmbAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuth.m; sourceTree = "<group>"; };
+		FABDBA471AA863C700595AFA /* SmbAuthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthCell.h; sourceTree = "<group>"; };
+		FABDBA481AA863C700595AFA /* SmbAuthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthCell.m; sourceTree = "<group>"; };
+		FABDBA511AA8648C00595AFA /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		FABDBA531AA8663E00595AFA /* KxSMBProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxSMBProvider.h; sourceTree = "<group>"; };
+		FABDBA541AA8663E00595AFA /* KxSMBProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxSMBProvider.m; sourceTree = "<group>"; };
+		FABDBA561AA8663E00595AFA /* libsmbclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libsmbclient.a; sourceTree = "<group>"; };
+		FABDBA571AA8663E00595AFA /* libsmbclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsmbclient.h; sourceTree = "<group>"; };
+		FABDBA581AA8663E00595AFA /* libtalloc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtalloc.a; sourceTree = "<group>"; };
+		FABDBA591AA8663E00595AFA /* libtdb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtdb.a; sourceTree = "<group>"; };
+		FABDBA5A1AA8663E00595AFA /* libtevent.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libtevent.a; sourceTree = "<group>"; };
+		FABDBA5B1AA8663E00595AFA /* libwbclient.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libwbclient.a; sourceTree = "<group>"; };
+		FABDBA5C1AA8663E00595AFA /* talloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = talloc.h; sourceTree = "<group>"; };
+		FABDBA5D1AA8663E00595AFA /* talloc_stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = talloc_stack.h; sourceTree = "<group>"; };
+		FABDBA641AA8683500595AFA /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		FABDBA661AA8684200595AFA /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		FABDBA681AA8685000595AFA /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		FABDBA6A1AA8686300595AFA /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FABDBA6C1AA8687200595AFA /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FABDBA6E1AA8687E00595AFA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FABDBAAD1AA8862500595AFA /* SmbFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileCell.h; sourceTree = "<group>"; };
+		FABDBAAE1AA8862500595AFA /* SmbFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileCell.m; sourceTree = "<group>"; };
+		FABDBAB01AA888DF00595AFA /* SmbManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbManager.h; sourceTree = "<group>"; };
+		FABDBAB11AA888DF00595AFA /* SmbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbManager.m; sourceTree = "<group>"; };
+		FAFA6CA61AA9BE0B00959974 /* SmbFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileViewController.h; sourceTree = "<group>"; };
+		FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileViewController.m; sourceTree = "<group>"; };
+		FAFA6CAC1AA9C6F800959974 /* SmbFilesArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFilesArrayDataSource.h; sourceTree = "<group>"; };
+		FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFilesArrayDataSource.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FABDBA0B1AA8631800595AFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FABDBA6F1AA8687E00595AFA /* Foundation.framework in Frameworks */,
+				FABDBA6D1AA8687200595AFA /* CoreGraphics.framework in Frameworks */,
+				FABDBA6B1AA8686300595AFA /* UIKit.framework in Frameworks */,
+				FABDBA691AA8685000595AFA /* libiconv.dylib in Frameworks */,
+				FABDBA671AA8684200595AFA /* libz.dylib in Frameworks */,
+				FABDBA651AA8683500595AFA /* libresolv.dylib in Frameworks */,
+				FABDBA611AA8663E00595AFA /* libtdb.a in Frameworks */,
+				FABDBA631AA8663E00595AFA /* libwbclient.a in Frameworks */,
+				FABDBA601AA8663E00595AFA /* libtalloc.a in Frameworks */,
+				FABDBA5F1AA8663E00595AFA /* libsmbclient.a in Frameworks */,
+				FABDBA621AA8663E00595AFA /* libtevent.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FABDBA241AA8631800595AFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA6253A21AABD5A100EAA782 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */,
+				FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		FABDBA051AA8631800595AFA = {
+			isa = PBXGroup;
+			children = (
+				FABDBA711AA8691F00595AFA /* Support */,
+				FABDBA101AA8631800595AFA /* SmbFileExplorer */,
+				FABDBA701AA868E300595AFA /* Framework */,
+				FABDBA2A1AA8631800595AFA /* SmbFileExplorerTests */,
+				FABDBA0F1AA8631800595AFA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FABDBA0F1AA8631800595AFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA0E1AA8631800595AFA /* SmbFileExplorer.app */,
+				FABDBA271AA8631800595AFA /* SmbFileExplorerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FABDBA101AA8631800595AFA /* SmbFileExplorer */ = {
+			isa = PBXGroup;
+			children = (
+				FA6253A21AABD5A100EAA782 /* Common */,
+				FABDBA721AA8696300595AFA /* Vendor */,
+				FABDBA371AA863C700595AFA /* Controller */,
+				FABDBA3E1AA863C700595AFA /* Model */,
+				FABDBA451AA863C700595AFA /* View */,
+			);
+			path = SmbFileExplorer;
+			sourceTree = "<group>";
+		};
+		FABDBA111AA8631800595AFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA121AA8631800595AFA /* Info.plist */,
+				FABDBA131AA8631800595AFA /* main.m */,
+			);
+			name = "Supporting Files";
+			path = SmbFileExplorer;
+			sourceTree = "<group>";
+		};
+		FABDBA2A1AA8631800595AFA /* SmbFileExplorerTests */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA2D1AA8631800595AFA /* SmbFileExplorerTests.m */,
+				FABDBA2B1AA8631800595AFA /* Supporting Files */,
+			);
+			path = SmbFileExplorerTests;
+			sourceTree = "<group>";
+		};
+		FABDBA2B1AA8631800595AFA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA2C1AA8631800595AFA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FABDBA371AA863C700595AFA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA381AA863C700595AFA /* SmbAuthMessageViewController.h */,
+				FABDBA391AA863C700595AFA /* SmbAuthMessageViewController.m */,
+				FABDBA3A1AA863C700595AFA /* SmbDetailViewController.h */,
+				FABDBA3B1AA863C700595AFA /* SmbDetailViewController.m */,
+				FABDBA3C1AA863C700595AFA /* SmbMasterViewController.h */,
+				FABDBA3D1AA863C700595AFA /* SmbMasterViewController.m */,
+				FAFA6CA61AA9BE0B00959974 /* SmbFileViewController.h */,
+				FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FABDBA3E1AA863C700595AFA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA411AA863C700595AFA /* ArrayDataSource.h */,
+				FABDBA421AA863C700595AFA /* ArrayDataSource.m */,
+				FABDBA431AA863C700595AFA /* SmbAuth.h */,
+				FABDBA441AA863C700595AFA /* SmbAuth.m */,
+				FABDBAB01AA888DF00595AFA /* SmbManager.h */,
+				FABDBAB11AA888DF00595AFA /* SmbManager.m */,
+				FAFA6CAC1AA9C6F800959974 /* SmbFilesArrayDataSource.h */,
+				FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */,
+				FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */,
+				FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FABDBA451AA863C700595AFA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA201AA8631800595AFA /* LaunchScreen.xib */,
+				FABDBA511AA8648C00595AFA /* Main.storyboard */,
+				FABDBA471AA863C700595AFA /* SmbAuthCell.h */,
+				FABDBA481AA863C700595AFA /* SmbAuthCell.m */,
+				FABDBAAD1AA8862500595AFA /* SmbFileCell.h */,
+				FABDBAAE1AA8862500595AFA /* SmbFileCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FABDBA551AA8663E00595AFA /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA561AA8663E00595AFA /* libsmbclient.a */,
+				FABDBA571AA8663E00595AFA /* libsmbclient.h */,
+				FABDBA581AA8663E00595AFA /* libtalloc.a */,
+				FABDBA591AA8663E00595AFA /* libtdb.a */,
+				FABDBA5A1AA8663E00595AFA /* libtevent.a */,
+				FABDBA5B1AA8663E00595AFA /* libwbclient.a */,
+				FABDBA5C1AA8663E00595AFA /* talloc.h */,
+				FABDBA5D1AA8663E00595AFA /* talloc_stack.h */,
+			);
+			path = libs;
+			sourceTree = "<group>";
+		};
+		FABDBA701AA868E300595AFA /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA6E1AA8687E00595AFA /* Foundation.framework */,
+				FABDBA6C1AA8687200595AFA /* CoreGraphics.framework */,
+				FABDBA6A1AA8686300595AFA /* UIKit.framework */,
+				FABDBA681AA8685000595AFA /* libiconv.dylib */,
+				FABDBA661AA8684200595AFA /* libz.dylib */,
+				FABDBA641AA8683500595AFA /* libresolv.dylib */,
+			);
+			name = Framework;
+			sourceTree = "<group>";
+		};
+		FABDBA711AA8691F00595AFA /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA151AA8631800595AFA /* AppDelegate.h */,
+				FABDBA161AA8631800595AFA /* AppDelegate.m */,
+				FABDBA1E1AA8631800595AFA /* Images.xcassets */,
+				FABDBA111AA8631800595AFA /* Supporting Files */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		FABDBA721AA8696300595AFA /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				FABDBA531AA8663E00595AFA /* KxSMBProvider.h */,
+				FABDBA541AA8663E00595AFA /* KxSMBProvider.m */,
+				FABDBA551AA8663E00595AFA /* libs */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FABDBA0D1AA8631800595AFA /* SmbFileExplorer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FABDBA311AA8631800595AFA /* Build configuration list for PBXNativeTarget "SmbFileExplorer" */;
+			buildPhases = (
+				FABDBA0A1AA8631800595AFA /* Sources */,
+				FABDBA0B1AA8631800595AFA /* Frameworks */,
+				FABDBA0C1AA8631800595AFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SmbFileExplorer;
+			productName = SmbFileExplorer;
+			productReference = FABDBA0E1AA8631800595AFA /* SmbFileExplorer.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FABDBA261AA8631800595AFA /* SmbFileExplorerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FABDBA341AA8631800595AFA /* Build configuration list for PBXNativeTarget "SmbFileExplorerTests" */;
+			buildPhases = (
+				FABDBA231AA8631800595AFA /* Sources */,
+				FABDBA241AA8631800595AFA /* Frameworks */,
+				FABDBA251AA8631800595AFA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FABDBA291AA8631800595AFA /* PBXTargetDependency */,
+			);
+			name = SmbFileExplorerTests;
+			productName = SmbFileExplorerTests;
+			productReference = FABDBA271AA8631800595AFA /* SmbFileExplorerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FABDBA061AA8631800595AFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = wgl;
+				TargetAttributes = {
+					FABDBA0D1AA8631800595AFA = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					FABDBA261AA8631800595AFA = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = FABDBA0D1AA8631800595AFA;
+					};
+				};
+			};
+			buildConfigurationList = FABDBA091AA8631800595AFA /* Build configuration list for PBXProject "SmbFileExplorer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FABDBA051AA8631800595AFA;
+			productRefGroup = FABDBA0F1AA8631800595AFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FABDBA0D1AA8631800595AFA /* SmbFileExplorer */,
+				FABDBA261AA8631800595AFA /* SmbFileExplorerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FABDBA0C1AA8631800595AFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FABDBA521AA8648C00595AFA /* Main.storyboard in Resources */,
+				FABDBA221AA8631800595AFA /* LaunchScreen.xib in Resources */,
+				FABDBA1F1AA8631800595AFA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FABDBA251AA8631800595AFA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FABDBA0A1AA8631800595AFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FABDBA4E1AA863C700595AFA /* SmbAuth.m in Sources */,
+				FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */,
+				FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */,
+				FABDBA4A1AA863C700595AFA /* SmbDetailViewController.m in Sources */,
+				FABDBAAF1AA8862500595AFA /* SmbFileCell.m in Sources */,
+				FAFA6CA81AA9BE0B00959974 /* SmbFileViewController.m in Sources */,
+				FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */,
+				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
+				FABDBA4D1AA863C700595AFA /* ArrayDataSource.m in Sources */,
+				FABDBA5E1AA8663E00595AFA /* KxSMBProvider.m in Sources */,
+				FABDBA491AA863C700595AFA /* SmbAuthMessageViewController.m in Sources */,
+				FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */,
+				FABDBA4B1AA863C700595AFA /* SmbMasterViewController.m in Sources */,
+				FABDBA141AA8631800595AFA /* main.m in Sources */,
+				FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FABDBA231AA8631800595AFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FABDBA2E1AA8631800595AFA /* SmbFileExplorerTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FABDBA291AA8631800595AFA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FABDBA0D1AA8631800595AFA /* SmbFileExplorer */;
+			targetProxy = FABDBA281AA8631800595AFA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FABDBA201AA8631800595AFA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FABDBA211AA8631800595AFA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			path = ..;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FABDBA2F1AA8631800595AFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		FABDBA301AA8631800595AFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FABDBA321AA8631800595AFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SmbFileExplorer/libs\"";
+				INFOPLIST_FILE = SmbFileExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmbFileExplorer/libs",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		FABDBA331AA8631800595AFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/SmbFileExplorer/libs\"";
+				INFOPLIST_FILE = SmbFileExplorer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SmbFileExplorer/libs",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		FABDBA351AA8631800595AFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SmbFileExplorerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmbFileExplorer.app/SmbFileExplorer";
+			};
+			name = Debug;
+		};
+		FABDBA361AA8631800595AFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SmbFileExplorerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SmbFileExplorer.app/SmbFileExplorer";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FABDBA091AA8631800595AFA /* Build configuration list for PBXProject "SmbFileExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FABDBA2F1AA8631800595AFA /* Debug */,
+				FABDBA301AA8631800595AFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FABDBA311AA8631800595AFA /* Build configuration list for PBXNativeTarget "SmbFileExplorer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FABDBA321AA8631800595AFA /* Debug */,
+				FABDBA331AA8631800595AFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FABDBA341AA8631800595AFA /* Build configuration list for PBXNativeTarget "SmbFileExplorerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FABDBA351AA8631800595AFA /* Debug */,
+				FABDBA361AA8631800595AFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FABDBA061AA8631800595AFA /* Project object */;
+}
