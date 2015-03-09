@@ -45,7 +45,47 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     self.tableView.dataSource = self.fileArrayDataSource;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFile)];
+    
 }
+
+-(void)addFile
+{
+ //   UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FolderNameForm"];
+// //   vc.view.backgroundColor = [UIColor greenColor];
+////    vc.view.bounds = CGRectMake(0, 0, 100, 200);
+////    UIPopoverController * po = [[UIPopoverController alloc]initWithContentViewController:vc];
+////    po.popoverContentSize = CGSizeMake(100, 100);
+////    [po presentPopoverFromRect:CGRectMake(100, 100, 100, 100) inView:self.view permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//    vc.modalPresentationStyle = UIModalPresentationFormSheet;
+//    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    
+//    [self presentViewController:vc animated:YES completion:^{
+//        
+//    }];
+//    
+//    self.presentationController presentationStyle;
+    
+    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"123" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+    }];
+    
+    UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        
+    }];
+    [ac addAction:actionOK];
+    [ac addAction:actionCancel];
+    [ac addTextFieldWithConfigurationHandler:^(UITextField *textField){
+        
+    }];
+    
+    [self presentViewController:ac animated:YES completion:nil];
+
+    
+}
+
+
 
 -(void)reloadPath
 {
@@ -145,6 +185,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // 判断是否为文件夹
     KxSMBItem * item = [self.fileArrayDataSource itemAtIndexPath:indexPath];
     if ([item isKindOfClass:[KxSMBItemTree class]])
     {
@@ -155,6 +197,20 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     }
     else
     {
+//        CGFloat containWidth = 50;
+//        CGFloat containHeight = 100;
+//        CGRect rect = [self.tableView rectForRowAtIndexPath:indexPath];
+//        rect = CGRectMake(rect.size.width - containWidth -10 ,rect.origin.y + rect.size.height/2.0 - containHeight/2.0 , 1, 1);
+//        UIViewController * con = [[UIViewController alloc]init];
+//        con.view.backgroundColor = [UIColor redColor];
+//        con.view.frame = CGRectMake(0, 0 , containWidth, containHeight);
+//        UIPopoverController * pc = [[UIPopoverController alloc]initWithContentViewController:con];
+//        pc.popoverContentSize = CGSizeMake(containWidth,containHeight);
+//        [pc presentPopoverFromRect:rect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:NO];
+        UINavigationController  * nav = (UINavigationController *)[[self.splitViewController viewControllers]lastObject];
+        SmbFileOperateViewController * smbFOVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
+        smbFOVC.smbFile = (KxSMBItemFile*)item;
+        [nav pushViewController:smbFOVC animated:YES];
         
     }
 }

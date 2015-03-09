@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6724" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SIm-Rf-Va6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SIm-Rf-Va6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6711"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -224,6 +224,139 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="siJ-gU-FpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2356" y="921"/>
+        </scene>
+        <!--Smb File Operate View Controller-->
+        <scene sceneID="duZ-d5-bcD">
+            <objects>
+                <viewController storyboardIdentifier="SmbFileOperateViewController" id="Ufh-uM-KdE" customClass="SmbFileOperateViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JqU-Oa-gtT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZIh-y8-OQS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N7a-pB-yCl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mb4-SU-uvs">
+                                <rect key="frame" x="150" y="120" width="300" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="jZT-5s-dzf"/>
+                                    <constraint firstAttribute="width" constant="300" id="pJe-Vg-dit"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DPW-7Y-wk7">
+                                <rect key="frame" x="150" y="208" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1Cj-ZJ-WIp"/>
+                                    <constraint firstAttribute="width" constant="100" id="LtK-TO-ApO"/>
+                                </constraints>
+                                <state key="normal" title="下载">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="download:" destination="Ufh-uM-KdE" eventType="touchUpInside" id="841-hq-x6L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFO-IG-6ka">
+                                <rect key="frame" x="350" y="208" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eON-e6-0u2"/>
+                                    <constraint firstAttribute="height" constant="30" id="rRg-T2-wqL"/>
+                                </constraints>
+                                <state key="normal" title="删除">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="delete:" destination="Ufh-uM-KdE" eventType="touchUpInside" id="4XJ-uq-Hn3"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA7-k8-0R3">
+                                <rect key="frame" x="150" y="76" width="300" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="DGa-se-WWq"/>
+                                    <constraint firstAttribute="height" constant="21" id="yxA-QV-cR9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mb4-SU-uvs" firstAttribute="leading" secondItem="MA7-k8-0R3" secondAttribute="leading" id="8PW-jH-uzG"/>
+                            <constraint firstItem="tFO-IG-6ka" firstAttribute="top" secondItem="mb4-SU-uvs" secondAttribute="bottom" constant="86" id="PuG-Vq-TvA"/>
+                            <constraint firstItem="DPW-7Y-wk7" firstAttribute="leading" secondItem="mb4-SU-uvs" secondAttribute="leading" id="QVP-3q-hzH"/>
+                            <constraint firstItem="mb4-SU-uvs" firstAttribute="trailing" secondItem="tFO-IG-6ka" secondAttribute="trailing" id="a2R-dl-sYo"/>
+                            <constraint firstItem="DPW-7Y-wk7" firstAttribute="top" secondItem="mb4-SU-uvs" secondAttribute="bottom" constant="86" id="ec4-bX-FuK"/>
+                            <constraint firstItem="mb4-SU-uvs" firstAttribute="top" secondItem="JqU-Oa-gtT" secondAttribute="bottom" constant="100" id="mlW-xy-1hc"/>
+                            <constraint firstAttribute="centerX" secondItem="mb4-SU-uvs" secondAttribute="centerX" id="ryM-1N-onQ"/>
+                            <constraint firstItem="MA7-k8-0R3" firstAttribute="top" secondItem="JqU-Oa-gtT" secondAttribute="bottom" constant="56" id="ybh-DU-rao"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="downloadButton" destination="DPW-7Y-wk7" id="bFo-T4-e9K"/>
+                        <outlet property="downloadLabel" destination="MA7-k8-0R3" id="iV8-HC-BTm"/>
+                        <outlet property="downloadProgress" destination="mb4-SU-uvs" id="PHe-wD-K6M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3TK-N9-4hT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3040" y="921"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Wjw-55-e96">
+            <objects>
+                <viewController storyboardIdentifier="FolderNameForm" id="r8v-q9-J1s" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NzV-BN-m08"/>
+                        <viewControllerLayoutGuide type="bottom" id="fzX-Ib-Xtj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lJs-CY-3Qs">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-K9-2Ho">
+                                <rect key="frame" x="60" y="120" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="8MX-Ot-5PU"/>
+                                    <constraint firstAttribute="height" constant="30" id="nbn-fa-MeH"/>
+                                </constraints>
+                                <state key="normal" title="确定">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIp-Pr-YKv">
+                                <rect key="frame" x="210" y="120" width="30" height="30"/>
+                                <state key="normal" title="取消">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GcB-nQ-b5M">
+                                <rect key="frame" x="20" y="40" width="260" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VnJ-3w-iZp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nA6-K9-2Ho" firstAttribute="top" secondItem="GcB-nQ-b5M" secondAttribute="bottom" constant="50" id="0Dc-5L-2ps"/>
+                            <constraint firstItem="GcB-nQ-b5M" firstAttribute="top" secondItem="NzV-BN-m08" secondAttribute="bottom" constant="20" id="5Kz-Vy-GSe"/>
+                            <constraint firstItem="nA6-K9-2Ho" firstAttribute="leading" secondItem="GcB-nQ-b5M" secondAttribute="leading" constant="40" id="6Rp-BC-5Nb"/>
+                            <constraint firstAttribute="trailing" secondItem="GcB-nQ-b5M" secondAttribute="trailing" constant="20" id="GvC-eg-miQ"/>
+                            <constraint firstItem="nA6-K9-2Ho" firstAttribute="top" secondItem="yIp-Pr-YKv" secondAttribute="top" id="gkK-aP-hhO"/>
+                            <constraint firstItem="GcB-nQ-b5M" firstAttribute="trailing" secondItem="yIp-Pr-YKv" secondAttribute="trailing" constant="40" id="uru-Nc-Y0m"/>
+                            <constraint firstItem="GcB-nQ-b5M" firstAttribute="leading" secondItem="lJs-CY-3Qs" secondAttribute="leading" constant="20" id="y7D-ZN-IR2"/>
+                        </constraints>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="200"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dUW-cQ-uTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3697" y="914"/>
         </scene>
     </scenes>
 </document>

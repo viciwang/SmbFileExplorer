@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "SmbFileCell.h"
 #import "SmbFilesArrayDataSource.h"
+#import "SmbFileOperateViewController.h"
+#import "CustomerPresentationController.h"
 
 @interface SmbFileViewController : UITableViewController
 
