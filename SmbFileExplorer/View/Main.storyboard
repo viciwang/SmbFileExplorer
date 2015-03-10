@@ -225,6 +225,80 @@
             </objects>
             <point key="canvasLocation" x="2356" y="921"/>
         </scene>
+        <!--Choose Local File View Controller-->
+        <scene sceneID="8Ni-L5-ohy">
+            <objects>
+                <viewController storyboardIdentifier="ChooseLocalFile" id="iXr-Fq-XiM" customClass="ChooseLocalFileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ai8-og-1Wr"/>
+                        <viewControllerLayoutGuide type="bottom" id="xuj-GJ-CHu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="c6T-G7-oU1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRz-ed-8Yz">
+                                <rect key="frame" x="46" y="30" width="508" height="428"/>
+                                <connections>
+                                    <segue destination="yoT-sV-Yyf" kind="embed" id="hoa-Pk-hRF"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqd-9N-7HO">
+                                <rect key="frame" x="260" y="510" width="80" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="3eX-dl-BhL"/>
+                                    <constraint firstAttribute="height" constant="50" id="YdN-Sg-Rxa"/>
+                                </constraints>
+                                <state key="normal" title="取消">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="actionCancel:" destination="iXr-Fq-XiM" eventType="touchUpInside" id="L2d-mS-8xP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YRz-ed-8Yz" firstAttribute="top" secondItem="Ai8-og-1Wr" secondAttribute="bottom" constant="10" id="0ie-CY-AFk"/>
+                            <constraint firstItem="Fqd-9N-7HO" firstAttribute="top" secondItem="YRz-ed-8Yz" secondAttribute="bottom" constant="52" id="B1n-y3-Yuk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="YRz-ed-8Yz" secondAttribute="trailing" constant="30" id="IND-yR-IRR"/>
+                            <constraint firstAttribute="centerX" secondItem="Fqd-9N-7HO" secondAttribute="centerX" id="njx-kg-AQR"/>
+                            <constraint firstItem="xuj-GJ-CHu" firstAttribute="top" secondItem="Fqd-9N-7HO" secondAttribute="bottom" constant="40" id="rqf-L4-8bK"/>
+                            <constraint firstItem="YRz-ed-8Yz" firstAttribute="leading" secondItem="c6T-G7-oU1" secondAttribute="leadingMargin" constant="30" id="tlB-Bd-USV"/>
+                        </constraints>
+                    </view>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Pb-28-Xx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3171" y="126"/>
+        </scene>
+        <!--Local File View Controller-->
+        <scene sceneID="RhN-Ij-eds">
+            <objects>
+                <tableViewController storyboardIdentifier="LocalFile" id="yoT-sV-Yyf" customClass="LocalFileViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="PK7-fy-i93">
+                        <rect key="frame" x="0.0" y="0.0" width="508" height="428"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocalFileCellIdentifier" id="d4a-6M-8LP">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="d4a-6M-8LP" id="Psn-b1-fdK">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="yoT-sV-Yyf" id="tP5-F3-Ar8"/>
+                            <outlet property="delegate" destination="yoT-sV-Yyf" id="jDm-tx-Asd"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Er3-Ga-U8o" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3925" y="132"/>
+        </scene>
         <!--Smb File Operate View Controller-->
         <scene sceneID="duZ-d5-bcD">
             <objects>
@@ -257,19 +331,6 @@
                                     <action selector="download:" destination="Ufh-uM-KdE" eventType="touchUpInside" id="841-hq-x6L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFO-IG-6ka">
-                                <rect key="frame" x="350" y="208" width="100" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="eON-e6-0u2"/>
-                                    <constraint firstAttribute="height" constant="30" id="rRg-T2-wqL"/>
-                                </constraints>
-                                <state key="normal" title="删除">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="delete:" destination="Ufh-uM-KdE" eventType="touchUpInside" id="4XJ-uq-Hn3"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA7-k8-0R3">
                                 <rect key="frame" x="150" y="76" width="300" height="21"/>
                                 <constraints>
@@ -284,9 +345,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mb4-SU-uvs" firstAttribute="leading" secondItem="MA7-k8-0R3" secondAttribute="leading" id="8PW-jH-uzG"/>
-                            <constraint firstItem="tFO-IG-6ka" firstAttribute="top" secondItem="mb4-SU-uvs" secondAttribute="bottom" constant="86" id="PuG-Vq-TvA"/>
                             <constraint firstItem="DPW-7Y-wk7" firstAttribute="leading" secondItem="mb4-SU-uvs" secondAttribute="leading" id="QVP-3q-hzH"/>
-                            <constraint firstItem="mb4-SU-uvs" firstAttribute="trailing" secondItem="tFO-IG-6ka" secondAttribute="trailing" id="a2R-dl-sYo"/>
                             <constraint firstItem="DPW-7Y-wk7" firstAttribute="top" secondItem="mb4-SU-uvs" secondAttribute="bottom" constant="86" id="ec4-bX-FuK"/>
                             <constraint firstItem="mb4-SU-uvs" firstAttribute="top" secondItem="JqU-Oa-gtT" secondAttribute="bottom" constant="100" id="mlW-xy-1hc"/>
                             <constraint firstAttribute="centerX" secondItem="mb4-SU-uvs" secondAttribute="centerX" id="ryM-1N-onQ"/>
@@ -312,11 +371,11 @@
                         <viewControllerLayoutGuide type="bottom" id="fzX-Ib-Xtj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lJs-CY-3Qs">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-K9-2Ho">
-                                <rect key="frame" x="60" y="120" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nA6-K9-2Ho">
+                                <rect key="frame" x="60" y="120" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="8MX-Ot-5PU"/>
                                     <constraint firstAttribute="height" constant="30" id="nbn-fa-MeH"/>
@@ -326,13 +385,13 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yIp-Pr-YKv">
-                                <rect key="frame" x="210" y="120" width="30" height="30"/>
+                                <rect key="frame" x="510" y="120" width="30" height="30"/>
                                 <state key="normal" title="取消">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GcB-nQ-b5M">
-                                <rect key="frame" x="20" y="40" width="260" height="30"/>
+                                <rect key="frame" x="20" y="40" width="560" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="VnJ-3w-iZp"/>
                                 </constraints>
@@ -351,8 +410,6 @@
                             <constraint firstItem="GcB-nQ-b5M" firstAttribute="leading" secondItem="lJs-CY-3Qs" secondAttribute="leading" constant="20" id="y7D-ZN-IR2"/>
                         </constraints>
                     </view>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="300" height="200"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dUW-cQ-uTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

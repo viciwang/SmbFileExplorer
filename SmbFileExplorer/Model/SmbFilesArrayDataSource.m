@@ -53,5 +53,71 @@ configureCellBlock:(TableViewCellConfigureBlock)block
      }];
 }
 
+-(void)addItemKind:(NSString *)fileType Named:(NSString *)name Handler:(CompleteBlock)block;
+{
+    if ([fileType isEqualToString:NSStringFromClass([KxSMBItemTree class])])
+    {
+        KxSMBProvider * provider = [KxSMBProvider sharedSmbProvider];
+        id result = [provider createFolderAtPath:[self.path stringByAppendingSMBPathComponent:name]];
+        if([result isKindOfClass:[KxSMBItemTree class]])
+        {
+            NSMutableArray * ma = [self.items mutableCopy];
+            [ma addObject:(KxSMBItemTree *)result];
+            self.items = [ma copy];
+        }
+        block(result);
+    }
+    else
+    {
+        
+    }
+
+}
+
+-(void)removeItemAtIndex:(NSInteger)index Handler:(CompleteBlock)block;
+{
+    
+    KxSMBItem * item = [self.items objectAtIndex:index];
+    KxSMBProvider * provider = [KxSMBProvider sharedSmbProvider];
+    id result;
+    if ([item isKindOfClass:[KxSMBItemFile class]])
+    {
+        result = [provider removeAtPath:item.path];
+        if(![result isKindOfClass:[NSError class]])
+        {
+            NSMutableArray * ma = [self.items mutableCopy];
+            [ma removeObjectAtIndex:index];
+            self.items = [ma copy];
+        }
+        block(result);
+    }
+    else if([item isKindOfClass:[KxSMBItemTree class]])
+    {
+        [provider removeFolderAtPath:item.path block:block];
+    }
+
+
+}
+
+
+#pragma mark UITableViewDataSource
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"DeleteFile" object:indexPath];
+        
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert)
+    {
+        
+    }
+}
 
 @end

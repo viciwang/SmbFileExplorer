@@ -12,7 +12,7 @@
 #import "SmbFileOperateViewController.h"
 #import "CustomerPresentationController.h"
 
-@interface SmbFileViewController : UITableViewController
+@interface SmbFileViewController : UITableViewController<UITextFieldDelegate>
 
 @property (nonatomic,copy) NSString * path;
 

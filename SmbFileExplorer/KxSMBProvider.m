@@ -1226,7 +1226,7 @@ static KxSMBProvider *gSmbProvider;
            overwrite:(BOOL)overwrite
                block:(KxSMBBlock)block
 {
-    [self copySMBPath:smbPath localPath:localPath overwrite:overwrite progress:nil block:block];;
+    [self copySMBPath:smbPath localPath:localPath overwrite:overwrite progress:nil block:block];
 }
 
 - (void) copyLocalPath:(NSString *)localPath
@@ -1463,6 +1463,7 @@ static KxSMBProvider *gSmbProvider;
         }        
     }];
 }
+
 
 - (void) renameAtPath:(NSString *)oldPath
               newPath:(NSString *)newPath

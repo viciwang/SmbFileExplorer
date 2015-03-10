@@ -16,6 +16,7 @@ typedef enum{
 }SmbLoadedStatus;
 
 typedef void (^SmbLoadedBlock)(id status);
+typedef void (^CompleteBlock)(id status);
 
 
 @interface SmbFilesArrayDataSource : ArrayDataSource
@@ -28,5 +29,8 @@ typedef void (^SmbLoadedBlock)(id status);
                path:(NSString*)path;
 
 -(void)loadFileAndProcessByBlock:(SmbLoadedBlock)block;
+-(void)addItemKind:(NSString *)fileType Named:(NSString *)name Handler:(CompleteBlock)block;
+-(void)removeItemAtIndex:(NSInteger)index Handler:(CompleteBlock)block;
+//-(void)renameItemAtIndex:(NSInteger)index withAuth:(SmbAuth *)auth;
 
 @end

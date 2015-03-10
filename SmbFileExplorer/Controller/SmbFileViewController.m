@@ -15,6 +15,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,strong) NSMutableArray * fileItems;
 @property (nonatomic,copy)   TableViewCellConfigureBlock cellConfigBlock;
 @property (nonatomic,strong) SmbFilesArrayDataSource * fileArrayDataSource;
+@property (nonatomic,strong) NSString * fileName;
 
 @end
 
@@ -24,6 +25,19 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     [super viewDidLoad];
     [self setupTableView];
     [self reloadPath];
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //  一定要remove，不然会调用多次
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFileAction:) name:@"UploadFile" object:nil];
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 -(void)setupTableView
@@ -45,11 +59,13 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     self.tableView.dataSource = self.fileArrayDataSource;
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFile)];
+    UIBarButtonItem * barButtonItem1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFolderAction)];
+    UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(addFileAction)];
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1,barButtonItem2,nil];
     
 }
 
--(void)addFile
+-(void)addFolderAction
 {
  //   UIViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FolderNameForm"];
 // //   vc.view.backgroundColor = [UIColor greenColor];
@@ -66,18 +82,29 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 //    
 //    self.presentationController presentationStyle;
     
-    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"123" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        
-    }];
+    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"新文件夹的名字" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    __weak typeof(self) weakSelf = self;
     
     UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        
+        [weakSelf.fileArrayDataSource addItemKind:NSStringFromClass([KxSMBItemTree class]) Named:weakSelf.fileName Handler:^(id status){
+            if ([status isKindOfClass:[KxSMBItemTree class]])
+            {
+                [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            }
+            else
+            {
+                    
+            }
+        }];
     }];
+    
+    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
     [ac addAction:actionOK];
     [ac addAction:actionCancel];
     [ac addTextFieldWithConfigurationHandler:^(UITextField *textField){
-        
+        textField.delegate = weakSelf;
     }];
     
     [self presentViewController:ac animated:YES completion:nil];
@@ -85,7 +112,59 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
+-(void)addFileAction
+{
+    UIViewController * vc =[self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
+    vc.modalPresentationStyle = UIModalPresentationFormSheet;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:vc animated:YES completion:nil];
+    
+}
 
+
+-(void)deleteFileAction:(NSNotification *)notification
+{
+    NSIndexPath * indexPath = notification.object;
+    CompleteBlock block = ^(id status){
+        if ([status isKindOfClass:[NSError class]])
+        {
+                UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"删除失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
+            [ac addAction:actionOK];
+            [self presentViewController:ac animated:YES completion:nil];
+        }
+        else
+        {
+            // 由于删除文件夹与删除文件不同，这里写的不好，所以有所判断
+            if ([[self.fileArrayDataSource itemAtIndexPath:indexPath] isKindOfClass:[KxSMBItemTree class]])
+            {
+                NSMutableArray * ma = [self.fileArrayDataSource.items mutableCopy];
+                [ma removeObjectAtIndex:indexPath.row];
+                self.fileArrayDataSource.items = ma;
+            }
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    };
+    
+    
+    __weak typeof(self) weakSelf = self;
+    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"确定要删除文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [weakSelf.fileArrayDataSource removeItemAtIndex:indexPath.row Handler:block];
+    }];
+    
+    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+    [ac addAction:actionOK];
+    [ac addAction:actionCancel];
+    [self.splitViewController presentViewController:ac animated:YES completion:nil];
+}
+
+
+-(void)uploadFileAction:(NSNotification *)notification
+{
+    NSString * localPath = notification.object;
+   // [KxSMBProvider sharedSmbProvider]
+}
 
 -(void)reloadPath
 {
@@ -214,40 +293,15 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+                                
+#pragma mark UITextFieldDelegate
+                                
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
+    self.fileName = textField.text;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
