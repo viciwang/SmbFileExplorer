@@ -32,7 +32,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     //  一定要remove，不然会调用多次
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFileAction:) name:@"UploadFile" object:nil];
+    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFileAction:) name:@"UploadFile" object:nil];
+    [FileTransmissionViewController shareFileTransmissionVC].delegate = self;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -61,8 +62,15 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     UIBarButtonItem * barButtonItem1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFolderAction)];
     UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(addFileAction)];
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1,barButtonItem2,nil];
+    UIBarButtonItem * barButtonItem3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showTransmissionAction)];
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1,barButtonItem2,barButtonItem3, nil];
     
+}
+
+-(void)showTransmissionAction
+{
+    UIPopoverController * p = [[UIPopoverController alloc]initWithContentViewController:[FileTransmissionViewController shareFileTransmissionVC]];
+    [p presentPopoverFromBarButtonItem:[self.navigationItem.rightBarButtonItems lastObject] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)addFolderAction
@@ -114,7 +122,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 -(void)addFileAction
 {
-    UIViewController * vc =[self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
+    ChooseLocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
     vc.modalPresentationStyle = UIModalPresentationFormSheet;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self presentViewController:vc animated:YES completion:nil];
@@ -142,7 +150,9 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                 [ma removeObjectAtIndex:indexPath.row];
                 self.fileArrayDataSource.items = ma;
             }
+            [self.tableView beginUpdates];
             [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView endUpdates];
         }
     };
     
@@ -299,6 +309,13 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
     self.fileName = textField.text;
+}
+
+
+#pragma mark FileTransmissionProtocal
+-(NSString *)currentSMBPath
+{
+    return self.path;
 }
 
 

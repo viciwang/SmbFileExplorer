@@ -11,6 +11,20 @@
 #import "FileTransmissionModal.h"
 #import "FileTransmissionCell.h"
 
+@class SmbFileViewController;
+
+@protocol FileTransmissionProtocal <NSObject>
+
+-(NSString*)currentSMBPath;
+
+@end
+
 @interface FileTransmissionViewController : UITableViewController
+
+@property (nonatomic,strong) id<FileTransmissionProtocal> delegate;
+
++(FileTransmissionViewController*)shareFileTransmissionVC;
+-(void)addTask:(FileTransmissionModal *)modal;
+
 
 @end

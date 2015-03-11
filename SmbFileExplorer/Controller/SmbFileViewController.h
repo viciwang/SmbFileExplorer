@@ -11,8 +11,10 @@
 #import "SmbFilesArrayDataSource.h"
 #import "SmbFileOperateViewController.h"
 #import "CustomerPresentationController.h"
+#import "FileTransmissionViewController.h"
+#import "ChooseLocalFileViewController.h"
 
-@interface SmbFileViewController : UITableViewController<UITextFieldDelegate>
+@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal>
 
 @property (nonatomic,copy) NSString * path;
 

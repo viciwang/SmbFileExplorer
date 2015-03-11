@@ -56,10 +56,17 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController * vc =[self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
-    vc.modalPresentationStyle = UIModalPresentationFormSheet;
-    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self.clfVC presentViewController:vc animated:YES completion:^{}];
+    NSString * fileName = [self.localFileDataSource.items objectAtIndex:indexPath.row];
+    NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    path = [NSString stringWithFormat:@"%@/%@",path,fileName];
+    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareFileTransmissionVC].delegate currentSMBPath],[path lastPathComponent]];
+    FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload fromPath:path toPath:remotePath];
+    [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
+    [self.clfVC dismissViewControllerAnimated:YES completion:nil];
+    
+//    vc.modalPresentationStyle = UIModalPresentationFormSheet;
+//    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self.clfVC presentViewController:vc animated:YES completion:^{}];
 }
 
 

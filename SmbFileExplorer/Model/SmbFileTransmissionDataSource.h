@@ -7,7 +7,16 @@
 //
 
 #import "ArrayDataSource.h"
+#import "FileTransmissionModal.h"
+#import "KxSMBProvider.h"
 
 @interface SmbFileTransmissionDataSource : ArrayDataSource
+
+@property (nonatomic,weak) UITableViewController * ftVC;
+
+-(void)addSFTItem:(FileTransmissionModal *)item;
+-(void)removeSFTItemAtPath:(NSString*)path;
+-(void)updateSFTItemAtPath:(NSString*)path withTransferred:(long)transferred;
+-(FileTransmissionModal*)SFTItemAtIndex:(NSInteger)index;
 
 @end

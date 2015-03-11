@@ -9,6 +9,7 @@
 #import "FileTransmissionViewController.h"
 
 static NSString * const FileTrainsmissionCellIdentifier = @"FileTrainsmissionCellIdentifier";
+static FileTransmissionViewController * sFileTVC;
 
 @interface FileTransmissionViewController ()
 @property (nonatomic,strong) SmbFileTransmissionDataSource * ftDatasource;
@@ -28,18 +29,40 @@ static NSString * const FileTrainsmissionCellIdentifier = @"FileTrainsmissionCel
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"shouuuuuuuuuuuuuuuuuuuuuuuuu[][][][][][][]][]]");
+}
+
 -(void)setupTableView
 {
     TableViewCellConfigureBlock block = ^(FileTransmissionCell * cell ,FileTransmissionModal * item){
+        
     };
     self.ftDatasource = [[SmbFileTransmissionDataSource alloc]initWithItem:[NSMutableArray array] cellIdentifier:FileTrainsmissionCellIdentifier configureCellBlock:block];
+    self.ftDatasource.ftVC = self;
 }
 
+
+-(void)addTask:(FileTransmissionModal *)modal
+{
+    [self.ftDatasource addSFTItem:modal];
+}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
++(FileTransmissionViewController*)shareFileTransmissionVC
+{
+    static dispatch_once_t sFileTVCOnceToken;
+    dispatch_once(&sFileTVCOnceToken, ^{
+        sFileTVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FileTransmission"];
+        [sFileTVC setupTableView];
+    });
+    return sFileTVC;
 }
 
 /*

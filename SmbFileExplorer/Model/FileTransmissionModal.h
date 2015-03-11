@@ -17,4 +17,8 @@ typedef enum {
 @property (nonatomic,strong) NSString * fromPath;
 @property (nonatomic,strong) NSString * toPath;
 @property (nonatomic) FileTransmissionType transmissionType;
+@property (nonatomic) long long fileBytes;
+@property (nonatomic) long long processedBytes;
+
+- (instancetype)initWithTransmissionType:(FileTransmissionType)type fromPath:(NSString*)fp toPath:(NSString*)tp;
 @end

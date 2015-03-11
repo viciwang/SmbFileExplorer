@@ -17,8 +17,26 @@
         self.transmissionType = type;
         self.fromPath = fp;
         self.toPath = tp;
+        if(type == FileTransmissionDownload)
+        {
+            
+        }
+        else
+        {
+            self.fileBytes = [self fileSizeAtPath:self.fromPath];
+        }
     }
     return self;
 }
+
+- (long long) fileSizeAtPath:(NSString*) filePath{
+    NSFileManager* manager = [NSFileManager defaultManager];
+    if ([manager fileExistsAtPath:filePath]){
+        return [[manager attributesOfItemAtPath:filePath error:nil] fileSize];
+    }
+    return 0;
+}
+
+
 
 @end
