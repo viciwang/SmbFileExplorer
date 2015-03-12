@@ -7,6 +7,7 @@
 //
 
 #import "SmbFilesArrayDataSource.h"
+#import "SmbFileViewController.h"
 
 @implementation SmbFilesArrayDataSource
 
@@ -88,14 +89,18 @@ configureCellBlock:(TableViewCellConfigureBlock)block
             NSMutableArray * ma = [self.items mutableCopy];
             [ma removeObjectAtIndex:index];
             self.items = [ma copy];
+            [self.smbFileVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
-        block(result);
+        else
+        {
+            block(result);
+        }
     }
     else if([item isKindOfClass:[KxSMBItemTree class]])
     {
-        [provider removeFolderAtPath:item.path block:block];
+        // 删除文件夹比较危险，并且难度较大，不好控制，暂时先屏蔽
+        //[provider removeFolderAtPath:item.path block:block];
     }
-
 
 }
 
@@ -104,7 +109,12 @@ configureCellBlock:(TableViewCellConfigureBlock)block
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    if ([[self.items objectAtIndex:indexPath.row]isKindOfClass:[KxSMBItemFile class]])
+    {
+            return YES;
+    }
+    return NO;
+
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

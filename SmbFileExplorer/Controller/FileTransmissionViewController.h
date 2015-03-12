@@ -22,7 +22,7 @@
 @interface FileTransmissionViewController : UITableViewController
 
 @property (nonatomic,strong) id<FileTransmissionProtocal> delegate;
-
+@property (nonatomic,strong) SmbFileTransmissionDataSource * ftDatasource;
 +(FileTransmissionViewController*)shareFileTransmissionVC;
 -(void)addTask:(FileTransmissionModal *)modal;
 

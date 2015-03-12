@@ -59,6 +59,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                path:self.path];
     
     self.tableView.dataSource = self.fileArrayDataSource;
+    self.fileArrayDataSource.smbFileVC = self;
     
     UIBarButtonItem * barButtonItem1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFolderAction)];
     UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(addFileAction)];
@@ -71,6 +72,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     UIPopoverController * p = [[UIPopoverController alloc]initWithContentViewController:[FileTransmissionViewController shareFileTransmissionVC]];
     [p presentPopoverFromBarButtonItem:[self.navigationItem.rightBarButtonItems lastObject] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    // [self presentViewController:[FileTransmissionViewController shareFileTransmissionVC] animated:YES completion:nil];
 }
 
 -(void)addFolderAction
@@ -141,21 +144,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
             [ac addAction:actionOK];
             [self presentViewController:ac animated:YES completion:nil];
         }
-        else
-        {
-            // 由于删除文件夹与删除文件不同，这里写的不好，所以有所判断
-            if ([[self.fileArrayDataSource itemAtIndexPath:indexPath] isKindOfClass:[KxSMBItemTree class]])
-            {
-                NSMutableArray * ma = [self.fileArrayDataSource.items mutableCopy];
-                [ma removeObjectAtIndex:indexPath.row];
-                self.fileArrayDataSource.items = ma;
-            }
-            [self.tableView beginUpdates];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView endUpdates];
-        }
     };
-    
     
     __weak typeof(self) weakSelf = self;
     UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"确定要删除文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];

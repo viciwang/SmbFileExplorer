@@ -12,7 +12,7 @@ static NSString * const FileTrainsmissionCellIdentifier = @"FileTrainsmissionCel
 static FileTransmissionViewController * sFileTVC;
 
 @interface FileTransmissionViewController ()
-@property (nonatomic,strong) SmbFileTransmissionDataSource * ftDatasource;
+
 @end
 
 @implementation FileTransmissionViewController
@@ -32,14 +32,16 @@ static FileTransmissionViewController * sFileTVC;
 -(void)viewDidAppear:(BOOL)animated
 {
     NSLog(@"shouuuuuuuuuuuuuuuuuuuuuuuuu[][][][][][][]][]]");
+    [self.tableView reloadData];
 }
 
 -(void)setupTableView
 {
     TableViewCellConfigureBlock block = ^(FileTransmissionCell * cell ,FileTransmissionModal * item){
-        
+        [cell configureForTask:item];
     };
     self.ftDatasource = [[SmbFileTransmissionDataSource alloc]initWithItem:[NSMutableArray array] cellIdentifier:FileTrainsmissionCellIdentifier configureCellBlock:block];
+    self.tableView.dataSource = self.ftDatasource;
     self.ftDatasource.ftVC = self;
 }
 

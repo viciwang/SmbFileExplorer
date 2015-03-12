@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
+		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
 		FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */; };
 		FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812301AAED0E7005142AB /* LocalFileViewController.m */; };
@@ -61,6 +62,8 @@
 /* Begin PBXFileReference section */
 		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
 		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
+		FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Common/NetworkManager.h; sourceTree = "<group>"; };
+		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
 		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
 		FAA812291AAED09D005142AB /* ChooseLocalFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocalFileViewController.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 			children = (
 				FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */,
 				FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */,
+				FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */,
+				FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -462,6 +467,7 @@
 				FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */,
 				FABDBA4B1AA863C700595AFA /* SmbMasterViewController.m in Sources */,
 				FABDBA141AA8631800595AFA /* main.m in Sources */,
+				FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */,
 				FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

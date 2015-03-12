@@ -9,6 +9,8 @@
 #import "ArrayDataSource.h"
 #import "KxSMBProvider.h"
 
+@class SmbFileViewController;
+
 typedef enum{
     SmbLoadedStatusError,
     SmbLoadedStatusSuccess,
@@ -22,6 +24,9 @@ typedef void (^CompleteBlock)(id status);
 @interface SmbFilesArrayDataSource : ArrayDataSource
 
 @property (nonatomic,copy) NSString * path;
+@property (nonatomic,weak) SmbFileViewController * smbFileVC;
+
+
 
   -(id)initWithItem:(NSMutableArray *)items
      cellIdentifier:(NSString *)identifier

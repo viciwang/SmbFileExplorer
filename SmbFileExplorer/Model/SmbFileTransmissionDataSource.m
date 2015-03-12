@@ -7,7 +7,7 @@
 //
 
 #import "SmbFileTransmissionDataSource.h"
-
+#import "FileTransmissionViewController.h"
 
 @interface  SmbFileTransmissionDataSource()
 
@@ -24,9 +24,9 @@
     self = [super initWithItem:items cellIdentifier:identifier configureCellBlock:block];
     if (self)
     {
-        __weak typeof(self) weakSelf = self;
         self.progressBlock = ^(KxSMBItem * item,long transferred){
-            [weakSelf updateSFTItemAtPath:item.path withTransferred:transferred];
+            
+            [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
         };
         
         self.resultBlock = ^(id result){
@@ -36,7 +36,7 @@
             }
             else
             {
-                [weakSelf removeSFTItemAtPath:nil];
+                [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
             }
         };
     }
@@ -47,7 +47,10 @@
 
 -(void)addSFTItem:(FileTransmissionModal *)item
 {
-    [self.items addObject:item];
+    NSMutableArray * ma = [self.items mutableCopy];
+    [ma addObject:item];
+    self.items = ma;
+    [self.ftVC.tableView reloadData];
     if (item.transmissionType == FileTransmissionUpload)
     {
         [[KxSMBProvider sharedSmbProvider]copyLocalPath:item.fromPath
@@ -64,9 +67,9 @@
     for (NSInteger i = 0;i<self.items.count;i++)
     {
         FileTransmissionModal * item = [self.items objectAtIndex:i];
-        [item indexOfAccessibilityElement:item];
         if (item.processedBytes == item.fileBytes)
         {
+            NSLog(@"传输完成%ll",item.processedBytes);
             [self.ftVC.tableView beginUpdates];
             [self.items removeObject:item];
             [self.ftVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -83,18 +86,23 @@
         [item indexOfAccessibilityElement:item];
         if (item.fromPath == path ||item.toPath == path)
         {
-            [self.ftVC.tableView beginUpdates];
+            //[self.ftVC.tableView beginUpdates];
             item.processedBytes = transferred;
-            [self.ftVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.ftVC.tableView endUpdates];
+            //[self.ftVC.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            FileTransmissionCell * cell = (FileTransmissionCell *)[self.ftVC.tableView  cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+            [cell configureForTask:item];
+           // [self.ftVC.tableView endUpdates];
         }
     }
 }
 
 -(FileTransmissionModal*)SFTItemAtIndex:(NSInteger)index
 {
-    return nil;
+    return (FileTransmissionModal*)[self.items objectAtIndex:index];
 }
+
+#pragma mark UITableViewDataSourceDelegate
+
 
 
 
