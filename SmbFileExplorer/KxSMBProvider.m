@@ -1672,7 +1672,7 @@ static KxSMBProvider *gSmbProvider;
     
     while (bytesToRead > 0) {
         
-        int r = readFn(_context, _file, buffer, MIN(bytesToRead, sizeof(buffer)));
+        long r = readFn(_context, _file, buffer, MIN(bytesToRead, sizeof(buffer)));
         
         if (r == 0)
             break;
@@ -1707,7 +1707,7 @@ static KxSMBProvider *gSmbProvider;
     
     while (1) {
         
-        int r = readFn(_context, _file, buffer, sizeof(buffer));
+        long r = readFn(_context, _file, buffer, sizeof(buffer));
         
         if (r == 0)
             break;
@@ -1735,7 +1735,7 @@ static KxSMBProvider *gSmbProvider;
         if (error) return error;
     }
     
-    off_t r = smbc_getFunctionLseek(_context)(_context, _file, offset, whence);
+    off_t r = smbc_getFunctionLseek(_context)(_context, _file, offset, (int)whence);
     if (r < 0) {
         const int err = errno;
         return mkKxSMBError(errnoToSMBErr(err),
@@ -1758,7 +1758,7 @@ static KxSMBProvider *gSmbProvider;
     
     while (bytesToWrite > 0) {
         
-        int r = writeFn(_context, _file, bytes, bytesToWrite);
+        long r = writeFn(_context, _file, bytes, bytesToWrite);
         if (r == 0)
             break;
         

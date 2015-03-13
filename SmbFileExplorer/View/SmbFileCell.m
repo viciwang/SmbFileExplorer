@@ -31,7 +31,7 @@
     }
     else
     {
-        self.accessoryType = UITableViewCellAccessoryNone;
+        self.accessoryType = UITableViewCellAccessoryDetailButton;
         self.detailTextLabel.text = [NSString stringWithFormat:@"%ld", item.stat.size];
     }
 }

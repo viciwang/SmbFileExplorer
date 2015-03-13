@@ -59,6 +59,14 @@
                                                progress:self.progressBlock
                                                   block:self.resultBlock];
     }
+    else if(item.transmissionType == FileTransmissionDownload)
+    {
+        [[KxSMBProvider sharedSmbProvider]copySMBPath:item.fromPath
+                                            localPath:item.toPath
+                                            overwrite:YES
+                                             progress:self.progressBlock
+                                                block:self.resultBlock];
+    }
 
 }
 
@@ -69,7 +77,7 @@
         FileTransmissionModal * item = [self.items objectAtIndex:i];
         if (item.processedBytes == item.fileBytes)
         {
-            NSLog(@"传输完成%ll",item.processedBytes);
+            NSLog(@"传输完成");
             [self.ftVC.tableView beginUpdates];
             [self.items removeObject:item];
             [self.ftVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];

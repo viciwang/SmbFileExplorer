@@ -32,7 +32,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     //  一定要remove，不然会调用多次
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(uploadFileAction:) name:@"UploadFile" object:nil];
     [FileTransmissionViewController shareFileTransmissionVC].delegate = self;
 }
 
@@ -159,12 +158,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
--(void)uploadFileAction:(NSNotification *)notification
-{
-    NSString * localPath = notification.object;
-   // [KxSMBProvider sharedSmbProvider]
-}
-
 -(void)reloadPath
 {
     NSString *path;
@@ -260,6 +253,18 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark UITableViewDelegate
+
+-(void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    // 判断是否为文件夹
+    KxSMBItem * item = [self.fileArrayDataSource itemAtIndexPath:indexPath];
+    if ([item isKindOfClass:[KxSMBItemFile class]])
+    {
+        
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -269,7 +274,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     if ([item isKindOfClass:[KxSMBItemTree class]])
     {
         UINavigationController  * nav = (UINavigationController *)[[self.splitViewController viewControllers]lastObject];
-        SmbFileViewController * smbFileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFolderViewController"];
+        SmbFileViewController * smbFileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileViewController"];
         smbFileVC.path = item.path;
         [nav pushViewController:smbFileVC animated:YES];
     }

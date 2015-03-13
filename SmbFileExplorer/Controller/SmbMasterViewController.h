@@ -15,6 +15,7 @@
 #import "SmbFileViewController.h"
 #import "SmbAuth.h"
 #import "PersistenceManager.h"
+#import "NetworkManager.h"
 
 
 
