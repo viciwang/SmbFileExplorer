@@ -65,6 +65,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     UIBarButtonItem * barButtonItem3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showTransmissionAction)];
     self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1,barButtonItem2,barButtonItem3, nil];
     
+    [self.navigationController setToolbarHidden:NO animated:YES];
+    
 }
 
 -(void)showTransmissionAction
