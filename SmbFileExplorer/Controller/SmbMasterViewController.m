@@ -96,7 +96,6 @@ static NSString * const SmbMasterCellIdentifier = @"SmbAuthCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    UINavigationController  * nav = (UINavigationController *)[[self.splitViewController viewControllers]lastObject];
     SmbFileViewController * smbFileVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileViewController"];
     self.currentSmbAuth = self.authArrayDataSource.items[indexPath.row];
     
@@ -108,11 +107,8 @@ static NSString * const SmbMasterCellIdentifier = @"SmbAuthCell";
     
     // the path must be the format : @"smb://%@",ipAddr;
     smbFileVC.path = [NSString stringWithFormat:@"smb://%@",ipString ];
-//    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:smbFileVC];
-//    NSArray * array = [self.splitViewController viewControllers];
-//    [array replaceObjectAtIndex:array.count-1 withObject:nav];
-    [nav popToRootViewControllerAnimated:YES];
-    [nav pushViewController:smbFileVC animated:YES];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:smbFileVC];
+    [self.splitViewController showDetailViewController:nav sender:nil];
     
 }
 

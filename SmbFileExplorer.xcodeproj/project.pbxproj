@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
+		FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */; };
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
 		FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */; };
@@ -62,6 +63,7 @@
 /* Begin PBXFileReference section */
 		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
 		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
+		FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIDesignPlan.storyboard; sourceTree = "<group>"; };
 		FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Common/NetworkManager.h; sourceTree = "<group>"; };
 		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				FABDBA481AA863C700595AFA /* SmbAuthCell.m */,
 				FABDBAAD1AA8862500595AFA /* SmbFileCell.h */,
 				FABDBAAE1AA8862500595AFA /* SmbFileCell.m */,
+				FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABDBA521AA8648C00595AFA /* Main.storyboard in Resources */,
+				FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */,
 				FABDBA221AA8631800595AFA /* LaunchScreen.xib in Resources */,
 				FABDBA1F1AA8631800595AFA /* Images.xcassets in Resources */,
 			);
