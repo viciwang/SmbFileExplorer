@@ -8,14 +8,31 @@
 
 #import "ArrayDataSource.h"
 #import "KxSMBProvider.h"
+#import "SmbFileCell.h"
+#import "SmbFileOperateCell.h"
 
 @class SmbFileViewController;
+@class SmbFilesArrayDataSource;
 
 typedef enum{
     SmbLoadedStatusError,
     SmbLoadedStatusSuccess,
     
 }SmbLoadedStatus;
+
+typedef enum{
+    FileTypeKxSMBItemTree,
+    FileTypeKxSMBItemFile,
+    FileTypeItemOperate,
+}FileType;
+
+@protocol SmbFileArrayDelegate <NSObject>
+
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didRemoveItemAtIndex:(NSInteger)index;
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didInsertItem:(id)item intoIndex:(NSInteger)index;
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didFailToAddSmbFile:(NSError *)error;
+
+@end
 
 typedef void (^SmbLoadedBlock)(id status);
 typedef void (^CompleteBlock)(id status);
@@ -24,7 +41,7 @@ typedef void (^CompleteBlock)(id status);
 @interface SmbFilesArrayDataSource : ArrayDataSource
 
 @property (nonatomic,copy) NSString * path;
-@property (nonatomic,weak) SmbFileViewController * smbFileVC;
+@property (nonatomic,weak) UITableViewController<SmbFileArrayDelegate> * smbFileDelegate;
 
 
 
@@ -34,8 +51,9 @@ typedef void (^CompleteBlock)(id status);
                path:(NSString*)path;
 
 -(void)loadFileAndProcessByBlock:(SmbLoadedBlock)block;
--(void)addItemKind:(NSString *)fileType Named:(NSString *)name Handler:(CompleteBlock)block;
--(void)removeItemAtIndex:(NSInteger)index Handler:(CompleteBlock)block;
+-(void)insertItemType:(FileType)fileType Named:(NSString *)name AtIndex:(NSInteger)index;
+-(void)removeItemAtIndex:(NSInteger)index;
 //-(void)renameItemAtIndex:(NSInteger)index withAuth:(SmbAuth *)auth;
 
 @end
+

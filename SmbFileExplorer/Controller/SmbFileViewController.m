@@ -7,8 +7,10 @@
 //
 
 #import "SmbFileViewController.h"
+#define INDEX_FOR_UNSELECTED_CELL  (-100)   // 如果没有选中某个cell，选中下标为-100。 Attention： 绝对不能为-1
 
 static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
+
 
 @interface SmbFileViewController ()
 
@@ -16,6 +18,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,copy)   TableViewCellConfigureBlock cellConfigBlock;
 @property (nonatomic,strong) SmbFilesArrayDataSource * fileArrayDataSource;
 @property (nonatomic,strong) NSString * fileName;
+@property (nonatomic) NSInteger indexForSelectedCell;
 
 @end
 
@@ -24,6 +27,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupTableView];
+    [self setupNavigationBar];
     [self reloadPath];
     
 }
@@ -31,13 +35,13 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 -(void)viewDidAppear:(BOOL)animated
 {
     //  一定要remove，不然会调用多次
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
+    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
     [FileTransmissionViewController shareFileTransmissionVC].delegate = self;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    //[[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 -(void)setupTableView
@@ -58,15 +62,31 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                path:self.path];
     
     self.tableView.dataSource = self.fileArrayDataSource;
-    self.fileArrayDataSource.smbFileVC = self;
+    self.fileArrayDataSource.smbFileDelegate = self;
+    self.indexForSelectedCell = INDEX_FOR_UNSELECTED_CELL;
+}
+
+-(void)setupNavigationBar
+{
+    UIBarButtonItem * barButtonItem1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                    target:self
+                                                                                    action:@selector(addFolderAction)];
     
-    UIBarButtonItem * barButtonItem1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFolderAction)];
-    UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(addFileAction)];
-    UIBarButtonItem * barButtonItem3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(showTransmissionAction)];
-    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1,barButtonItem2,barButtonItem3, nil];
+    UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                    target:self
+                                                                                    action:@selector(addFileAction)];
+    
+    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+                                                                                    target:self
+                                                                                    action:@selector(showTransmissionAction)];
+    UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                  target:nil
+                                                                                  action:nil];
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1, nil];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
+    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,barButtonItem2,flexibleItem, toolBarButtonItem3,flexibleItem,nil];
 }
 
 -(void)showTransmissionAction
@@ -94,22 +114,25 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 //    
 //    self.presentationController presentationStyle;
     
+    [self removeOperateCell];
     UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"新文件夹的名字" message:@"" preferredStyle:UIAlertControllerStyleAlert];
     
     __weak typeof(self) weakSelf = self;
     
     UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [weakSelf.fileArrayDataSource addItemKind:NSStringFromClass([KxSMBItemTree class]) Named:weakSelf.fileName Handler:^(id status){
-            if ([status isKindOfClass:[KxSMBItemTree class]])
-            {
-                [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
-            }
-            else
-            {
-                    
-            }
-        }];
+//        [weakSelf.fileArrayDataSource addItemKind:NSStringFromClass([KxSMBItemTree class]) Named:weakSelf.fileName Handler:^(id status){
+//            if ([status isKindOfClass:[KxSMBItemTree class]])
+//            {
+//                [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.fileArrayDataSource.items.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+//            }
+//            else
+//            {
+//                    
+//            }
+//        }];
+        
+        [weakSelf.fileArrayDataSource insertItemType:FileTypeKxSMBItemTree Named:weakSelf.fileName AtIndex:-1];
     }];
     
     UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
@@ -119,13 +142,16 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         textField.delegate = weakSelf;
     }];
     
-    [self presentViewController:ac animated:YES completion:nil];
+    [self presentViewController:ac
+                       animated:YES
+                     completion:nil];
 
     
 }
 
 -(void)addFileAction
 {
+    [self removeOperateCell];
     ChooseLocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
     vc.modalPresentationStyle = UIModalPresentationFormSheet;
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -134,9 +160,9 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
--(void)deleteFileAction:(NSNotification *)notification
+-(void)deleteFileAction:(NSIndexPath *)indexPath
 {
-    NSIndexPath * indexPath = notification.object;
+    [self removeOperateCell];
     CompleteBlock block = ^(id status){
         if ([status isKindOfClass:[NSError class]])
         {
@@ -147,23 +173,26 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         }
     };
     
-    __weak typeof(self) weakSelf = self;
-    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"确定要删除文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [weakSelf.fileArrayDataSource removeItemAtIndex:indexPath.row Handler:block];
-    }];
-    
-    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-    [ac addAction:actionOK];
-    [ac addAction:actionCancel];
-    [self.splitViewController presentViewController:ac animated:YES completion:nil];
+//    __weak typeof(self) weakSelf = self;
+//    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"确定要删除文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];
+//    UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+//        [weakSelf.fileArrayDataSource removeItemAtIndex:indexPath.row Handler:block];
+//    }];
+//    
+//    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
+//    [ac addAction:actionOK];
+//    [ac addAction:actionCancel];
+//    [self.splitViewController presentViewController:ac animated:YES completion:nil];
 }
 
 
 -(void)reloadPath
 {
-    NSString *path;
     
+    // 刷新之前，先把展开的cell remove掉
+    [self removeOperateCell];
+    
+    NSString *path;
     if (self.path.length) {
         
         path = self.path;
@@ -172,7 +201,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     }
     else
     {
-        
         path = @"smb:";
         self.title = @"smb:";
     }
@@ -282,24 +310,101 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     }
     else
     {
-//        CGFloat containWidth = 50;
-//        CGFloat containHeight = 100;
-//        CGRect rect = [self.tableView rectForRowAtIndexPath:indexPath];
-//        rect = CGRectMake(rect.size.width - containWidth -10 ,rect.origin.y + rect.size.height/2.0 - containHeight/2.0 , 1, 1);
-//        UIViewController * con = [[UIViewController alloc]init];
-//        con.view.backgroundColor = [UIColor redColor];
-//        con.view.frame = CGRectMake(0, 0 , containWidth, containHeight);
-//        UIPopoverController * pc = [[UIPopoverController alloc]initWithContentViewController:con];
-//        pc.popoverContentSize = CGSizeMake(containWidth,containHeight);
-//        [pc presentPopoverFromRect:rect inView:self.tableView permittedArrowDirections:UIPopoverArrowDirectionRight animated:NO];
-        UINavigationController  * nav = (UINavigationController *)[[self.splitViewController viewControllers]lastObject];
-        SmbFileOperateViewController * smbFOVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
-        smbFOVC.smbFile = (KxSMBItemFile*)item;
-        [nav pushViewController:smbFOVC animated:YES];
+        [self.tableView beginUpdates];
+
+        if ([self isSelectedIndexPath:indexPath])
+        {
+            [self removeOperateCell];
+            self.indexForSelectedCell = INDEX_FOR_UNSELECTED_CELL;
+        }
+        else
+        {
+            [self removeOperateCell];
+            
+            // removeOperateCell 之后，在operate之下的cell的indexPath.row可能会减一
+            if (self.indexForSelectedCell>=0 && self.indexForSelectedCell<indexPath.row)
+            {
+                self.indexForSelectedCell = indexPath.row - 1;
+            }
+            else
+            {
+                self.indexForSelectedCell = indexPath.row;
+            }
+            
+            [self.fileArrayDataSource insertItemType:FileTypeItemOperate
+                                               Named:nil
+                                             AtIndex:self.indexForSelectedCell+1];
+        }
+        
+        [self.tableView endUpdates];
+        
+//        UINavigationController  * nav = (UINavigationController *)[[self.splitViewController viewControllers]lastObject];
+//        SmbFileOperateViewController * smbFOVC = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
+//        smbFOVC.smbFile = (KxSMBItemFile*)item;
+//        [nav pushViewController:smbFOVC animated:YES];
         
     }
 }
-                                
+
+-(void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self removeOperateCell];
+}
+
+
+#pragma mark SmbFileArrayDelegate
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didInsertItem:(id)item intoIndex:(NSInteger)index
+{
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView insertRowsAtIndexPaths:@[indexPath]
+                          withRowAnimation:UITableViewRowAnimationTop];
+    [self.tableView scrollToRowAtIndexPath:indexPath
+                          atScrollPosition:UITableViewScrollPositionNone
+                                  animated:YES];
+}
+
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didRemoveItemAtIndex:(NSInteger)index
+{
+    [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index
+                                                                inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationTop];
+}
+
+-(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didFailToAddSmbFile:(NSError *)error
+{
+    
+}
+
+#pragma mark TableViewCell Bussiness 
+
+-(BOOL)isSelectedIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath && self.indexForSelectedCell==indexPath.row )
+    {
+        return YES;
+    }
+    return NO;
+}
+
+-(BOOL)isOperateCellAtIndexPath:(NSIndexPath *)indexPath
+{
+    // INDEX_FOR_UNSELECTED 不能为-1 的原因在此，为-1会导致判断出错
+    if (indexPath && (self.indexForSelectedCell+1)==indexPath.row)
+    {
+        return YES;
+    }
+    return NO;
+}
+
+
+-(void)removeOperateCell
+{
+    if (self.indexForSelectedCell>=0)
+    {
+        [self.fileArrayDataSource removeItemAtIndex:self.indexForSelectedCell+1];
+    }
+}
+
 #pragma mark UITextFieldDelegate
                                 
 -(void)textFieldDidEndEditing:(UITextField *)textField

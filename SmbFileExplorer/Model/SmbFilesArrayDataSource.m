@@ -54,9 +54,11 @@ configureCellBlock:(TableViewCellConfigureBlock)block
      }];
 }
 
--(void)addItemKind:(NSString *)fileType Named:(NSString *)name Handler:(CompleteBlock)block;
+
+// 如果插入的filetype 是 FileTypeItemOperate,index才有作用
+-(void)insertItemType:(FileType)fileType Named:(NSString *)name AtIndex:(NSInteger)index
 {
-    if ([fileType isEqualToString:NSStringFromClass([KxSMBItemTree class])])
+    if (fileType == FileTypeKxSMBItemTree)
     {
         KxSMBProvider * provider = [KxSMBProvider sharedSmbProvider];
         id result = [provider createFolderAtPath:[self.path stringByAppendingSMBPathComponent:name]];
@@ -65,35 +67,48 @@ configureCellBlock:(TableViewCellConfigureBlock)block
             NSMutableArray * ma = [self.items mutableCopy];
             [ma addObject:(KxSMBItemTree *)result];
             self.items = [ma copy];
+            [self.smbFileDelegate smbFileArrayDataSource:self didInsertItem:result intoIndex:[self.items count]-1];
         }
-        block(result);
+        else
+        {
+           [self.smbFileDelegate smbFileArrayDataSource:self didFailToAddSmbFile:result];
+        }
     }
-    else
+    
+    else if(fileType == FileTypeItemOperate)
     {
-        
+        //  添加一个NSString，用于占行
+        NSMutableArray * ma = [self.items mutableCopy];
+        [ma insertObject:@"FileOperate" atIndex:index];
+        self.items = [ma copy];
+        [self.smbFileDelegate smbFileArrayDataSource:self didInsertItem:@"FileOperator" intoIndex:index];
     }
 
 }
 
--(void)removeItemAtIndex:(NSInteger)index Handler:(CompleteBlock)block;
+-(void)removeItemAtIndex:(NSInteger)index;
 {
     
-    KxSMBItem * item = [self.items objectAtIndex:index];
+    id item = [self itemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     KxSMBProvider * provider = [KxSMBProvider sharedSmbProvider];
     id result;
     if ([item isKindOfClass:[KxSMBItemFile class]])
     {
-        result = [provider removeAtPath:item.path];
+        result = [provider removeAtPath:((KxSMBItemFile*)item).path];
         if(![result isKindOfClass:[NSError class]])
         {
             NSMutableArray * ma = [self.items mutableCopy];
-            [ma removeObjectAtIndex:index];
+            [ma removeObject:item];
             self.items = [ma copy];
-            [self.smbFileVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            if (self.smbFileDelegate)
+            {
+                [self.smbFileDelegate smbFileArrayDataSource:self didRemoveItemAtIndex:index];
+            }
         }
         else
         {
-            block(result);
+            //block(result);
+            [self.smbFileDelegate smbFileArrayDataSource:self didFailToAddSmbFile:result];
         }
     }
     else if([item isKindOfClass:[KxSMBItemTree class]])
@@ -101,28 +116,60 @@ configureCellBlock:(TableViewCellConfigureBlock)block
         // 删除文件夹比较危险，并且难度较大，不好控制，暂时先屏蔽
         //[provider removeFolderAtPath:item.path block:block];
     }
+    
+    //  删除操作行
+    else if ([item isKindOfClass:[NSString class]])
+    {
+        NSMutableArray * ma = [self.items mutableCopy];
+        [ma removeObject:item];
+        self.items = [ma copy];
+        if (self.smbFileDelegate)
+        {
+            [self.smbFileDelegate smbFileArrayDataSource:self didRemoveItemAtIndex:index];
+        }
+    }
 
 }
 
 
 #pragma mark UITableViewDataSource
 
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id item = [self itemAtIndexPath:indexPath];
+    if ([item isKindOfClass:[NSString class]])
+    {
+        SmbFileOperateCell * cell = (SmbFileOperateCell *)[tableView dequeueReusableCellWithIdentifier:@"SmbFileOperateCell"
+                                                                                          forIndexPath:indexPath];
+        return cell;
+    }
+    else
+    {
+        SmbFileCell * cell = (SmbFileCell *)[tableView dequeueReusableCellWithIdentifier:@"SmbFileCell"
+                                                                            forIndexPath:indexPath];
+        [cell configureForSmbFile:[self itemAtIndexPath:indexPath]];
+        return cell;
+    }
+    
+}
+
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[self.items objectAtIndex:indexPath.row]isKindOfClass:[KxSMBItemFile class]])
+    id item  = [self itemAtIndexPath:indexPath];
+    if ([item isKindOfClass:[KxSMBItemFile class]])
     {
-            return YES;
+        return YES;
     }
     return NO;
 
 }
 
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        [[NSNotificationCenter defaultCenter]postNotificationName:@"DeleteFile" object:indexPath];
-        
+        [self removeItemAtIndex:indexPath.row];
     }
     else if (editingStyle == UITableViewCellEditingStyleInsert)
     {

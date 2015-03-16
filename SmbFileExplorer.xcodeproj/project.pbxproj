@@ -11,6 +11,7 @@
 		FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */; };
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
+		FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */; };
 		FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */; };
 		FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812301AAED0E7005142AB /* LocalFileViewController.m */; };
 		FAA812661AAF1C5B005142AB /* FileTransmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812651AAF1C5B005142AB /* FileTransmissionViewController.m */; };
@@ -68,6 +69,8 @@
 		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
 		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
+		FAA7D2CB1AB5649A00E3A9D1 /* SmbFileOperateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileOperateCell.h; sourceTree = "<group>"; };
+		FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileOperateCell.m; sourceTree = "<group>"; };
 		FAA812291AAED09D005142AB /* ChooseLocalFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocalFileViewController.h; sourceTree = "<group>"; };
 		FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocalFileViewController.m; sourceTree = "<group>"; };
 		FAA8122F1AAED0E7005142AB /* LocalFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileViewController.h; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				FABDBAAD1AA8862500595AFA /* SmbFileCell.h */,
 				FABDBAAE1AA8862500595AFA /* SmbFileCell.m */,
 				FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */,
+				FAA7D2CB1AB5649A00E3A9D1 /* SmbFileOperateCell.h */,
+				FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				FAFA6CA81AA9BE0B00959974 /* SmbFileViewController.m in Sources */,
 				FAFAED891AADC3C300E4356C /* FolderNameFormViewController.m in Sources */,
 				FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */,
+				FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */,
 				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
 				FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */,
 				FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */,
