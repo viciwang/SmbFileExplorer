@@ -72,13 +72,20 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                                     target:self
                                                                                     action:@selector(addFolderAction)];
     
-    UIBarButtonItem * barButtonItem2 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
-                                                                                    target:self
-                                                                                    action:@selector(addFileAction)];
+    UIBarButtonItem * toolBarButtonItem1 = [[UIBarButtonItem alloc]initWithTitle:@"上传/下载管理"
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:self
+                                                                          action:@selector(showTransmissionAction:)];
     
-    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
-                                                                                    target:self
-                                                                                    action:@selector(showTransmissionAction)];
+    UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithTitle:@"本地文件"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(addFileAction)];
+    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"断开连接"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(showTransmissionAction:)];
+    
     UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                   target:nil
                                                                                   action:nil];
@@ -86,13 +93,13 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,barButtonItem2,flexibleItem, toolBarButtonItem3,flexibleItem,nil];
+    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,toolBarButtonItem3,flexibleItem,nil];
 }
 
--(void)showTransmissionAction
+-(void)showTransmissionAction:(id)sender
 {
     UIPopoverController * p = [[UIPopoverController alloc]initWithContentViewController:[FileTransmissionViewController shareFileTransmissionVC]];
-    [p presentPopoverFromBarButtonItem:[self.navigationItem.rightBarButtonItems lastObject] permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [p presentPopoverFromBarButtonItem:(UIBarButtonItem*)sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
     // [self presentViewController:[FileTransmissionViewController shareFileTransmissionVC] animated:YES completion:nil];
 }
@@ -315,14 +322,16 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         if ([self isSelectedIndexPath:indexPath])
         {
             [self removeOperateCell];
-            self.indexForSelectedCell = INDEX_FOR_UNSELECTED_CELL;
+            
         }
         else
         {
+            // 注意要先保存indexForSelectedCell,不然会被removeOperate覆盖
+            NSInteger temIndex = self.indexForSelectedCell;
             [self removeOperateCell];
             
             // removeOperateCell 之后，在operate之下的cell的indexPath.row可能会减一
-            if (self.indexForSelectedCell>=0 && self.indexForSelectedCell<indexPath.row)
+            if (temIndex>=0 && temIndex<indexPath.row)
             {
                 self.indexForSelectedCell = indexPath.row - 1;
             }
@@ -352,16 +361,30 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
+
 #pragma mark SmbFileArrayDelegate
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didInsertItem:(id)item intoIndex:(NSInteger)index
 {
+    [self.tableView beginUpdates];
     NSIndexPath * indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath]
                           withRowAnimation:UITableViewRowAnimationTop];
-    [self.tableView scrollToRowAtIndexPath:indexPath
-                          atScrollPosition:UITableViewScrollPositionNone
-                                  animated:YES];
+    [self.tableView endUpdates];
+    
+    //  不是最后一行，滚动不会出错。如果是最后一行，滚动会出错。
+    if (index != dataSource.items.count-1) {
+        [self.tableView scrollToRowAtIndexPath:indexPath
+                              atScrollPosition:UITableViewScrollPositionNone
+                                      animated:YES];
+    }
+
+
+    
+    
 }
+
+
+
 
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didRemoveItemAtIndex:(NSInteger)index
 {
@@ -402,6 +425,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     if (self.indexForSelectedCell>=0)
     {
         [self.fileArrayDataSource removeItemAtIndex:self.indexForSelectedCell+1];
+        self.indexForSelectedCell = INDEX_FOR_UNSELECTED_CELL;
     }
 }
 
@@ -414,6 +438,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 
 #pragma mark FileTransmissionProtocal
+
 -(NSString *)currentSMBPath
 {
     return self.path;

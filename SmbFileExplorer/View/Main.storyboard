@@ -180,6 +180,41 @@
             <point key="canvasLocation" x="775" y="921"/>
         </scene>
         <!--View Controller-->
+        <scene sceneID="A9c-yN-uoc">
+            <objects>
+                <viewController id="ywN-Br-Qd0" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TMQ-Ke-MB3"/>
+                        <viewControllerLayoutGuide type="bottom" id="dwk-tg-qQR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RvQ-XY-5En">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="9Bv-I4-lUL">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="3Gb-Ab-9lv"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="9Bv-I4-lUL" secondAttribute="trailing" id="92r-1x-Bxq"/>
+                            <constraint firstItem="9Bv-I4-lUL" firstAttribute="leading" secondItem="RvQ-XY-5En" secondAttribute="leading" id="Q7j-oo-amH"/>
+                            <constraint firstItem="9Bv-I4-lUL" firstAttribute="top" secondItem="RvQ-XY-5En" secondAttribute="topMargin" id="uGh-c9-XcE"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Wp-X5-1eg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1637" y="2289"/>
+        </scene>
+        <!--View Controller-->
         <scene sceneID="nbI-lf-CZJ">
             <objects>
                 <viewController id="CYu-tE-ivd" sceneMemberID="viewController">
@@ -230,31 +265,43 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MxP-6W-bxe" id="NNP-lv-Leu">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT4-8v-HxY">
-                                            <rect key="frame" x="42" y="7" width="46" height="30"/>
-                                            <state key="normal" title="Button">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HU6-9u-1l4">
+                                            <rect key="frame" x="42" y="8" width="30" height="30"/>
+                                            <state key="normal" title="下载">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZG-rj-JRZ">
-                                            <rect key="frame" x="139" y="7" width="46" height="30"/>
-                                            <state key="normal" title="Button">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1q-Xd-Tx4">
+                                            <rect key="frame" x="129" y="7" width="30" height="30"/>
+                                            <state key="normal" title="删除">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kdo-l3-gtl">
-                                            <rect key="frame" x="259" y="8" width="46" height="30"/>
-                                            <state key="normal" title="Button">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mR7-vU-68I">
+                                            <rect key="frame" x="239" y="7" width="30" height="30"/>
+                                            <state key="normal" title="预览">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCO-s9-1yF">
-                                            <rect key="frame" x="437" y="8" width="46" height="30"/>
-                                            <state key="normal" title="Button">
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="efv-XZ-NTd">
+                                            <rect key="frame" x="358" y="8" width="30" height="30"/>
+                                            <state key="normal" title="属性">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PMZ-hV-b8v">
+                                            <rect key="frame" x="465" y="8" width="30" height="30"/>
+                                            <state key="normal" title="打开">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
                                     </subviews>
+                                    <color key="backgroundColor" red="0.094117647060000004" green="0.15686274510000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -457,7 +504,44 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dUW-cQ-uTn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697" y="914"/>
+            <point key="canvasLocation" x="2379" y="1924"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="SUb-Yu-mNB">
+            <objects>
+                <tableViewController id="HiK-iS-nqr" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="XqO-7V-vI6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="65" id="dkV-Lf-Ifa">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dkV-Lf-Ifa" id="ZjO-cH-vh2">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RuI-aO-x2l">
+                                            <rect key="frame" x="19" y="8" width="58" height="54"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCn-ez-bte">
+                                            <rect key="frame" x="105" y="8" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HiK-iS-nqr" id="54L-br-z07"/>
+                            <outlet property="delegate" destination="HiK-iS-nqr" id="HVC-u9-7a3"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nsn-e4-M65" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2379" y="2629"/>
         </scene>
         <!--File Transmission View Controller-->
         <scene sceneID="gnv-3B-nlB">
@@ -559,7 +643,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ef1-tm-eyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4596" y="944"/>
+            <point key="canvasLocation" x="3852" y="920"/>
         </scene>
     </scenes>
 </document>
