@@ -19,7 +19,9 @@
 @implementation SmbFileTransmissionDataSource
 
 
--(id)initWithItem:(NSMutableArray *)items cellIdentifier:(NSString *)identifier configureCellBlock:(TableViewCellConfigureBlock)block
+-(id)initWithItem:(NSMutableArray *)items
+   cellIdentifier:(NSString *)identifier
+configureCellBlock:(TableViewCellConfigureBlock)block
 {
     self = [super initWithItem:items cellIdentifier:identifier configureCellBlock:block];
     if (self)

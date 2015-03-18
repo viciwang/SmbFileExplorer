@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
 		FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */; };
+		FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */; };
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
 		FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */; };
@@ -65,6 +66,8 @@
 		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
 		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
 		FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIDesignPlan.storyboard; sourceTree = "<group>"; };
+		FA404B691AB96B9400FB3D38 /* SystemStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemStuff.h; path = Common/SystemStuff.h; sourceTree = "<group>"; };
+		FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemStuff.m; path = Common/SystemStuff.m; sourceTree = "<group>"; };
 		FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Common/NetworkManager.h; sourceTree = "<group>"; };
 		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 				FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */,
 				FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */,
 				FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */,
+				FA404B691AB96B9400FB3D38 /* SystemStuff.h */,
+				FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */,
 				FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */,
 				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
+				FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */,
 				FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */,
 				FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */,
 				FAA8126C1AAF1EE2005142AB /* FileTransmissionCell.m in Sources */,

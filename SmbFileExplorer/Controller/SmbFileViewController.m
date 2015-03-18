@@ -322,7 +322,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         if ([self isSelectedIndexPath:indexPath])
         {
             [self removeOperateCell];
-            
         }
         else
         {
@@ -427,6 +426,53 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
         [self.fileArrayDataSource removeItemAtIndex:self.indexForSelectedCell+1];
         self.indexForSelectedCell = INDEX_FOR_UNSELECTED_CELL;
     }
+}
+
+
+#pragma mark SmbFileOperateDelefate
+
+-(void)downloadSmbFile:(id)button
+{
+    
+    KxSMBItemFile * file = [self.fileArrayDataSource itemAtIndexPath:[NSIndexPath indexPathForItem:self.indexForSelectedCell
+                                                                                         inSection:0]];
+    
+    NSString * localPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject];
+    localPath = [NSString stringWithFormat:@"%@/%@",localPath,[file.path lastPathComponent]];
+    FileTransmissionModal * modal = [[FileTransmissionModal alloc] initWithTransmissionType:FileTransmissionDownload
+                                                                                   fromPath:file.path
+                                                                                     toPath:localPath
+                                                                                   withInfo:file.stat];
+    
+    FileTransmissionViewController * ftVC = [FileTransmissionViewController shareFileTransmissionVC];
+    
+    [ftVC addTask:modal];
+    
+}
+
+-(void)deleteSmbFile:(id)button
+{
+    
+}
+
+-(void)showPropertyOfSmbFile:(id)button
+{
+    
+}
+
+-(void)showOpenModeOfSmbFile:(id)button
+{
+    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/123.png",[SystemStuff stringForPathOfDocumentPath]]];
+     UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
+   // [dVC setDelegate:self];
+    [NSURL url]
+    [dVC presentOpenInMenuFromRect:CGRectMake(50, 50, 10, 10) inView:self.view animated:YES];
+    
+}
+
+-(void)previewSmbFile:(id)button
+{
+    
 }
 
 #pragma mark UITextFieldDelegate

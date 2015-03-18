@@ -253,13 +253,13 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06V-cs-aAY">
                                             <rect key="frame" x="113" y="11" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SmbFileOperateCell" id="MxP-6W-bxe">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SmbFileOperateCell" id="MxP-6W-bxe" customClass="SmbFileOperateCell">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MxP-6W-bxe" id="NNP-lv-Leu">
@@ -303,6 +303,13 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.094117647060000004" green="0.15686274510000001" blue="0.23921568630000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deleteBtn" destination="h1q-Xd-Tx4" id="gtF-Pa-Uez"/>
+                                    <outlet property="downloadBtn" destination="HU6-9u-1l4" id="eim-7w-ng9"/>
+                                    <outlet property="openModeBtn" destination="PMZ-hV-b8v" id="Ffv-iy-2xq"/>
+                                    <outlet property="previewBtn" destination="mR7-vU-68I" id="m1i-I0-XUB"/>
+                                    <outlet property="protertyBtn" destination="efv-XZ-NTd" id="Gbi-FG-Xkq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -526,7 +533,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCn-ez-bte">
                                             <rect key="frame" x="105" y="8" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>

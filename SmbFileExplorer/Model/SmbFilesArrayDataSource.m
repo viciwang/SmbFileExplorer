@@ -141,6 +141,7 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     {
         SmbFileOperateCell * cell = (SmbFileOperateCell *)[tableView dequeueReusableCellWithIdentifier:@"SmbFileOperateCell"
                                                                                           forIndexPath:indexPath];
+        [cell configureCellWithDelegate:self.smbFileDelegate];
         return cell;
     }
     else

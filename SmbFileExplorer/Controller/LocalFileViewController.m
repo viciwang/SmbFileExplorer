@@ -60,7 +60,10 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     path = [NSString stringWithFormat:@"%@/%@",path,fileName];
     NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareFileTransmissionVC].delegate currentSMBPath],[path lastPathComponent]];
-    FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload fromPath:path toPath:remotePath];
+    FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload
+                                                                                   fromPath:path
+                                                                                     toPath:remotePath
+                                                                                   withInfo:nil];
     [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
     [self.clfVC dismissViewControllerAnimated:YES completion:nil];
     

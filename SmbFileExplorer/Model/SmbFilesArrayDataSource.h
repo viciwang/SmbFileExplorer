@@ -41,7 +41,7 @@ typedef void (^CompleteBlock)(id status);
 @interface SmbFilesArrayDataSource : ArrayDataSource
 
 @property (nonatomic,copy) NSString * path;
-@property (nonatomic,weak) UITableViewController<SmbFileArrayDelegate> * smbFileDelegate;
+@property (nonatomic,weak) UITableViewController<SmbFileArrayDelegate,SmbFileOperateDelegate> * smbFileDelegate;
 
 
 

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "SystemStuff.h"
 typedef enum {
     FileTransmissionUpload,
     FileTransmissionDownload
@@ -20,5 +20,5 @@ typedef enum {
 @property (nonatomic) long long fileBytes;
 @property (nonatomic) long long processedBytes;
 
-- (instancetype)initWithTransmissionType:(FileTransmissionType)type fromPath:(NSString*)fp toPath:(NSString*)tp;
+- (instancetype)initWithTransmissionType:(FileTransmissionType)type fromPath:(NSString*)fp toPath:(NSString*)tp withInfo:(id)info;
 @end

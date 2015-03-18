@@ -14,7 +14,7 @@
 #import "FileTransmissionViewController.h"
 #import "ChooseLocalFileViewController.h"
 
-@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate>
+@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate>
 
 @property (nonatomic,copy) NSString * path;
 
