@@ -19,6 +19,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,strong) SmbFilesArrayDataSource * fileArrayDataSource;
 @property (nonatomic,strong) NSString * fileName;
 @property (nonatomic) NSInteger indexForSelectedCell;
+@property (nonatomic,strong)SmbCacheFileTransitionDelegate * smbCacheFileTransitionDelegate;
 
 @end
 
@@ -462,11 +463,32 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 -(void)showOpenModeOfSmbFile:(id)button
 {
-    NSURL * url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/123.png",[SystemStuff stringForPathOfDocumentPath]]];
-     UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
-   // [dVC setDelegate:self];
-    [NSURL url]
-    [dVC presentOpenInMenuFromRect:CGRectMake(50, 50, 10, 10) inView:self.view animated:YES];
+    KxSMBItemFile * file = [self.fileArrayDataSource itemAtIndexPath:[NSIndexPath indexPathForItem:self.indexForSelectedCell
+                                                                                         inSection:0]];
+    NSString * cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+    cachePath = [NSString stringWithFormat:@"%@/%@",cachePath,[file.path lastPathComponent]];
+    
+    
+    
+    SmbFileOperateViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
+    [vc configureWithSmbFile:file delegate:self];
+    self.smbCacheFileTransitionDelegate = [[SmbCacheFileTransitionDelegate alloc]init];
+    vc.transitioningDelegate = self.smbCacheFileTransitionDelegate;
+    [self presentViewController:vc animated:YES completion:nil];
+    
+    
+    
+//    NSString * string = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//    NSURL * url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/123.png",string]];
+//     UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
+//   // [dVC setDelegate:self];
+//    
+//    //[dVC presentOpenInMenuFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+//
+//    //[dVC presentOpenInMenuFromRect:[b.viewForBaselineLayout convertRect:b.frame toView:self.view] inView:self.view animated:YES];
+//    dVC.delegate = self;
+//    [dVC presentPreviewAnimated:YES];
+
     
 }
 
@@ -474,6 +496,16 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     
 }
+
+
+#pragma mark UIDocumentInteractionControllerDelegate
+
+-(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.navigationController;
+}
+
+
 
 #pragma mark UITextFieldDelegate
                                 
@@ -491,6 +523,20 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
+#pragma mark SmbFileCacheDelegate
+
+-(void)fileHasCachedInPath:(NSString *)path
+{
+    NSURL * url = [NSURL fileURLWithPath:path];
+    UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
+    // [dVC setDelegate:self];
+    
+    //[dVC presentOpenInMenuFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    //[dVC presentOpenInMenuFromRect:[b.viewForBaselineLayout convertRect:b.frame toView:self.view] inView:self.view animated:YES];
+    dVC.delegate = self;
+    [dVC presentPreviewAnimated:YES];
+}
 
 /*
 #pragma mark - Navigation

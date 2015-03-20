@@ -8,12 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "KxSMBProvider.h"
+@class SmbFileViewController;
 
-@interface SmbFileOperateViewController : UIViewController
+@protocol SmbFileCacheDelegate <NSObject>
+
+-(void)fileHasCachedInPath:(NSString *)path;
+
+@end
+
+@interface SmbFileOperateViewController : UIViewController<UIDocumentInteractionControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIProgressView *downloadProgress;
 @property (nonatomic, strong) KxSMBItemFile* smbFile;
 @property (weak, nonatomic) IBOutlet UILabel *downloadLabel;
-@property (weak, nonatomic) IBOutlet UILabel *downloadStatus;
-@property (weak, nonatomic) IBOutlet UILabel *fileSize;
 @property (weak, nonatomic) IBOutlet UIButton *downloadButton;
+@property (nonatomic, weak) id<SmbFileCacheDelegate> delegate;
+@property (nonatomic,strong) NSString * filePath;
+
+-(void)configureWithSmbFile:(KxSMBItemFile *)smbFile delegate:(id<SmbFileCacheDelegate>)delegate;
 @end

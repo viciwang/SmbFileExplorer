@@ -13,8 +13,10 @@
 #import "CustomerPresentationController.h"
 #import "FileTransmissionViewController.h"
 #import "ChooseLocalFileViewController.h"
+#import "SmbCacheFilePresentationController.h"
+#import "SmbCacheFileTransitioner.h"
 
-@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate>
+@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate,UIDocumentInteractionControllerDelegate,UIViewControllerTransitioningDelegate,SmbFileCacheDelegate>
 
 @property (nonatomic,copy) NSString * path;
 

@@ -12,6 +12,7 @@
 
 @class FileTransmissionViewController;
 
+
 @interface SmbFileTransmissionDataSource : ArrayDataSource
 
 @property (nonatomic,weak) FileTransmissionViewController * ftVC;

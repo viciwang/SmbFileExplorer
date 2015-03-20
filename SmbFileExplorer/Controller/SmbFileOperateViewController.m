@@ -11,7 +11,7 @@
 @interface SmbFileOperateViewController ()
 
 @property (nonatomic,strong) NSFileHandle * fileHandle;
-@property (nonatomic,strong) NSString * filePath;
+//@property (nonatomic,strong) NSString * filePath;
 @property (nonatomic,strong) NSDate * timestamp;
 @property (nonatomic) long downloadedBytes;
 
@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.downloadProgress.progress = 0.0;
+    [self beginDownload];
     // Do any additional setup after loading the view.
 }
 
@@ -30,12 +31,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)download:(id)sender
+-(void)beginDownload
 {
     if (!self.fileHandle)
     {
         
-        NSString *folder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
+        NSString *folder = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                                 NSUserDomainMask,
                                                                 YES) lastObject];
         NSString *filename = self.smbFile.path.lastPathComponent;
@@ -58,11 +59,10 @@
             [self.downloadButton setTitle:@"取消" forState:UIControlStateNormal];
             self.downloadLabel.text = @"正在开始 ..";
             
-            self.downloadStatus = 0;
+            //self.downloadStatus = 0;
             self.downloadProgress.progress = 0;
             self.downloadProgress.hidden = NO;
             self.timestamp = [NSDate date];
-            
             [self downloadFile];
             
         }
@@ -74,18 +74,19 @@
     }
     else
     {
-        
         [self.downloadButton setTitle:@"下载" forState:UIControlStateNormal];
         //self.downloadLabel.text = @"取消";
         [self closeFiles];
     }
-    
+
 }
 
-- (IBAction)delete:(id)sender
+- (IBAction)cancel:(id)sender
 {
-    
+    [self closeFiles];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 
 -(void)downloadFile
@@ -174,16 +175,10 @@
                 {
                     [self closeFiles];
                     self.downloadLabel.text = [NSString stringWithFormat:@"下载完成  %.1f%@",value,unit];
-                    self.downloadButton.enabled = NO;
-                    
-                    // If file is recognized as an image, creates an Image View to show it
-                    if([@[@"png",@"jpg",@"gif"] containsObject:[[self.smbFile.path pathExtension] lowercaseString]])
-                    {
-                        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:self.filePath]];
-                        imageView.frame = CGRectMake(0, 220, self.view.frame.size.width, self.view.frame.size.height-220);
-                        imageView.contentMode = UIViewContentModeScaleAspectFit;
-                        [self.view addSubview:imageView];
-                    }
+                    //[self dismissViewControllerAnimated:YES completion:nil];
+
+                    [self fileHasCachedInPath:self.filePath];
+
                 }
                 else
                 {
@@ -199,6 +194,38 @@
     }
 }
 
+-(void)fileHasCachedInPath:(NSString *)path
+{
+    NSURL * url = [NSURL fileURLWithPath:path];
+    UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
+    // [dVC setDelegate:self];
+    
+    //[dVC presentOpenInMenuFromBarButtonItem:self.navigationItem.rightBarButtonItem animated:YES];
+    
+    //[dVC presentOpenInMenuFromRect:[b.viewForBaselineLayout convertRect:b.frame toView:self.view] inView:self.view animated:YES];
+    dVC.delegate = self;
+    [dVC presentPreviewAnimated:YES];
+}
+
+
+-(void)configureWithSmbFile:(KxSMBItemFile *)smbFile delegate:(id<SmbFileCacheDelegate>)delegate
+{
+    self.smbFile = smbFile;
+    self.delegate = delegate;
+    [self setModalPresentationStyle:UIModalPresentationCustom];
+}
+
+#pragma mark UIDocumentInteractionControllerDelegate
+
+-(void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
+-(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self;
+}
 
 /*
  #pragma mark - Navigation
