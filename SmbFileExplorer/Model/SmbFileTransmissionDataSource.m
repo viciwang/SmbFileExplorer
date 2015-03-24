@@ -11,9 +11,6 @@
 
 @interface  SmbFileTransmissionDataSource()
 
-@property (nonatomic,copy) KxSMBBlockProgress progressBlock;
-@property (nonatomic,copy) KxSMBBlock resultBlock;
-
 @end
 
 @implementation SmbFileTransmissionDataSource
@@ -26,21 +23,7 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     self = [super initWithItem:items cellIdentifier:identifier configureCellBlock:block];
     if (self)
     {
-        self.progressBlock = ^(KxSMBItem * item,long transferred){
-            
-            [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
-        };
-        
-        self.resultBlock = ^(id result){
-            if ([result isKindOfClass:[NSError class]])
-            {
-                NSLog(@"传输出错！！！！！！！！%@",(NSError*)result );
-            }
-            else
-            {
-                [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
-            }
-        };
+
     }
     
     return self;
@@ -53,22 +36,23 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     [ma addObject:item];
     self.items = ma;
     [self.ftVC.tableView reloadData];
-    if (item.transmissionType == FileTransmissionUpload)
-    {
-        [[KxSMBProvider sharedSmbProvider]copyLocalPath:item.fromPath
-                                                smbPath:item.toPath
-                                              overwrite:YES
-                                               progress:self.progressBlock
-                                                  block:self.resultBlock];
-    }
-    else if(item.transmissionType == FileTransmissionDownload)
-    {
-        [[KxSMBProvider sharedSmbProvider]copySMBPath:item.fromPath
-                                            localPath:item.toPath
-                                            overwrite:YES
-                                             progress:self.progressBlock
-                                                block:self.resultBlock];
-    }
+    [item begin];
+//    if (item.transmissionType == FileTransmissionUpload)
+//    {
+//        [[KxSMBProvider sharedSmbProvider]copyLocalPath:item.fromPath
+//                                                smbPath:item.toPath
+//                                              overwrite:YES
+//                                               progress:self.progressBlock
+//                                                  block:self.resultBlock];
+//    }
+//    else if(item.transmissionType == FileTransmissionDownload)
+//    {
+//        [[KxSMBProvider sharedSmbProvider]copySMBPath:item.fromPath
+//                                            localPath:item.toPath
+//                                            overwrite:YES
+//                                             progress:self.progressBlock
+//                                                block:self.resultBlock];
+//    }
 
 }
 

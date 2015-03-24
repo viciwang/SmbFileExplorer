@@ -31,6 +31,7 @@
     }
     else
     {
+        NSLog(@"%@  :::: mode %ld",item.path,item.stat.mode);
         self.accessoryType = UITableViewCellAccessoryDetailButton;
         self.detailTextLabel.text = [NSString stringWithFormat:@"%ld", item.stat.size];
     }

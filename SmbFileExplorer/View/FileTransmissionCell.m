@@ -7,6 +7,7 @@
 //
 
 #import "FileTransmissionCell.h"
+#import "FileTransmissionModal.h"
 
 @implementation FileTransmissionCell
 
@@ -23,6 +24,8 @@
 
 -(void)configureForTask:(FileTransmissionModal *)task
 {
+
+    self.transmissionModal = task;
     self.progressBar.progress = (double)task.processedBytes/(double)task.fileBytes;
     self.procressedLabel.text = [NSString stringWithFormat:@"%@/%@",[self describeForByte:task.processedBytes],[self describeForByte:task.fileBytes]];
     self.processedPercentLabel.text = [NSString stringWithFormat:@"%li%%",(NSInteger)(self.progressBar.progress*100)];
@@ -57,5 +60,20 @@
 }
 
 
+- (IBAction)suspendOrResume:(id)sender
+{
+    UIButton * button = (UIButton *)sender;
+    
+    if (self.transmissionModal.isProcessing == YES)
+    {
+        [self.transmissionModal suspend];
+        [button setTitle:@"开始" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self.transmissionModal begin];
+        [button setTitle:@"暂停" forState:UIControlStateNormal];
+    }
+}
 
 @end

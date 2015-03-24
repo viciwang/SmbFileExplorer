@@ -149,7 +149,8 @@ static KxSMBError errnoToSMBErr(int err)
     if (self) {
         _type = type;
         _path = path;
-        _stat = stat;        
+        _stat = stat;
+        _shouldTransmissionSuspend = NO;
     }
     return self;
 }
@@ -658,7 +659,7 @@ static KxSMBProvider *gSmbProvider;
             progress:(KxSMBBlockProgress)progress
                block:(KxSMBBlock)block
 {
-    [smbFile readDataOfLength:1024*1024
+    [smbFile readDataOfLength:1024*32
                         block:^(id result)
      {
          if ([result isKindOfClass:[NSData class]]) {
@@ -858,7 +859,7 @@ static KxSMBProvider *gSmbProvider;
     
     @try {
         
-        data = [fileHandle readDataOfLength:1024*1024];
+        data = [fileHandle readDataOfLength:1024*32];
     }
     @catch (NSException *exception) {
         
@@ -1015,6 +1016,8 @@ static KxSMBProvider *gSmbProvider;
 }
 
 ///
+
+
 
 + (void) removeSMBItems:(NSArray *)smbItems
                   block:(KxSMBBlock)block
@@ -1374,6 +1377,32 @@ static KxSMBProvider *gSmbProvider;
                             progress:progress
                                block:block];
     }
+}
+
+// 下载单个文件，从偏移量处开始
+- (void) copySingleSMBPath:(NSString *)smbPath
+                 localPath:(NSString *)localPath
+                 overwrite:(BOOL)overwrite
+                    offset:(off_t) offset
+                  progress:(KxSMBBlockProgress)progress
+                     block:(KxSMBBlock)block
+{
+    [self fetchAtPath:smbPath block:^(id result) {
+        if ([result isKindOfClass:[KxSMBItemFile class]])
+        {
+            
+            NSFileHandle * fh = [NSFileHandle fileHandleForUpdatingAtPath:localPath];
+            off_t ofs = [fh seekToEndOfFile];
+            KxSMBItemFile * file = (KxSMBItemFile *)result;
+            [file seekToFileOffset:ofs whence:0];
+            [KxSMBProvider readSMBFile:file fileHandle:fh progress:progress block:block];
+        }
+        else
+        {
+            NSDictionary * errorMsg = [NSDictionary dictionaryWithObject:@"smbPath is not a path for smbFile"  forKey:@"ErrorMsg"];
+            block([NSError errorWithDomain:@"SmbPathError" code:123 userInfo:errorMsg]);
+        }
+    }];
 }
 
 - (void) removeFolderAtPath:(NSString *) path
@@ -1759,6 +1788,7 @@ static KxSMBProvider *gSmbProvider;
     while (bytesToWrite > 0) {
         
         long r = writeFn(_context, _file, bytes, bytesToWrite);
+
         if (r == 0)
             break;
         
@@ -1768,7 +1798,7 @@ static KxSMBProvider *gSmbProvider;
             return mkKxSMBError(errnoToSMBErr(err),
                                 NSLocalizedString(@"Unable write file:%@ (errno:%d)", nil), _path, err);
         }
-
+        
         bytesToWrite -= r;
         bytes += r;
     }
@@ -1803,6 +1833,10 @@ static KxSMBProvider *gSmbProvider;
 - (void)readDataOfLength:(NSUInteger)length
                    block:(KxSMBBlock)block
 {
+    // 判断是否应该暂停
+    if(self.shouldTransmissionSuspend)
+        return;
+    
     NSParameterAssert(block);
     
     if (!_impl)
@@ -1820,7 +1854,9 @@ static KxSMBProvider *gSmbProvider;
 }
 
 - (id)readDataOfLength:(NSUInteger)length
-{    
+{
+    
+    
     __block id result = nil;
     
     if (!_impl)
@@ -1908,6 +1944,10 @@ static KxSMBProvider *gSmbProvider;
 
 - (void)writeData:(NSData *)data block:(KxSMBBlock) block
 {
+    // 判断是否应该暂停
+    if(self.shouldTransmissionSuspend)
+        return;
+    
     NSParameterAssert(block);
     
     if (!_impl)
@@ -1949,6 +1989,7 @@ static KxSMBProvider *gSmbProvider;
         _impl = [[KxSMBFileImpl alloc] initWithPath:self.path];
     return [_impl createFile:overwrite];
 }
+
 
 @end
 

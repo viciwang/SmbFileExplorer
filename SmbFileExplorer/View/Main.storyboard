@@ -625,6 +625,9 @@
                                             <state key="normal" title="Button">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
+                                            <connections>
+                                                <action selector="suspendOrResume:" destination="6fp-Gw-yjf" eventType="touchUpInside" id="Er4-aY-03w"/>
+                                            </connections>
                                         </button>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9ND-aj-hsu">
                                             <rect key="frame" x="65" y="36" width="470" height="2"/>

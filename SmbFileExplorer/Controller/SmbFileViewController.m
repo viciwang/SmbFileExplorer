@@ -82,10 +82,10 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(addFileAction)];
-    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"断开连接"
-                                                                           style:UIBarButtonItemStylePlain
-                                                                          target:self
-                                                                          action:@selector(showTransmissionAction:)];
+//    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"断开连接"
+//                                                                           style:UIBarButtonItemStylePlain
+//                                                                          target:self
+//                                                                          action:@selector(showTransmissionAction:)];
     
     UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                   target:nil
@@ -94,7 +94,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,toolBarButtonItem3,flexibleItem,nil];
+    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,/*toolBarButtonItem3,flexibleItem,*/ nil];
 }
 
 -(void)showTransmissionAction:(id)sender

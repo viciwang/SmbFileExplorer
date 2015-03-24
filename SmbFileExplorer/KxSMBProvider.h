@@ -86,6 +86,10 @@ typedef void (^KxSMBBlockProgress)(KxSMBItem *item, long transferred);
 @property(readonly, nonatomic) KxSMBItemType type;
 @property(readonly, nonatomic, strong) NSString *path;
 @property(readonly, nonatomic, strong) KxSMBItemStat *stat;
+
+// 为了能暂停下载，而重写KxSMBItem中的部分类
+@property (atomic) BOOL shouldTransmissionSuspend;
+
 @end
 
 @class KxSMBItemFile;
@@ -178,6 +182,30 @@ typedef void (^KxSMBBlockProgress)(KxSMBItem *item, long transferred);
 - (void) renameAtPath:(NSString *)oldPath
               newPath:(NSString *)newPath
                 block:(KxSMBBlock)block;
+
+
+- (void) copySingleSMBPath:(NSString *)smbPath
+           localPath:(NSString *)localPath
+                 overwrite:(BOOL)overwrite
+                    offset:(off_t) offset
+            progress:(KxSMBBlockProgress)progress
+               block:(KxSMBBlock)block;
+
++ (void) readSMBFile:(KxSMBItemFile *)smbFile
+          fileHandle:(NSFileHandle *)fileHandle
+            progress:(KxSMBBlockProgress)progress
+               block:(KxSMBBlock)block;
+
++ (void) writeSMBFile:(KxSMBItemFile *)smbFile
+           fileHandle:(NSFileHandle *)fileHandle
+             progress:(KxSMBBlockProgress)progress
+                block:(KxSMBBlock)block;
+
++ (NSFileHandle *) createLocalFile:(NSString *)path
+                         overwrite:(BOOL) overwrite
+                             error:(NSError **)outError;
+
+
 
 // sets smb timeout if value > 0 and returns the current timeout
 + (NSUInteger) smbTimeout:(NSUInteger)value;
