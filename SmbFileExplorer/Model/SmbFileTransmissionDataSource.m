@@ -95,6 +95,31 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     return (FileTransmissionModal*)[self.items objectAtIndex:index];
 }
 
+-(void)suspendAllTasks
+{
+    for (FileTransmissionModal * modal in self.items)
+    {
+        [modal suspend];
+    }
+}
+
+
+-(void)resumeAllTasks
+{
+    for (FileTransmissionModal * modal in self.items)
+    {
+        [modal begin];
+    }
+}
+
+-(void)reAddAllTasks:(NSArray *)tasks
+{
+    for (FileTransmissionModal * modal in tasks)
+    {
+        [self addSFTItem:modal];
+    }
+}
+
 #pragma mark UITableViewDataSourceDelegate
 
 

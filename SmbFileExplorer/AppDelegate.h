@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PersistenceManager.h"
+#import "FileTransmissionViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -8,6 +8,15 @@
 
 #import "SmbFileCell.h"
 
+@interface SmbFileCell ()
+
+@property (weak, nonatomic) IBOutlet UIImageView *fileTypePic;
+@property (weak, nonatomic) IBOutlet UILabel *fileName;
+@property (weak, nonatomic) IBOutlet UILabel *lastModifiedDate;
+@property (weak, nonatomic) IBOutlet UILabel *fileSize;
+
+@end
+
 @implementation SmbFileCell
 
 - (void)awakeFromNib {
@@ -22,19 +31,27 @@
 
 -(void)configureForSmbFile:(KxSMBItem *)item
 {
-    self.textLabel.text = item.path.lastPathComponent;
-    
+    self.fileName.text = item.path.lastPathComponent;
+    SystemStuff * systemStuff = [SystemStuff shareSystemStuff];
     if ([item isKindOfClass:[KxSMBItemTree class]])
     {
-        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        self.detailTextLabel.text =  @"";
+        //self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.fileSize.text =  @"";
+        
     }
     else
     {
-        NSLog(@"%@  :::: mode %ld",item.path,item.stat.mode);
-        self.accessoryType = UITableViewCellAccessoryDetailButton;
-        self.detailTextLabel.text = [NSString stringWithFormat:@"%ld", item.stat.size];
+       // self.accessoryType = UITableViewCellAccessoryNone;
+        self.fileSize.text = [systemStuff stringFromFileSizeBytes:item.stat.size];
     }
+    self.lastModifiedDate.text = [systemStuff stringFromDate:item.stat.lastModified];
+    self.fileTypePic.image = [UIImage imageNamed:[self imageNameFromFileName:self.fileName.text]];
+    
+}
+
+-(NSString *)imageNameFromFileName:(NSString*)fileName
+{
+    return [NSString stringWithFormat:@"FileType%@",[fileName pathExtension]];
 }
 
 @end

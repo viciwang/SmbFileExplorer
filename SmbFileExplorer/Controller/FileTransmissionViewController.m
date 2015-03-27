@@ -51,6 +51,21 @@ static FileTransmissionViewController * sFileTVC;
     [self.ftDatasource addSFTItem:modal];
 }
 
+-(void)suspendAllTasks
+{
+    [self.ftDatasource suspendAllTasks];
+}
+
+
+-(void)resumeAllTasks
+{
+    [self.ftDatasource resumeAllTasks];
+}
+
+-(void)reAddAllTasks:(NSArray *)tasks
+{
+    [self.ftDatasource reAddAllTasks:[tasks copy]];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

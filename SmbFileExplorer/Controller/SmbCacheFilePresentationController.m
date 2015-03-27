@@ -64,6 +64,7 @@
 - (void)containerViewWillLayoutSubviews {
     self.dimmingView.frame = self.containerView.bounds;
     self.presentedView.frame = self.containerView.bounds;
+//    self.presentedView.frame = CGRectMake(self.containerView.bounds.origin.x+100,self.containerView.bounds.origin.y+100, self.containerView.bounds.size.width, self.containerView.bounds.size.height);
 }
 
 - (BOOL)shouldPresentInFullscreen {
@@ -75,6 +76,7 @@
 -(UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller
 {
     return UIModalPresentationOverFullScreen;
+    
 }
 
 

@@ -48,10 +48,10 @@
 		FABDBA6F1AA8687E00595AFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA6E1AA8687E00595AFA /* Foundation.framework */; };
 		FABDBAAF1AA8862500595AFA /* SmbFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAAE1AA8862500595AFA /* SmbFileCell.m */; };
 		FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAB11AA888DF00595AFA /* SmbManager.m */; };
+		FAD90A971AC572A70060D696 /* FileType.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD90A961AC572A70060D696 /* FileType.png */; };
 		FAE326061AAD4A8000882A4D /* SmbFileOperateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */; };
 		FAFA6CA81AA9BE0B00959974 /* SmbFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */; };
 		FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */; };
-		FAFAED861AADC30D00E4356C /* CustomerPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAED851AADC30D00E4356C /* CustomerPresentationController.m */; };
 		FAFAED891AADC3C300E4356C /* FolderNameFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -138,14 +138,13 @@
 		FABDBAAE1AA8862500595AFA /* SmbFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileCell.m; sourceTree = "<group>"; };
 		FABDBAB01AA888DF00595AFA /* SmbManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbManager.h; sourceTree = "<group>"; };
 		FABDBAB11AA888DF00595AFA /* SmbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbManager.m; sourceTree = "<group>"; };
+		FAD90A961AC572A70060D696 /* FileType.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FileType.png; path = SmbFileExplorer/Resource/FileType.png; sourceTree = "<group>"; };
 		FAE326041AAD4A8000882A4D /* SmbFileOperateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileOperateViewController.h; sourceTree = "<group>"; };
 		FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileOperateViewController.m; sourceTree = "<group>"; };
 		FAFA6CA61AA9BE0B00959974 /* SmbFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileViewController.h; sourceTree = "<group>"; };
 		FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileViewController.m; sourceTree = "<group>"; };
 		FAFA6CAC1AA9C6F800959974 /* SmbFilesArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFilesArrayDataSource.h; sourceTree = "<group>"; };
 		FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFilesArrayDataSource.m; sourceTree = "<group>"; };
-		FAFAED841AADC30D00E4356C /* CustomerPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerPresentationController.h; sourceTree = "<group>"; };
-		FAFAED851AADC30D00E4356C /* CustomerPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerPresentationController.m; sourceTree = "<group>"; };
 		FAFAED871AADC3C300E4356C /* FolderNameFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderNameFormViewController.h; sourceTree = "<group>"; };
 		FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderNameFormViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -204,6 +203,7 @@
 		FABDBA051AA8631800595AFA = {
 			isa = PBXGroup;
 			children = (
+				FAD90A931AC56A680060D696 /* Resource */,
 				FABDBA711AA8691F00595AFA /* Support */,
 				FABDBA101AA8631800595AFA /* SmbFileExplorer */,
 				FABDBA701AA868E300595AFA /* Framework */,
@@ -274,8 +274,6 @@
 				FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */,
 				FAE326041AAD4A8000882A4D /* SmbFileOperateViewController.h */,
 				FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */,
-				FAFAED841AADC30D00E4356C /* CustomerPresentationController.h */,
-				FAFAED851AADC30D00E4356C /* CustomerPresentationController.m */,
 				FAFAED871AADC3C300E4356C /* FolderNameFormViewController.h */,
 				FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */,
 				FAA812291AAED09D005142AB /* ChooseLocalFileViewController.h */,
@@ -380,6 +378,14 @@
 			name = Vendor;
 			sourceTree = "<group>";
 		};
+		FAD90A931AC56A680060D696 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				FAD90A961AC572A70060D696 /* FileType.png */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -461,6 +467,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD90A971AC572A70060D696 /* FileType.png in Resources */,
 				FABDBA521AA8648C00595AFA /* Main.storyboard in Resources */,
 				FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */,
 				FABDBA221AA8631800595AFA /* LaunchScreen.xib in Resources */,
@@ -484,7 +491,6 @@
 			files = (
 				FABDBA4E1AA863C700595AFA /* SmbAuth.m in Sources */,
 				FAA8126F1AAF2015005142AB /* SmbFileTransmissionDataSource.m in Sources */,
-				FAFAED861AADC30D00E4356C /* CustomerPresentationController.m in Sources */,
 				FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */,
 				FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */,
 				FAA812661AAF1C5B005142AB /* FileTransmissionViewController.m in Sources */,

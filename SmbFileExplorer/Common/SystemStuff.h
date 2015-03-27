@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface SystemStuff : NSObject
+
++(SystemStuff *)shareSystemStuff;
 +(NSString*)stringForPathOfDocumentPath;
+-(NSString*) stringFromDate:(NSDate *)date;
+-(NSString*) stringFromFileSizeBytes:(long long)size;
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KxSMBProvider.h"
+#import "SystemStuff.h"
 
 @interface SmbFileCell : UITableViewCell
 -(void)configureForSmbFile:(KxSMBItem *)item;

@@ -9,7 +9,7 @@
 #import "ArrayDataSource.h"
 #import "PersistenceManager.h"
 
-static NSString * const UserDefaultKeyForSmbAuthItems = @"SmbAuthItems";
+
 
 @class SmbAuth;
 

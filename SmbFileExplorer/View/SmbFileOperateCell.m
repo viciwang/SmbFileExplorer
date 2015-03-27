@@ -12,7 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *downloadBtn;
 @property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
-@property (weak, nonatomic) IBOutlet UIButton *previewBtn;
 @property (weak, nonatomic) IBOutlet UIButton *protertyBtn;
 @property (weak, nonatomic) IBOutlet UIButton *openModeBtn;
 
@@ -43,10 +42,6 @@
         [self.deleteBtn addTarget:self.smbFileOperateDelegate
                            action:@selector(deleteSmbFile:)
                  forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.previewBtn addTarget:self.smbFileOperateDelegate
-                            action:@selector(previewSmbFile:)
-                  forControlEvents:UIControlEventTouchUpInside];
         
         [self.protertyBtn addTarget:self.smbFileOperateDelegate
                              action:@selector(showPropertyOfSmbFile:)

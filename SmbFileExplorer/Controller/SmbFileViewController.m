@@ -81,11 +81,11 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithTitle:@"本地文件"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
-                                                                          action:@selector(addFileAction)];
-//    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"断开连接"
-//                                                                           style:UIBarButtonItemStylePlain
-//                                                                          target:self
-//                                                                          action:@selector(showTransmissionAction:)];
+                                                                          action:@selector(addFileAction:)];
+    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"设置"
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
+                                                                          action:@selector(showSettingAction:)];
     
     UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                   target:nil
@@ -94,7 +94,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     [self.navigationController setToolbarHidden:NO animated:YES];
     
-    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,/*toolBarButtonItem3,flexibleItem,*/ nil];
+    self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,toolBarButtonItem3,flexibleItem, nil];
 }
 
 -(void)showTransmissionAction:(id)sender
@@ -157,7 +157,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
--(void)addFileAction
+-(void)addFileAction:(id)sender
 {
     [self removeOperateCell];
     ChooseLocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
@@ -167,6 +167,10 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
+-(void)showSettingAction:(id)sender
+{
+    
+}
 
 -(void)deleteFileAction:(NSIndexPath *)indexPath
 {
@@ -361,6 +365,20 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UITableViewCell * headerView = [self.tableView dequeueReusableCellWithIdentifier:@"HeaderViewForSmbFile"];
+    if (headerView == nil) {
+        
+    }
+    return headerView;
+}
+
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40.0;
+}
 
 #pragma mark SmbFileArrayDelegate
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didInsertItem:(id)item intoIndex:(NSInteger)index
@@ -453,7 +471,9 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 -(void)deleteSmbFile:(id)button
 {
-    
+    NSInteger  temIndex = self.indexForSelectedCell;
+    [self removeOperateCell];
+    [self.fileArrayDataSource removeItemAtIndex:temIndex];
 }
 
 -(void)showPropertyOfSmbFile:(id)button

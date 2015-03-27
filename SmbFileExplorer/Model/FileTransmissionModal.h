@@ -20,7 +20,7 @@ typedef enum {
 }FileTransmissionType;
 
 
-@interface FileTransmissionModal : NSObject
+@interface FileTransmissionModal : NSObject<NSCoding>
 
 @property (nonatomic) FileTransmissionType transmissionType;
 @property (nonatomic,strong) NSString * fromPath;

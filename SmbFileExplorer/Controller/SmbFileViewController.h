@@ -10,7 +10,6 @@
 #import "SmbFileCell.h"
 #import "SmbFilesArrayDataSource.h"
 #import "SmbFileOperateViewController.h"
-#import "CustomerPresentationController.h"
 #import "FileTransmissionViewController.h"
 #import "ChooseLocalFileViewController.h"
 #import "SmbCacheFilePresentationController.h"

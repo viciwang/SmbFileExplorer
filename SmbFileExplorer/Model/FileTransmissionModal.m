@@ -12,13 +12,51 @@
 
 @interface FileTransmissionModal ()
 
-@property (nonatomic,copy) KxSMBBlockProgress progressBlock;
-@property (nonatomic,copy) KxSMBBlock resultBlock;
 @property (nonatomic,strong) KxSMBItemFile * smbFile;
 @property (nonatomic,strong) NSFileHandle * fileHandle;
 @end
 
+
+static KxSMBBlockProgress ProgressBlock = ^(KxSMBItem * item,long transferred){
+    
+    [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
+};
+
+static KxSMBBlock ResultBlock = ^(id result){
+    if ([result isKindOfClass:[NSError class]])
+    {
+        NSLog(@"传输出错！！！！！！！！%@",(NSError*)result );
+    }
+    else
+    {
+        [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
+    }
+};
+
 @implementation FileTransmissionModal
+
+-(void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:self.fromPath forKey:@"fromPath"];
+    [aCoder encodeObject:self.toPath forKey:@"toPath"];
+    [aCoder encodeObject:@(self.transmissionType) forKey:@"transmissionType"];
+    [aCoder encodeObject:@(self.fileBytes) forKey:@"fileBytes"];
+    [aCoder encodeObject:@(self.processedBytes) forKey:@"processedBytes"];
+    
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder
+{
+    self = [super init];
+    if (self) {
+        self.fromPath = [aDecoder decodeObjectForKey:@"fromPath"];
+        self.toPath = [aDecoder decodeObjectForKey:@"toPath"];
+        self.transmissionType = (FileTransmissionType)[(NSNumber *)[aDecoder decodeObjectForKey:@"transmissionType"] integerValue];
+        self.fileBytes = [(NSNumber *)[aDecoder decodeObjectForKey:@"fileBytes"] longLongValue];
+        self.processedBytes = [(NSNumber *)[aDecoder decodeObjectForKey:@"processedBytes"] longLongValue];
+    }
+    return self;
+}
 
 
 // topath and frompath must't be a floder , must be a file's path.
@@ -31,7 +69,8 @@
         self.toPath = tp;
         if(type == FileTransmissionDownload)
         {
-            self.toPath = [self pathWithoutConflict:self.toPath isLocalFile:YES];
+            self.toPath = [self pathWithoutConflict:self.toPath
+                                        isLocalFile:YES];
             KxSMBItemStat * stat = (KxSMBItemStat *)info;
             if(stat)
             {
@@ -42,22 +81,6 @@
         {
             self.fileBytes = [self fileSizeAtPath:self.fromPath];
         }
-        
-        self.progressBlock = ^(KxSMBItem * item,long transferred){
-            
-            [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
-        };
-        
-        self.resultBlock = ^(id result){
-            if ([result isKindOfClass:[NSError class]])
-            {
-                NSLog(@"传输出错！！！！！！！！%@",(NSError*)result );
-            }
-            else
-            {
-                [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
-            }
-        };
     }
     return self;
 }
@@ -117,8 +140,8 @@
                       localPath:self.toPath
                       overwrite:YES
                          offset:0
-                       progress:self.progressBlock
-                          block:self.resultBlock];
+                       progress:ProgressBlock
+                          block:ResultBlock];
         
     }
     else
@@ -127,8 +150,8 @@
                           SMBPath:self.toPath
                         overwrite:YES
                            offset:0
-                         progress:self.progressBlock
-                            block:self.resultBlock];
+                         progress:ProgressBlock
+                            block:ResultBlock];
         
 //        [[KxSMBProvider sharedSmbProvider]copyLocalPath:self.fromPath
 //                                                smbPath:self.toPath
@@ -206,33 +229,40 @@
 {
     
     [[KxSMBProvider sharedSmbProvider] fetchAtPath:smbPath block:^(id result) {
-//        if ([result isKindOfClass:[KxSMBItemFile class]])
-//        {
-//            self.smbFile = result;
-//            
-//            NSLog(@"state is -=-=--=-==-=-== :%@",self.smbFile.stat);
-//            
-//            NSFileHandle * fh = [NSFileHandle fileHandleForReadingAtPath:localPath];
-//            [fh seekToFileOffset:1024];
-//            
-//            [self.smbFile seekToFileOffset:1024 whence:0];
-//            
-//           
-//            [KxSMBProvider writeSMBFile:self.smbFile
-//                             fileHandle:fh
-//                               progress:progress
-//                                  block:block];
-//        }
-//        else
-//        {
+        if ([result isKindOfClass:[KxSMBItemFile class]])
+        {
+            self.smbFile = result;
+            
+            NSLog(@"state is -=-=--=-==-=-== :%@",self.smbFile.stat);
+            
+            id num = [self.smbFile seekToFileOffset:0 whence:SEEK_END];
+            off_t offset;
+            if ([num isKindOfClass:[NSError class]])
+            {
+                offset = 0;
+            }
+            else
+            {
+                offset = [(NSNumber*)num unsignedLongLongValue];
+            }
+            self.fileHandle = [NSFileHandle fileHandleForReadingAtPath:localPath];
+            [self.fileHandle seekToFileOffset:offset];
+
+            [KxSMBProvider writeSMBFile:self.smbFile
+                             fileHandle:self.fileHandle
+                               progress:progress
+                                  block:block];
+        }
+        else
+        {
             id rr = [[KxSMBProvider sharedSmbProvider]createFileAtPath:smbPath overwrite:NO];
             if ([rr isKindOfClass:[KxSMBItemFile class]])
             {
                 self.smbFile = rr;
-                NSFileHandle * fh = [NSFileHandle fileHandleForReadingAtPath:localPath];
+                self.fileHandle = [NSFileHandle fileHandleForReadingAtPath:localPath];
                 NSLog(@"state is -=-=--=-==-=-== :%@",self.smbFile.stat);
                 [KxSMBProvider writeSMBFile:self.smbFile
-                                 fileHandle:fh
+                                 fileHandle:self.fileHandle
                                    progress:progress
                                       block:block];
             }
@@ -244,7 +274,7 @@
                                           code:123
                                       userInfo:errorMsg]);
             }
-//        }
+        }
     }];
     
     

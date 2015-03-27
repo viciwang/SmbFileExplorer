@@ -659,7 +659,7 @@ static KxSMBProvider *gSmbProvider;
             progress:(KxSMBBlockProgress)progress
                block:(KxSMBBlock)block
 {
-    [smbFile readDataOfLength:1024*32
+    [smbFile readDataOfLength:1024*512
                         block:^(id result)
      {
          if ([result isKindOfClass:[NSData class]]) {
@@ -859,7 +859,7 @@ static KxSMBProvider *gSmbProvider;
     
     @try {
         
-        data = [fileHandle readDataOfLength:1024*32];
+        data = [fileHandle readDataOfLength:1024*512];
     }
     @catch (NSException *exception) {
         
@@ -1633,9 +1633,16 @@ static KxSMBProvider *gSmbProvider;
                             NSLocalizedString(@"Unable init SMB context (errno:%d)", nil), err);
     }
     
+    
+//    _file = smbc_getFunctionOpen(_context)(_context,
+//                                           _path.UTF8String,
+//                                           O_RDONLY,
+//                                           0);
+    
+    // 修改权限 O_RDONLY 为 O_RDWR
     _file = smbc_getFunctionOpen(_context)(_context,
                                            _path.UTF8String,
-                                           O_RDONLY,
+                                           O_RDWR,
                                            0);
     
     if (!_file) {
@@ -1645,7 +1652,6 @@ static KxSMBProvider *gSmbProvider;
         return mkKxSMBError(errnoToSMBErr(err),
                             NSLocalizedString(@"Unable open file:%@ (errno:%d)", nil), _path, err);
     }
-    
     return nil;
 }
 
@@ -1658,9 +1664,15 @@ static KxSMBProvider *gSmbProvider;
                             NSLocalizedString(@"Unable init SMB context (errno:%d)", nil), err);
     }
     
+    
+    //  修改权限为 O_RDWR
+//    _file = smbc_getFunctionCreat(_context)(_context,
+//                                            _path.UTF8String,
+//                                            O_WRONLY|O_CREAT|(overwrite ? O_TRUNC : O_EXCL));
+    
     _file = smbc_getFunctionCreat(_context)(_context,
                                            _path.UTF8String,
-                                            O_WRONLY|O_CREAT|(overwrite ? O_TRUNC : O_EXCL));
+                                            O_RDWR|O_CREAT|(overwrite ? O_TRUNC : O_EXCL));
     
     if (!_file) {
         [KxSMBProvider closeSmbContext:_context];

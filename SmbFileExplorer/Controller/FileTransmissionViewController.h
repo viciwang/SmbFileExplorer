@@ -25,6 +25,8 @@
 @property (nonatomic,strong) SmbFileTransmissionDataSource * ftDatasource;
 +(FileTransmissionViewController*)shareFileTransmissionVC;
 -(void)addTask:(FileTransmissionModal *)modal;
-
+-(void)suspendAllTasks;
+-(void)resumeAllTasks;
+-(void)reAddAllTasks:(NSArray *)tasks;
 
 @end
