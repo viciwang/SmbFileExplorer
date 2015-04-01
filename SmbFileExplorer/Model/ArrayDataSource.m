@@ -34,6 +34,10 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     return [self.items objectAtIndex:indexPath.row];
 }
 
+-(void)deleteItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.items removeObjectAtIndex:indexPath.row];
+}
 
 #pragma mark UITableViewDataSource
 

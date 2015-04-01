@@ -56,18 +56,27 @@ configureCellBlock:(TableViewCellConfigureBlock)block
 
 }
 
+
+// 如果传入的path为空则删除已完成的传输，如果路径不为空则删除对应的未完成的任务
 -(void)removeSFTItemAtPath:(NSString*)path
 {
     for (NSInteger i = 0;i<self.items.count;i++)
     {
         FileTransmissionModal * item = [self.items objectAtIndex:i];
-        if (item.processedBytes == item.fileBytes)
+        if (item.processedBytes == item.fileBytes || item.fromPath == path || item.toPath == path)
         {
             NSLog(@"传输完成");
             [self.ftVC.tableView beginUpdates];
             [self.items removeObject:item];
             [self.ftVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.ftVC.tableView endUpdates];
+            
+            // 更新页面
+            if (item.transmissionType == FileTransmissionUpload)
+            {
+                [[NSNotificationCenter defaultCenter]postNotificationName:@"ShouldReloadPath" object:nil userInfo:@{@"Path":item.toPath}];
+            }
+
         }
     }
 }

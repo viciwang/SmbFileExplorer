@@ -42,7 +42,7 @@
     else
     {
        // self.accessoryType = UITableViewCellAccessoryNone;
-        self.fileSize.text = [systemStuff stringFromFileSizeBytes:item.stat.size];
+        self.fileSize.text = [SystemStuff stringFromFileSizeBytes:item.stat.size];
     }
     self.lastModifiedDate.text = [systemStuff stringFromDate:item.stat.lastModified];
     self.fileTypePic.image = [UIImage imageNamed:[self imageNameFromFileName:self.fileName.text]];

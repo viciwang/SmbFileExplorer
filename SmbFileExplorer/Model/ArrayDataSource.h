@@ -22,5 +22,5 @@ typedef void (^TableViewCellConfigureBlock) (id cell,id item);
  configureCellBlock:(TableViewCellConfigureBlock)block;
 
 -(id)itemAtIndexPath:(NSIndexPath*)indexPath;
-
+-(void)deleteItemAtIndexPath:(NSIndexPath *)indexPath;
 @end

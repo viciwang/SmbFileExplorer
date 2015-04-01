@@ -36,13 +36,13 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 -(void)viewDidAppear:(BOOL)animated
 {
     //  一定要remove，不然会调用多次
-    //[[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteFileAction:) name:@"DeleteFile" object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldReloadPath:) name:@"ShouldReloadPath" object:nil];
     [FileTransmissionViewController shareFileTransmissionVC].delegate = self;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    //[[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 -(void)setupTableView
@@ -82,6 +82,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(addFileAction:)];
+    
     UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"设置"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
@@ -97,12 +98,25 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     self.toolbarItems = [[NSArray alloc]initWithObjects:flexibleItem,toolBarButtonItem1,flexibleItem,toolBarButtonItem2 ,flexibleItem,toolBarButtonItem3,flexibleItem, nil];
 }
 
--(void)showTransmissionAction:(id)sender
+-(void)showTransmissionAction:(UIBarButtonItem *)sender
 {
-    UIPopoverController * p = [[UIPopoverController alloc]initWithContentViewController:[FileTransmissionViewController shareFileTransmissionVC]];
-    [p presentPopoverFromBarButtonItem:(UIBarButtonItem*)sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    UIPopoverController * p = [[UIPopoverController alloc]initWithContentViewController:[FileTransmissionViewController shareFileTransmissionVC]];
+//    [p presentPopoverFromBarButtonItem:(UIBarButtonItem*)sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     
-    // [self presentViewController:[FileTransmissionViewController shareFileTransmissionVC] animated:YES completion:nil];
+
+    
+    UIViewController * transmissionVC = [FileTransmissionViewController shareFileTransmissionVC];
+    
+//    transmissionVC.modalPresentationStyle = UIModalPresentationPopover;
+//    UIPopoverPresentationController * popover = transmissionVC.popoverPresentationController;
+//    popover.barButtonItem = sender;
+//    popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+//    [self presentViewController:transmissionVC animated:YES completion:nil];
+    
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:transmissionVC];
+    nav.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)addFolderAction
@@ -160,10 +174,11 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 -(void)addFileAction:(id)sender
 {
     [self removeOperateCell];
-    ChooseLocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ChooseLocalFile"];
-    vc.modalPresentationStyle = UIModalPresentationFormSheet;
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:vc animated:YES completion:nil];
+    LocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LocalFileViewController"];
+    UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    nav.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:nav animated:YES completion:nil];
     
 }
 
@@ -172,29 +187,24 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
--(void)deleteFileAction:(NSIndexPath *)indexPath
+-(void)shouldReloadPath:(NSNotification *)notification
 {
-    [self removeOperateCell];
-    CompleteBlock block = ^(id status){
-        if ([status isKindOfClass:[NSError class]])
-        {
-                UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"删除失败" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil];
-            [ac addAction:actionOK];
-            [self presentViewController:ac animated:YES completion:nil];
-        }
-    };
     
-//    __weak typeof(self) weakSelf = self;
-//    UIAlertController * ac = [UIAlertController alertControllerWithTitle:@"确定要删除文件" message:@"" preferredStyle:UIAlertControllerStyleAlert];
-//    UIAlertAction * actionOK = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-//        [weakSelf.fileArrayDataSource removeItemAtIndex:indexPath.row Handler:block];
-//    }];
-//    
-//    UIAlertAction * actionCancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil];
-//    [ac addAction:actionOK];
-//    [ac addAction:actionCancel];
-//    [self.splitViewController presentViewController:ac animated:YES completion:nil];
+//  不能单纯用 stringByDeletingLastPathComponent:
+//  stringByDeletingLastPathComponent 会将  smb://192.168.4.154/samba/NewFolder/447066152.tmp
+//                                    变为  smb:/192.168.4.154/samba/NewFolder
+//
+    NSString * p = [[[notification.userInfo objectForKey:@"Path"] stringByDeletingLastPathComponent] substringFromIndex:@"smb:/".length];
+    if (p==nil) {
+        return;
+    }
+    for (SmbFileViewController * vc in self.navigationController.viewControllers)
+    {
+        if ([[vc.path substringFromIndex:@"smb://".length]  isEqualToString:p])
+        {
+            [vc reloadPath];
+        }
+    }
 }
 
 

@@ -32,4 +32,5 @@ typedef enum {
 - (instancetype)initWithTransmissionType:(FileTransmissionType)type fromPath:(NSString*)fp toPath:(NSString*)tp withInfo:(id)info;
 -(void)begin;
 -(void)suspend;
+-(void)cancel;
 @end

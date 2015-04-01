@@ -43,7 +43,7 @@ static SystemStuff * gSystemStuff;
     return [self.dateFormatter stringFromDate:date];
 }
 
--(NSString*) stringFromFileSizeBytes:(long long)size
++(NSString*) stringFromFileSizeBytes:(long long)size
 {
     long long value;
     NSString * unit = @"B";

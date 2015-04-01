@@ -31,6 +31,7 @@ static KxSMBBlock ResultBlock = ^(id result){
     {
         [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
     }
+
 };
 
 @implementation FileTransmissionModal
@@ -175,6 +176,12 @@ static KxSMBBlock ResultBlock = ^(id result){
     self.isProcessing = NO;
 }
 
+-(void)cancel
+{
+    [self suspend];
+    [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:(self.transmissionType == FileTransmissionDownload?self.fromPath:self.toPath)];
+}
+
 
 // 下载单个文件，从偏移量处开始
 - (void) copySingleSMBPath:(NSString *)smbPath
@@ -276,9 +283,7 @@ static KxSMBBlock ResultBlock = ^(id result){
             }
         }
     }];
-    
-    
-
 }
+
 
 @end

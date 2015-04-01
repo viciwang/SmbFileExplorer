@@ -7,11 +7,10 @@
 //
 
 #import "LocalFileViewController.h"
-#import "ChooseLocalFileViewController.h"
 
 @interface LocalFileViewController ()
 
-@property (nonatomic,strong) ArrayDataSource * localFileDataSource;
+@property (nonatomic,strong) LocalFileDataSource * localFileDataSource;
 
 @end
 
@@ -22,6 +21,7 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(dismissLocalFileViewController:)];
     [self setupTableView];
     
     
@@ -34,24 +34,37 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
 
 -(void)setupTableView
 {
-    TableViewCellConfigureBlock block = ^(UITableViewCell * cell,NSString * item){
-        cell.textLabel.text = item;
+    TableViewCellConfigureBlock block = ^(LocalFileCell * cell,LocalFileModal * item){
+        [cell configureForLocalFileModal:item andDelegate:self];
     };
-    self.localFileDataSource = [[ArrayDataSource alloc]initWithItem:[self localFiles] cellIdentifier:LocalFileCellIdentifier configureCellBlock:block];
+    self.localFileDataSource = [[LocalFileDataSource alloc]initWithItem:[self localFiles] cellIdentifier:LocalFileCellIdentifier configureCellBlock:block];
     self.tableView.dataSource = self.localFileDataSource;
 }
 
 -(NSMutableArray *)localFiles
 {
-    NSArray * path =  NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * docPath =  [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSArray * array = [fileManager subpathsAtPath:[path lastObject]];
-    return [NSMutableArray arrayWithArray:array];
+    NSArray * array = [fileManager subpathsAtPath:docPath];
+    NSMutableArray * localFile = [NSMutableArray array];
+    for (NSString * str in array)
+    {
+        NSDictionary * dic = [fileManager attributesOfItemAtPath:[docPath stringByAppendingPathComponent:str] error:nil];
+        if (dic)
+        {
+            LocalFileModal * file = [[LocalFileModal alloc]init];
+            file.path = [docPath stringByAppendingPathComponent:str];
+            file.fileSize = [[dic objectForKey:@"NSFileSize"] unsignedLongLongValue];
+            [localFile addObject:file];
+            
+        }
+    }
+    return localFile;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,14 +78,61 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
                                                                                      toPath:remotePath
                                                                                    withInfo:nil];
     [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
-    [self.clfVC dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
     
-//    vc.modalPresentationStyle = UIModalPresentationFormSheet;
-//    vc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-//    [self.clfVC presentViewController:vc animated:YES completion:^{}];
 }
 
 
+-(void)dismissLocalFileViewController:(UIBarButtonItem*)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma  mark LocalFileDelegate
+-(void)deleteFileForCell:(LocalFileCell *)cell
+{
+    NSIndexPath * index = [self.tableView indexPathForCell:cell];
+    if ([self.localFileDataSource removeFileAtIndex:index.row])
+    {
+        [self.tableView deleteRowsAtIndexPaths:@[index] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else
+    {
+        
+    }
+    
+}
+
+
+-(void)openFileForCell:(LocalFileCell *)cell
+{
+    NSIndexPath * index = [self.tableView indexPathForCell:cell];
+    LocalFileModal * file = (LocalFileModal *)[self.localFileDataSource itemAtIndexPath:index];
+    NSURL * url = [NSURL fileURLWithPath:file.path];
+    UIDocumentInteractionController * dVC = [UIDocumentInteractionController interactionControllerWithURL:url];
+    dVC.delegate = self;
+    [dVC presentPreviewAnimated:YES];
+    
+}
+
+-(void)uploadFileForCell:(LocalFileCell *)cell
+{
+    NSIndexPath * index = [self.tableView indexPathForCell:cell];
+    LocalFileModal * file = (LocalFileModal *)[self.localFileDataSource itemAtIndexPath:index];
+    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareFileTransmissionVC].delegate currentSMBPath],[file.path lastPathComponent]];
+    FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload
+                                                                                   fromPath:file.path
+                                                                                     toPath:remotePath
+                                                                                   withInfo:nil];
+    [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
+}
+
+
+#pragma mark UIDocumentInteractionControllerDelegate
+-(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.navigationController;
+}
 
 
 /*

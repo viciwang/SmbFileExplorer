@@ -21,6 +21,7 @@
 -(void)removeSFTItemAtPath:(NSString*)path;
 -(void)updateSFTItemAtPath:(NSString*)path withTransferred:(long)transferred;
 -(FileTransmissionModal*)SFTItemAtIndex:(NSInteger)index;
+
 -(void)suspendAllTasks;
 -(void)resumeAllTasks;
 -(void)reAddAllTasks:(NSArray *)tasks;

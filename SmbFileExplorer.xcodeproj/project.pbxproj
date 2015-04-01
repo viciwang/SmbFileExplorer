@@ -13,10 +13,11 @@
 		FA3C3EC91AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3C3EC81AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m */; };
 		FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */; };
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
+		FA5330131ACBE16C000F3751 /* LocalFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330121ACBE16C000F3751 /* LocalFileCell.m */; };
+		FA5330161ACBE813000F3751 /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330151ACBE813000F3751 /* LocalFileDataSource.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
 		FA8E47FA1ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */; };
 		FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */; };
-		FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */; };
 		FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812301AAED0E7005142AB /* LocalFileViewController.m */; };
 		FAA812661AAF1C5B005142AB /* FileTransmissionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812651AAF1C5B005142AB /* FileTransmissionViewController.m */; };
 		FAA812691AAF1CB7005142AB /* FileTransmissionModal.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812681AAF1CB7005142AB /* FileTransmissionModal.m */; };
@@ -77,14 +78,16 @@
 		FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemStuff.m; path = Common/SystemStuff.m; sourceTree = "<group>"; };
 		FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Common/NetworkManager.h; sourceTree = "<group>"; };
 		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
+		FA5330111ACBE16C000F3751 /* LocalFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileCell.h; sourceTree = "<group>"; };
+		FA5330121ACBE16C000F3751 /* LocalFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileCell.m; sourceTree = "<group>"; };
+		FA5330141ACBE813000F3751 /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileDataSource.h; sourceTree = "<group>"; };
+		FA5330151ACBE813000F3751 /* LocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileDataSource.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
 		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
 		FA8E47F81ABAFDCE002AEE41 /* SmbCacheFilePresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbCacheFilePresentationController.h; sourceTree = "<group>"; };
 		FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbCacheFilePresentationController.m; sourceTree = "<group>"; };
 		FAA7D2CB1AB5649A00E3A9D1 /* SmbFileOperateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileOperateCell.h; sourceTree = "<group>"; };
 		FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileOperateCell.m; sourceTree = "<group>"; };
-		FAA812291AAED09D005142AB /* ChooseLocalFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseLocalFileViewController.h; sourceTree = "<group>"; };
-		FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseLocalFileViewController.m; sourceTree = "<group>"; };
 		FAA8122F1AAED0E7005142AB /* LocalFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileViewController.h; sourceTree = "<group>"; };
 		FAA812301AAED0E7005142AB /* LocalFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileViewController.m; sourceTree = "<group>"; };
 		FAA812641AAF1C5B005142AB /* FileTransmissionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTransmissionViewController.h; sourceTree = "<group>"; };
@@ -178,13 +181,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA1E03CD1ABBEEFB004E79EB /* Transition */ = {
+		FA53300F1ACB891F000F3751 /* CachePresentation */ = {
 			isa = PBXGroup;
 			children = (
 				FA1E03CE1ABBF29A004E79EB /* SmbCacheFileTransitioner.h */,
 				FA1E03CF1ABBF29A004E79EB /* SmbCacheFileTransitioner.m */,
+				FA8E47F81ABAFDCE002AEE41 /* SmbCacheFilePresentationController.h */,
+				FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */,
 			);
-			name = Transition;
+			name = CachePresentation;
+			sourceTree = "<group>";
+		};
+		FA5330101ACB8997000F3751 /* TransmissionPresentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = TransmissionPresentation;
 			sourceTree = "<group>";
 		};
 		FA6253A21AABD5A100EAA782 /* Common */ = {
@@ -263,7 +275,8 @@
 		FABDBA371AA863C700595AFA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FA1E03CD1ABBEEFB004E79EB /* Transition */,
+				FA5330101ACB8997000F3751 /* TransmissionPresentation */,
+				FA53300F1ACB891F000F3751 /* CachePresentation */,
 				FABDBA381AA863C700595AFA /* SmbAuthMessageViewController.h */,
 				FABDBA391AA863C700595AFA /* SmbAuthMessageViewController.m */,
 				FABDBA3A1AA863C700595AFA /* SmbDetailViewController.h */,
@@ -276,14 +289,10 @@
 				FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */,
 				FAFAED871AADC3C300E4356C /* FolderNameFormViewController.h */,
 				FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */,
-				FAA812291AAED09D005142AB /* ChooseLocalFileViewController.h */,
-				FAA8122A1AAED09D005142AB /* ChooseLocalFileViewController.m */,
 				FAA8122F1AAED0E7005142AB /* LocalFileViewController.h */,
 				FAA812301AAED0E7005142AB /* LocalFileViewController.m */,
 				FAA812641AAF1C5B005142AB /* FileTransmissionViewController.h */,
 				FAA812651AAF1C5B005142AB /* FileTransmissionViewController.m */,
-				FA8E47F81ABAFDCE002AEE41 /* SmbCacheFilePresentationController.h */,
-				FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -305,6 +314,8 @@
 				FAA812681AAF1CB7005142AB /* FileTransmissionModal.m */,
 				FAA8126D1AAF2015005142AB /* SmbFileTransmissionDataSource.h */,
 				FAA8126E1AAF2015005142AB /* SmbFileTransmissionDataSource.m */,
+				FA5330141ACBE813000F3751 /* LocalFileDataSource.h */,
+				FA5330151ACBE813000F3751 /* LocalFileDataSource.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -316,6 +327,8 @@
 				FAA8126B1AAF1EE2005142AB /* FileTransmissionCell.m */,
 				FABDBA201AA8631800595AFA /* LaunchScreen.xib */,
 				FABDBA511AA8648C00595AFA /* Main.storyboard */,
+				FA5330111ACBE16C000F3751 /* LocalFileCell.h */,
+				FA5330121ACBE16C000F3751 /* LocalFileCell.m */,
 				FABDBA471AA863C700595AFA /* SmbAuthCell.h */,
 				FABDBA481AA863C700595AFA /* SmbAuthCell.m */,
 				FABDBAAD1AA8862500595AFA /* SmbFileCell.h */,
@@ -501,12 +514,13 @@
 				FA8E47FA1ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m in Sources */,
 				FAFAED891AADC3C300E4356C /* FolderNameFormViewController.m in Sources */,
 				FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */,
+				FA5330131ACBE16C000F3751 /* LocalFileCell.m in Sources */,
 				FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */,
 				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
 				FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */,
 				FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */,
-				FAA8122B1AAED09D005142AB /* ChooseLocalFileViewController.m in Sources */,
 				FAA8126C1AAF1EE2005142AB /* FileTransmissionCell.m in Sources */,
+				FA5330161ACBE813000F3751 /* LocalFileDataSource.m in Sources */,
 				FABDBA4D1AA863C700595AFA /* ArrayDataSource.m in Sources */,
 				FABDBA5E1AA8663E00595AFA /* KxSMBProvider.m in Sources */,
 				FAA812691AAF1CB7005142AB /* FileTransmissionModal.m in Sources */,

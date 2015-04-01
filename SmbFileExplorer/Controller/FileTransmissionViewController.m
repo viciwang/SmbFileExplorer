@@ -20,6 +20,8 @@ static FileTransmissionViewController * sFileTVC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(dismissTransmissionViewController:)];
+    
     [self setupTableView];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -80,6 +82,11 @@ static FileTransmissionViewController * sFileTVC;
         [sFileTVC setupTableView];
     });
     return sFileTVC;
+}
+
+-(void)dismissTransmissionViewController:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

@@ -14,5 +14,5 @@
 +(SystemStuff *)shareSystemStuff;
 +(NSString*)stringForPathOfDocumentPath;
 -(NSString*) stringFromDate:(NSDate *)date;
--(NSString*) stringFromFileSizeBytes:(long long)size;
++(NSString*) stringFromFileSizeBytes:(long long)size;
 @end

@@ -10,10 +10,9 @@
 #import "ArrayDataSource.h"
 #import "FileTransmissionViewController.h"
 #import "FileTransmissionModal.h"
+#import "LocalFileCell.h"
+#import "LocalFileDataSource.h"
 
-@class ChooseLocalFileViewController;
-
-@interface LocalFileViewController : UITableViewController
-@property (nonatomic,weak) ChooseLocalFileViewController * clfVC;
+@interface LocalFileViewController : UITableViewController<LocalFileDelegate,UIDocumentInteractionControllerDelegate>
 
 @end

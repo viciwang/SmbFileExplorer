@@ -11,7 +11,7 @@
 #import "SmbFilesArrayDataSource.h"
 #import "SmbFileOperateViewController.h"
 #import "FileTransmissionViewController.h"
-#import "ChooseLocalFileViewController.h"
+#import "LocalFileViewController.h"
 #import "SmbCacheFilePresentationController.h"
 #import "SmbCacheFileTransitioner.h"
 

@@ -76,4 +76,8 @@
     }
 }
 
+- (IBAction)cancelTransmission:(id)sender
+{
+    [self.transmissionModal cancel];
+}
 @end
