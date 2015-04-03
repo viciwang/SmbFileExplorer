@@ -31,7 +31,7 @@ typedef enum{
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didRemoveItemAtIndex:(NSInteger)index;
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didInsertItem:(id)item intoIndex:(NSInteger)index;
 -(void)smbFileArrayDataSource:(SmbFilesArrayDataSource *)dataSource didFailToAddSmbFile:(NSError *)error;
-
+-(void)shouldReloadFile:(BOOL)shouldReloadPath;
 @end
 
 typedef void (^SmbLoadedBlock)(id status);
@@ -54,6 +54,8 @@ typedef void (^CompleteBlock)(id status);
 -(void)insertItemType:(FileType)fileType Named:(NSString *)name AtIndex:(NSInteger)index;
 -(void)removeItemAtIndex:(NSInteger)index;
 //-(void)renameItemAtIndex:(NSInteger)index withAuth:(SmbAuth *)auth;
+
+-(void)hiddenFileSettingHasChanged:(BOOL)hidden;
 
 @end
 

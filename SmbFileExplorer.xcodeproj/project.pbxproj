@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FA1E03D01ABBF29A004E79EB /* SmbCacheFileTransitioner.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1E03CF1ABBF29A004E79EB /* SmbCacheFileTransitioner.m */; };
+		FA228FE91ACE8B8500786F88 /* BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FA228FE81ACE8B8500786F88 /* BackgroundTask.m */; };
 		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
 		FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */; };
 		FA3C3EC91AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3C3EC81AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m */; };
@@ -15,6 +16,7 @@
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
 		FA5330131ACBE16C000F3751 /* LocalFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330121ACBE16C000F3751 /* LocalFileCell.m */; };
 		FA5330161ACBE813000F3751 /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330151ACBE813000F3751 /* LocalFileDataSource.m */; };
+		FA53301C1ACC1938000F3751 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA53301B1ACC1938000F3751 /* SettingViewController.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
 		FA8E47FA1ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */; };
 		FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */; };
@@ -69,6 +71,8 @@
 /* Begin PBXFileReference section */
 		FA1E03CE1ABBF29A004E79EB /* SmbCacheFileTransitioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbCacheFileTransitioner.h; sourceTree = "<group>"; };
 		FA1E03CF1ABBF29A004E79EB /* SmbCacheFileTransitioner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbCacheFileTransitioner.m; sourceTree = "<group>"; };
+		FA228FE71ACE8B8500786F88 /* BackgroundTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackgroundTask.h; path = Common/BackgroundTask.h; sourceTree = "<group>"; };
+		FA228FE81ACE8B8500786F88 /* BackgroundTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackgroundTask.m; path = Common/BackgroundTask.m; sourceTree = "<group>"; };
 		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
 		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
 		FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIDesignPlan.storyboard; sourceTree = "<group>"; };
@@ -82,6 +86,8 @@
 		FA5330121ACBE16C000F3751 /* LocalFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileCell.m; sourceTree = "<group>"; };
 		FA5330141ACBE813000F3751 /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileDataSource.h; sourceTree = "<group>"; };
 		FA5330151ACBE813000F3751 /* LocalFileDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileDataSource.m; sourceTree = "<group>"; };
+		FA53301A1ACC1938000F3751 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		FA53301B1ACC1938000F3751 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
 		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
 		FA8E47F81ABAFDCE002AEE41 /* SmbCacheFilePresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbCacheFilePresentationController.h; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 		FA6253A21AABD5A100EAA782 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				FA228FE71ACE8B8500786F88 /* BackgroundTask.h */,
+				FA228FE81ACE8B8500786F88 /* BackgroundTask.m */,
 				FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */,
 				FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */,
 				FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */,
@@ -293,6 +301,8 @@
 				FAA812301AAED0E7005142AB /* LocalFileViewController.m */,
 				FAA812641AAF1C5B005142AB /* FileTransmissionViewController.h */,
 				FAA812651AAF1C5B005142AB /* FileTransmissionViewController.m */,
+				FA53301A1ACC1938000F3751 /* SettingViewController.h */,
+				FA53301B1ACC1938000F3751 /* SettingViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -516,6 +526,7 @@
 				FABDBA171AA8631800595AFA /* AppDelegate.m in Sources */,
 				FA5330131ACBE16C000F3751 /* LocalFileCell.m in Sources */,
 				FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */,
+				FA53301C1ACC1938000F3751 /* SettingViewController.m in Sources */,
 				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
 				FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */,
 				FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */,
@@ -531,6 +542,7 @@
 				FABDBA141AA8631800595AFA /* main.m in Sources */,
 				FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */,
 				FA3C3EC91AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m in Sources */,
+				FA228FE91ACE8B8500786F88 /* BackgroundTask.m in Sources */,
 				FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,6 +20,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,strong) NSString * fileName;
 @property (nonatomic) NSInteger indexForSelectedCell;
 @property (nonatomic,strong)SmbCacheFileTransitionDelegate * smbCacheFileTransitionDelegate;
+@property (nonatomic) BOOL shouldShowHiddenFile;
 
 @end
 
@@ -81,7 +82,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithTitle:@"本地文件"
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
-                                                                          action:@selector(addFileAction:)];
+                                                                          action:@selector(showLocalFileAction:)];
     
     UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"设置"
                                                                            style:UIBarButtonItemStylePlain
@@ -171,7 +172,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
--(void)addFileAction:(id)sender
+-(void)showLocalFileAction:(id)sender
 {
     [self removeOperateCell];
     LocalFileViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LocalFileViewController"];
@@ -184,7 +185,14 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 -(void)showSettingAction:(id)sender
 {
-    
+    SettingViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingViewController"];
+    vc.settingDelegate = self;
+    vc.modalPresentationStyle = UIModalPresentationPopover;
+    UIPopoverPresentationController * pop = vc.popoverPresentationController;
+    pop.barButtonItem = (UIBarButtonItem *)sender;
+    pop.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    pop.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 -(void)shouldReloadPath:(NSNotification *)notification
@@ -405,10 +413,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                               atScrollPosition:UITableViewScrollPositionNone
                                       animated:YES];
     }
-
-
-    
-    
 }
 
 
@@ -426,11 +430,33 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 }
 
+-(void)shouldReloadFile:(BOOL)shouldReloadPath;
+{
+    if (shouldReloadPath)
+    {
+        [self reloadPath];
+    }
+    else
+        [self.tableView reloadData];
+    
+}
+
+#pragma mark SettingDelegate
+-(void)settingHadBeenChanged:(NSDictionary *)setting
+{
+    [setting enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([key isEqualToString:@"ShouldShowHiddenFile"])
+        {
+            self.shouldShowHiddenFile = [obj boolValue];
+        }
+    }];
+}
+
 #pragma mark TableViewCell Bussiness 
 
 -(BOOL)isSelectedIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath && self.indexForSelectedCell==indexPath.row )
+    if (indexPath && self.indexForSelectedCell==indexPath.row)
     {
         return YES;
     }
@@ -568,14 +594,15 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     [dVC presentPreviewAnimated:YES];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark UIPopoverPresentationControllerDelegate
+-(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController
+{
+    for (SmbFileViewController * vc in self.navigationController.viewControllers)
+    {
+       [vc.fileArrayDataSource hiddenFileSettingHasChanged:self.shouldShowHiddenFile];
+    }
+    
 }
-*/
+
 
 @end

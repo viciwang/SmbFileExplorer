@@ -14,8 +14,9 @@
 #import "LocalFileViewController.h"
 #import "SmbCacheFilePresentationController.h"
 #import "SmbCacheFileTransitioner.h"
+#import "SettingViewController.h"
 
-@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate,UIDocumentInteractionControllerDelegate,UIViewControllerTransitioningDelegate,SmbFileCacheDelegate>
+@interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate,UIDocumentInteractionControllerDelegate,UIViewControllerTransitioningDelegate,SmbFileCacheDelegate,UIPopoverPresentationControllerDelegate,SettingDelegate>
 
 @property (nonatomic,copy) NSString * path;
 

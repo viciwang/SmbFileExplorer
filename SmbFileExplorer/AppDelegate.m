@@ -7,9 +7,10 @@
 //
 
 #import "AppDelegate.h"
+#import "BackgroundTask.h"
 
 @interface AppDelegate ()
-
+@property (nonatomic,strong) BackgroundTask * bgTask;
 @end
 
 @implementation AppDelegate
@@ -21,6 +22,8 @@
     if (array) {
         [[FileTransmissionViewController shareFileTransmissionVC]reAddAllTasks:array];
     }
+    self.bgTask = [[BackgroundTask alloc]init];
+    [self.bgTask startBackgroundTasks:1 target:self selector:@selector(backgroundCallback:)];
     return YES;
 }
 
@@ -32,7 +35,13 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   
     
+}
+
+-(void) backgroundCallback:(id)info
+{
+    //NSLog(@"########");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -47,6 +56,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [self saveTransmissionModal];
+    [self.bgTask stopBackgroundTask];
 }
 
 - (void)saveTransmissionModal

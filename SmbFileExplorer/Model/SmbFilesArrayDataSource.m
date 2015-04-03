@@ -9,6 +9,10 @@
 #import "SmbFilesArrayDataSource.h"
 #import "SmbFileViewController.h"
 
+@interface SmbFilesArrayDataSource ()
+@property (nonatomic) BOOL showHiddenFile;
+@end
+
 @implementation SmbFilesArrayDataSource
 
 
@@ -22,6 +26,7 @@ configureCellBlock:(TableViewCellConfigureBlock)block
             configureCellBlock:block];
     if (self) {
         self.path  = path;
+        self.showHiddenFile = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldShowHiddenFile"];
     }
     
     return self;
@@ -43,12 +48,26 @@ configureCellBlock:(TableViewCellConfigureBlock)block
          {
              if ([result isKindOfClass:[NSArray class]])
              {
-                 self.items = [result copy];
+                 self.items = [result mutableCopy];
              }
              else if ([result isKindOfClass:[KxSMBItem class]])
              {
                  self.items = [[NSMutableArray alloc]initWithObjects:(KxSMBItem*)result, nil];
              }
+             
+             if (!self.showHiddenFile)
+             {
+                 NSMutableArray * array = [self.items mutableCopy];
+                 for (KxSMBItem * file in self.items)
+                 {
+                     if ([file.path.lastPathComponent hasPrefix:@"."])
+                     {
+                         [array removeObject:file];
+                     }
+                 }
+                 self.items = array;
+             }
+             
              block(result);
          }
      }];
@@ -178,7 +197,33 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     }
 }
 
+-(void)hiddenFileSettingHasChanged:(BOOL)show
+{
+    
+    if (self.showHiddenFile == YES && show == NO)
+    {
+        self.showHiddenFile = show;
+        
+        // 遍历的时候不能删除元素，所以要构造一个临时数组
+        NSMutableArray * temArray = [NSMutableArray arrayWithArray:self.items];
+        for (KxSMBItem * file in temArray)
+        {
+            if (file!=nil && [file.path.lastPathComponent hasPrefix:@"."])
+            {
+                [self.items removeObject:file];
+            }
+        }
+        [self.smbFileDelegate shouldReloadFile:NO];
 
+    }
+    
+    if (self.showHiddenFile == NO && show == YES)
+    {
+        self.showHiddenFile = show;
+        [self.smbFileDelegate shouldReloadFile:YES];
+    }
+    
+}
 
 
 @end
