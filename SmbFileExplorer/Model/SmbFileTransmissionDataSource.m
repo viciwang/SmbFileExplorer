@@ -67,6 +67,12 @@ configureCellBlock:(TableViewCellConfigureBlock)block
         {
             NSLog(@"传输完成");
             [self.ftVC.tableView beginUpdates];
+            
+            // 重命名已传输成功的文件
+            if (item.processedBytes == item.fileBytes)
+            {
+                [item renameFileName];
+            }
             [self.items removeObject:item];
             [self.ftVC.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.ftVC.tableView endUpdates];
@@ -81,7 +87,7 @@ configureCellBlock:(TableViewCellConfigureBlock)block
     }
 }
 
--(void)updateSFTItemAtPath:(NSString*)path withTransferred:(long)transferred
+-(void)updateSFTItemAtPath:(NSString*)path withTransferred:(unsigned long long)transferred
 {
     for (NSInteger i = 0;i<self.items.count;i++)
     {

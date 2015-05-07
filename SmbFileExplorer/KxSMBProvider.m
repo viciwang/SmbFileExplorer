@@ -670,7 +670,7 @@ static KxSMBProvider *gSmbProvider;
                  [fileHandle writeData:data];
                  
                  if (progress) {
-                     progress(smbFile, fileHandle.offsetInFile);
+                     progress(smbFile, (long)fileHandle.offsetInFile);
                  }
                  
                  [self readSMBFile:smbFile

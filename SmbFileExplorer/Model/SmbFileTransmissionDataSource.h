@@ -19,7 +19,7 @@
 
 -(void)addSFTItem:(FileTransmissionModal *)item;
 -(void)removeSFTItemAtPath:(NSString*)path;
--(void)updateSFTItemAtPath:(NSString*)path withTransferred:(long)transferred;
+-(void)updateSFTItemAtPath:(NSString*)path withTransferred:(unsigned long long)transferred;
 -(FileTransmissionModal*)SFTItemAtIndex:(NSInteger)index;
 
 -(void)suspendAllTasks;

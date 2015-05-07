@@ -28,12 +28,12 @@
     self.transmissionModal = task;
     self.progressBar.progress = (double)task.processedBytes/(double)task.fileBytes;
     self.procressedLabel.text = [NSString stringWithFormat:@"%@/%@",[self describeForByte:task.processedBytes],[self describeForByte:task.fileBytes]];
-    self.processedPercentLabel.text = [NSString stringWithFormat:@"%li%%",(NSInteger)(self.progressBar.progress*100)];
+    self.processedPercentLabel.text = [NSString stringWithFormat:@"%li%%",(long)(self.progressBar.progress*100)];
     self.fileName.text = task.fromPath.lastPathComponent;
 }
 
 
--(NSString *)describeForByte:(long) b
+-(NSString *)describeForByte:(unsigned long long) b
 {
     CGFloat value;
     NSString *unit;

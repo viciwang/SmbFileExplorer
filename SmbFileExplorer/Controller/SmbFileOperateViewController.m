@@ -219,7 +219,7 @@
 
 -(void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller

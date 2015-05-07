@@ -15,6 +15,8 @@
 #import "SmbCacheFilePresentationController.h"
 #import "SmbCacheFileTransitioner.h"
 #import "SettingViewController.h"
+#import "SmbFileDetailViewController.h"
+#import "SmbFileDetailTransitioner.h"
 
 @interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate,UIDocumentInteractionControllerDelegate,UIViewControllerTransitioningDelegate,SmbFileCacheDelegate,UIPopoverPresentationControllerDelegate,SettingDelegate>
 

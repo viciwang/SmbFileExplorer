@@ -30,6 +30,7 @@ typedef enum {
 @property (nonatomic) BOOL isProcessing;
 
 - (instancetype)initWithTransmissionType:(FileTransmissionType)type fromPath:(NSString*)fp toPath:(NSString*)tp withInfo:(id)info;
+-(void)renameFileName;
 -(void)begin;
 -(void)suspend;
 -(void)cancel;

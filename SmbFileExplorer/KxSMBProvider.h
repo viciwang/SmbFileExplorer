@@ -73,7 +73,7 @@ typedef enum {
 @class KxSMBItem;
 
 typedef void (^KxSMBBlock)(id result);
-typedef void (^KxSMBBlockProgress)(KxSMBItem *item, long transferred);
+typedef void (^KxSMBBlockProgress)(KxSMBItem *item, unsigned long long transferred);
 
 @interface KxSMBItemStat : NSObject
 @property(readonly, nonatomic, strong) NSDate *lastModified;

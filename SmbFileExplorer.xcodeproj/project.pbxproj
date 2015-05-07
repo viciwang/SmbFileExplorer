@@ -11,13 +11,27 @@
 		FA228FE91ACE8B8500786F88 /* BackgroundTask.m in Sources */ = {isa = PBXBuildFile; fileRef = FA228FE81ACE8B8500786F88 /* BackgroundTask.m */; };
 		FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */; };
 		FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */; };
-		FA3C3EC91AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3C3EC81AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m */; };
 		FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */ = {isa = PBXBuildFile; fileRef = FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */; };
 		FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */; };
+		FA5245EE1AD37251002F50F5 /* SmbFileDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5245ED1AD37251002F50F5 /* SmbFileDetailViewController.m */; };
+		FA5245F21AD3731C002F50F5 /* SmbFileDetailPresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5245F11AD3731C002F50F5 /* SmbFileDetailPresentationController.m */; };
+		FA5245F51AD3782B002F50F5 /* SmbFileDetailTransitioner.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5245F41AD3782B002F50F5 /* SmbFileDetailTransitioner.m */; };
 		FA5330131ACBE16C000F3751 /* LocalFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330121ACBE16C000F3751 /* LocalFileCell.m */; };
 		FA5330161ACBE813000F3751 /* LocalFileDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5330151ACBE813000F3751 /* LocalFileDataSource.m */; };
 		FA53301C1ACC1938000F3751 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA53301B1ACC1938000F3751 /* SettingViewController.m */; };
 		FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */; };
+		FA6981201AFAFD27004A6002 /* manager_del.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981141AFAFD27004A6002 /* manager_del.png */; };
+		FA6981211AFAFD27004A6002 /* manager_del@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981151AFAFD27004A6002 /* manager_del@2x.png */; };
+		FA6981221AFAFD27004A6002 /* manager_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981161AFAFD27004A6002 /* manager_down.png */; };
+		FA6981231AFAFD27004A6002 /* manager_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981171AFAFD27004A6002 /* manager_down@2x.png */; };
+		FA6981241AFAFD27004A6002 /* manager_openfile.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981181AFAFD27004A6002 /* manager_openfile.png */; };
+		FA6981251AFAFD27004A6002 /* manager_openfile@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA6981191AFAFD27004A6002 /* manager_openfile@2x.png */; };
+		FA6981261AFAFD27004A6002 /* manager_start.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811A1AFAFD27004A6002 /* manager_start.png */; };
+		FA6981271AFAFD27004A6002 /* manager_start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811B1AFAFD27004A6002 /* manager_start@2x.png */; };
+		FA6981281AFAFD27004A6002 /* manager_stop.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811C1AFAFD27004A6002 /* manager_stop.png */; };
+		FA6981291AFAFD27004A6002 /* manager_stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811D1AFAFD27004A6002 /* manager_stop@2x.png */; };
+		FA69812A1AFAFD27004A6002 /* manager_upload.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811E1AFAFD27004A6002 /* manager_upload.png */; };
+		FA69812B1AFAFD27004A6002 /* manager_upload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69811F1AFAFD27004A6002 /* manager_upload@2x.png */; };
 		FA8E47FA1ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */; };
 		FAA7D2CD1AB5649A00E3A9D1 /* SmbFileOperateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA7D2CC1AB5649A00E3A9D1 /* SmbFileOperateCell.m */; };
 		FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA812301AAED0E7005142AB /* LocalFileViewController.m */; };
@@ -51,11 +65,41 @@
 		FABDBA6F1AA8687E00595AFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FABDBA6E1AA8687E00595AFA /* Foundation.framework */; };
 		FABDBAAF1AA8862500595AFA /* SmbFileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAAE1AA8862500595AFA /* SmbFileCell.m */; };
 		FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FABDBAB11AA888DF00595AFA /* SmbManager.m */; };
-		FAD90A971AC572A70060D696 /* FileType.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD90A961AC572A70060D696 /* FileType.png */; };
 		FAE326061AAD4A8000882A4D /* SmbFileOperateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */; };
+		FAF6173F1AEF1DA400983B9A /* ArrayDataSourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF6173E1AEF1DA400983B9A /* ArrayDataSourceTests.m */; };
+		FAF617481AEF250600983B9A /* operate_delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617401AEF250600983B9A /* operate_delete.png */; };
+		FAF617491AEF250600983B9A /* operate_delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617411AEF250600983B9A /* operate_delete@2x.png */; };
+		FAF6174A1AEF250600983B9A /* operate_download.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617421AEF250600983B9A /* operate_download.png */; };
+		FAF6174B1AEF250600983B9A /* operate_download@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617431AEF250600983B9A /* operate_download@2x.png */; };
+		FAF6174C1AEF250600983B9A /* operate_info.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617441AEF250600983B9A /* operate_info.png */; };
+		FAF6174D1AEF250600983B9A /* operate_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617451AEF250600983B9A /* operate_info@2x.png */; };
+		FAF6174E1AEF250600983B9A /* operate_open.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617461AEF250600983B9A /* operate_open.png */; };
+		FAF6174F1AEF250600983B9A /* operate_open@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617471AEF250600983B9A /* operate_open@2x.png */; };
+		FAF617581AEF2F3600983B9A /* bar_down.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617521AEF2F3600983B9A /* bar_down.png */; };
+		FAF617591AEF2F3600983B9A /* bar_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617531AEF2F3600983B9A /* bar_down@2x.png */; };
+		FAF6175A1AEF2F3600983B9A /* bar_file.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617541AEF2F3600983B9A /* bar_file.png */; };
+		FAF6175B1AEF2F3600983B9A /* bar_file@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617551AEF2F3600983B9A /* bar_file@2x.png */; };
+		FAF6175C1AEF2F3600983B9A /* bar_set.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617561AEF2F3600983B9A /* bar_set.png */; };
+		FAF6175D1AEF2F3600983B9A /* bar_set@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAF617571AEF2F3600983B9A /* bar_set@2x.png */; };
 		FAFA6CA81AA9BE0B00959974 /* SmbFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */; };
 		FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */; };
 		FAFAED891AADC3C300E4356C /* FolderNameFormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */; };
+		FAFB7B691AF1CCB600F3EA70 /* file_doc.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B5B1AF1CCB600F3EA70 /* file_doc.png */; };
+		FAFB7B6A1AF1CCB600F3EA70 /* file_doc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B5C1AF1CCB600F3EA70 /* file_doc@2x.png */; };
+		FAFB7B6B1AF1CCB600F3EA70 /* file_exc.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B5D1AF1CCB600F3EA70 /* file_exc.png */; };
+		FAFB7B6C1AF1CCB600F3EA70 /* file_exc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B5E1AF1CCB600F3EA70 /* file_exc@2x.png */; };
+		FAFB7B6D1AF1CCB600F3EA70 /* file_folder.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B5F1AF1CCB600F3EA70 /* file_folder.png */; };
+		FAFB7B6E1AF1CCB600F3EA70 /* file_folder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B601AF1CCB600F3EA70 /* file_folder@2x.png */; };
+		FAFB7B6F1AF1CCB600F3EA70 /* file_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B611AF1CCB600F3EA70 /* file_image.png */; };
+		FAFB7B701AF1CCB600F3EA70 /* file_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B621AF1CCB600F3EA70 /* file_image@2x.png */; };
+		FAFB7B711AF1CCB600F3EA70 /* file_pdf.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B631AF1CCB600F3EA70 /* file_pdf.png */; };
+		FAFB7B721AF1CCB600F3EA70 /* file_pdf@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B641AF1CCB600F3EA70 /* file_pdf@2x.png */; };
+		FAFB7B731AF1CCB600F3EA70 /* file_ppt.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B651AF1CCB600F3EA70 /* file_ppt.png */; };
+		FAFB7B741AF1CCB600F3EA70 /* file_ppt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B661AF1CCB600F3EA70 /* file_ppt@2x.png */; };
+		FAFB7B751AF1CCB600F3EA70 /* file_rar.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B671AF1CCB600F3EA70 /* file_rar.png */; };
+		FAFB7B761AF1CCB600F3EA70 /* file_rar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B681AF1CCB600F3EA70 /* file_rar@2x.png */; };
+		FAFB7B791AF1E64000F3EA70 /* file_unknow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B771AF1E64000F3EA70 /* file_unknow@2x.png */; };
+		FAFB7B7A1AF1E64000F3EA70 /* file_unknow.png in Resources */ = {isa = PBXBuildFile; fileRef = FAFB7B781AF1E64000F3EA70 /* file_unknow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,12 +120,16 @@
 		FA37A69E1AAC2417001BC14E /* SmbAuthArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbAuthArrayDataSource.h; sourceTree = "<group>"; };
 		FA37A69F1AAC2417001BC14E /* SmbAuthArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbAuthArrayDataSource.m; sourceTree = "<group>"; };
 		FA39B5001AB4277E00B26A77 /* UIDesignPlan.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UIDesignPlan.storyboard; sourceTree = "<group>"; };
-		FA3C3EC71AC0FCAE005E7569 /* KxSMBItemTransmissionFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KxSMBItemTransmissionFile.h; sourceTree = "<group>"; };
-		FA3C3EC81AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KxSMBItemTransmissionFile.m; sourceTree = "<group>"; };
 		FA404B691AB96B9400FB3D38 /* SystemStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemStuff.h; path = Common/SystemStuff.h; sourceTree = "<group>"; };
 		FA404B6A1AB96B9400FB3D38 /* SystemStuff.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemStuff.m; path = Common/SystemStuff.m; sourceTree = "<group>"; };
 		FA4FA7EA1AB1C3170001F1B3 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkManager.h; path = Common/NetworkManager.h; sourceTree = "<group>"; };
 		FA4FA7EB1AB1C3170001F1B3 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkManager.m; path = Common/NetworkManager.m; sourceTree = "<group>"; };
+		FA5245EC1AD37251002F50F5 /* SmbFileDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileDetailViewController.h; sourceTree = "<group>"; };
+		FA5245ED1AD37251002F50F5 /* SmbFileDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileDetailViewController.m; sourceTree = "<group>"; };
+		FA5245F01AD3731C002F50F5 /* SmbFileDetailPresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileDetailPresentationController.h; sourceTree = "<group>"; };
+		FA5245F11AD3731C002F50F5 /* SmbFileDetailPresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileDetailPresentationController.m; sourceTree = "<group>"; };
+		FA5245F31AD3782B002F50F5 /* SmbFileDetailTransitioner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileDetailTransitioner.h; sourceTree = "<group>"; };
+		FA5245F41AD3782B002F50F5 /* SmbFileDetailTransitioner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileDetailTransitioner.m; sourceTree = "<group>"; };
 		FA5330111ACBE16C000F3751 /* LocalFileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileCell.h; sourceTree = "<group>"; };
 		FA5330121ACBE16C000F3751 /* LocalFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalFileCell.m; sourceTree = "<group>"; };
 		FA5330141ACBE813000F3751 /* LocalFileDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalFileDataSource.h; sourceTree = "<group>"; };
@@ -90,6 +138,18 @@
 		FA53301B1ACC1938000F3751 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		FA6253A31AABD9CE00EAA782 /* PersistenceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PersistenceManager.h; path = Common/PersistenceManager.h; sourceTree = "<group>"; };
 		FA6253A41AABD9CE00EAA782 /* PersistenceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PersistenceManager.m; path = Common/PersistenceManager.m; sourceTree = "<group>"; };
+		FA6981141AFAFD27004A6002 /* manager_del.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_del.png; path = SmbFileExplorer/Resource/manager_del.png; sourceTree = "<group>"; };
+		FA6981151AFAFD27004A6002 /* manager_del@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_del@2x.png"; path = "SmbFileExplorer/Resource/manager_del@2x.png"; sourceTree = "<group>"; };
+		FA6981161AFAFD27004A6002 /* manager_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_down.png; path = SmbFileExplorer/Resource/manager_down.png; sourceTree = "<group>"; };
+		FA6981171AFAFD27004A6002 /* manager_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_down@2x.png"; path = "SmbFileExplorer/Resource/manager_down@2x.png"; sourceTree = "<group>"; };
+		FA6981181AFAFD27004A6002 /* manager_openfile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_openfile.png; path = SmbFileExplorer/Resource/manager_openfile.png; sourceTree = "<group>"; };
+		FA6981191AFAFD27004A6002 /* manager_openfile@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_openfile@2x.png"; path = "SmbFileExplorer/Resource/manager_openfile@2x.png"; sourceTree = "<group>"; };
+		FA69811A1AFAFD27004A6002 /* manager_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_start.png; path = SmbFileExplorer/Resource/manager_start.png; sourceTree = "<group>"; };
+		FA69811B1AFAFD27004A6002 /* manager_start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_start@2x.png"; path = "SmbFileExplorer/Resource/manager_start@2x.png"; sourceTree = "<group>"; };
+		FA69811C1AFAFD27004A6002 /* manager_stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_stop.png; path = SmbFileExplorer/Resource/manager_stop.png; sourceTree = "<group>"; };
+		FA69811D1AFAFD27004A6002 /* manager_stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_stop@2x.png"; path = "SmbFileExplorer/Resource/manager_stop@2x.png"; sourceTree = "<group>"; };
+		FA69811E1AFAFD27004A6002 /* manager_upload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = manager_upload.png; path = SmbFileExplorer/Resource/manager_upload.png; sourceTree = "<group>"; };
+		FA69811F1AFAFD27004A6002 /* manager_upload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "manager_upload@2x.png"; path = "SmbFileExplorer/Resource/manager_upload@2x.png"; sourceTree = "<group>"; };
 		FA8E47F81ABAFDCE002AEE41 /* SmbCacheFilePresentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbCacheFilePresentationController.h; sourceTree = "<group>"; };
 		FA8E47F91ABAFDCE002AEE41 /* SmbCacheFilePresentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbCacheFilePresentationController.m; sourceTree = "<group>"; };
 		FAA7D2CB1AB5649A00E3A9D1 /* SmbFileOperateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileOperateCell.h; sourceTree = "<group>"; };
@@ -147,15 +207,45 @@
 		FABDBAAE1AA8862500595AFA /* SmbFileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileCell.m; sourceTree = "<group>"; };
 		FABDBAB01AA888DF00595AFA /* SmbManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbManager.h; sourceTree = "<group>"; };
 		FABDBAB11AA888DF00595AFA /* SmbManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbManager.m; sourceTree = "<group>"; };
-		FAD90A961AC572A70060D696 /* FileType.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FileType.png; path = SmbFileExplorer/Resource/FileType.png; sourceTree = "<group>"; };
 		FAE326041AAD4A8000882A4D /* SmbFileOperateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileOperateViewController.h; sourceTree = "<group>"; };
 		FAE326051AAD4A8000882A4D /* SmbFileOperateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileOperateViewController.m; sourceTree = "<group>"; };
+		FAF6173E1AEF1DA400983B9A /* ArrayDataSourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ArrayDataSourceTests.m; path = ModalTests/ArrayDataSourceTests.m; sourceTree = "<group>"; };
+		FAF617401AEF250600983B9A /* operate_delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = operate_delete.png; path = SmbFileExplorer/Resource/operate_delete.png; sourceTree = "<group>"; };
+		FAF617411AEF250600983B9A /* operate_delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "operate_delete@2x.png"; path = "SmbFileExplorer/Resource/operate_delete@2x.png"; sourceTree = "<group>"; };
+		FAF617421AEF250600983B9A /* operate_download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = operate_download.png; path = SmbFileExplorer/Resource/operate_download.png; sourceTree = "<group>"; };
+		FAF617431AEF250600983B9A /* operate_download@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "operate_download@2x.png"; path = "SmbFileExplorer/Resource/operate_download@2x.png"; sourceTree = "<group>"; };
+		FAF617441AEF250600983B9A /* operate_info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = operate_info.png; path = SmbFileExplorer/Resource/operate_info.png; sourceTree = "<group>"; };
+		FAF617451AEF250600983B9A /* operate_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "operate_info@2x.png"; path = "SmbFileExplorer/Resource/operate_info@2x.png"; sourceTree = "<group>"; };
+		FAF617461AEF250600983B9A /* operate_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = operate_open.png; path = SmbFileExplorer/Resource/operate_open.png; sourceTree = "<group>"; };
+		FAF617471AEF250600983B9A /* operate_open@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "operate_open@2x.png"; path = "SmbFileExplorer/Resource/operate_open@2x.png"; sourceTree = "<group>"; };
+		FAF617521AEF2F3600983B9A /* bar_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_down.png; path = SmbFileExplorer/Resource/bar_down.png; sourceTree = "<group>"; };
+		FAF617531AEF2F3600983B9A /* bar_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar_down@2x.png"; path = "SmbFileExplorer/Resource/bar_down@2x.png"; sourceTree = "<group>"; };
+		FAF617541AEF2F3600983B9A /* bar_file.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_file.png; path = SmbFileExplorer/Resource/bar_file.png; sourceTree = "<group>"; };
+		FAF617551AEF2F3600983B9A /* bar_file@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar_file@2x.png"; path = "SmbFileExplorer/Resource/bar_file@2x.png"; sourceTree = "<group>"; };
+		FAF617561AEF2F3600983B9A /* bar_set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bar_set.png; path = SmbFileExplorer/Resource/bar_set.png; sourceTree = "<group>"; };
+		FAF617571AEF2F3600983B9A /* bar_set@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bar_set@2x.png"; path = "SmbFileExplorer/Resource/bar_set@2x.png"; sourceTree = "<group>"; };
 		FAFA6CA61AA9BE0B00959974 /* SmbFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFileViewController.h; sourceTree = "<group>"; };
 		FAFA6CA71AA9BE0B00959974 /* SmbFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFileViewController.m; sourceTree = "<group>"; };
 		FAFA6CAC1AA9C6F800959974 /* SmbFilesArrayDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmbFilesArrayDataSource.h; sourceTree = "<group>"; };
 		FAFA6CAD1AA9C6F800959974 /* SmbFilesArrayDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmbFilesArrayDataSource.m; sourceTree = "<group>"; };
 		FAFAED871AADC3C300E4356C /* FolderNameFormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderNameFormViewController.h; sourceTree = "<group>"; };
 		FAFAED881AADC3C300E4356C /* FolderNameFormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderNameFormViewController.m; sourceTree = "<group>"; };
+		FAFB7B5B1AF1CCB600F3EA70 /* file_doc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_doc.png; path = SmbFileExplorer/Resource/file_doc.png; sourceTree = "<group>"; };
+		FAFB7B5C1AF1CCB600F3EA70 /* file_doc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_doc@2x.png"; path = "SmbFileExplorer/Resource/file_doc@2x.png"; sourceTree = "<group>"; };
+		FAFB7B5D1AF1CCB600F3EA70 /* file_exc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_exc.png; path = SmbFileExplorer/Resource/file_exc.png; sourceTree = "<group>"; };
+		FAFB7B5E1AF1CCB600F3EA70 /* file_exc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_exc@2x.png"; path = "SmbFileExplorer/Resource/file_exc@2x.png"; sourceTree = "<group>"; };
+		FAFB7B5F1AF1CCB600F3EA70 /* file_folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_folder.png; path = SmbFileExplorer/Resource/file_folder.png; sourceTree = "<group>"; };
+		FAFB7B601AF1CCB600F3EA70 /* file_folder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_folder@2x.png"; path = "SmbFileExplorer/Resource/file_folder@2x.png"; sourceTree = "<group>"; };
+		FAFB7B611AF1CCB600F3EA70 /* file_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_image.png; path = SmbFileExplorer/Resource/file_image.png; sourceTree = "<group>"; };
+		FAFB7B621AF1CCB600F3EA70 /* file_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_image@2x.png"; path = "SmbFileExplorer/Resource/file_image@2x.png"; sourceTree = "<group>"; };
+		FAFB7B631AF1CCB600F3EA70 /* file_pdf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_pdf.png; path = SmbFileExplorer/Resource/file_pdf.png; sourceTree = "<group>"; };
+		FAFB7B641AF1CCB600F3EA70 /* file_pdf@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_pdf@2x.png"; path = "SmbFileExplorer/Resource/file_pdf@2x.png"; sourceTree = "<group>"; };
+		FAFB7B651AF1CCB600F3EA70 /* file_ppt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_ppt.png; path = SmbFileExplorer/Resource/file_ppt.png; sourceTree = "<group>"; };
+		FAFB7B661AF1CCB600F3EA70 /* file_ppt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_ppt@2x.png"; path = "SmbFileExplorer/Resource/file_ppt@2x.png"; sourceTree = "<group>"; };
+		FAFB7B671AF1CCB600F3EA70 /* file_rar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_rar.png; path = SmbFileExplorer/Resource/file_rar.png; sourceTree = "<group>"; };
+		FAFB7B681AF1CCB600F3EA70 /* file_rar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_rar@2x.png"; path = "SmbFileExplorer/Resource/file_rar@2x.png"; sourceTree = "<group>"; };
+		FAFB7B771AF1E64000F3EA70 /* file_unknow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "file_unknow@2x.png"; path = "SmbFileExplorer/Resource/file_unknow@2x.png"; sourceTree = "<group>"; };
+		FAFB7B781AF1E64000F3EA70 /* file_unknow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = file_unknow.png; path = SmbFileExplorer/Resource/file_unknow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +277,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA5245EF1AD372AF002F50F5 /* SmbFileDetailPresentation */ = {
+			isa = PBXGroup;
+			children = (
+				FA5245F01AD3731C002F50F5 /* SmbFileDetailPresentationController.h */,
+				FA5245F11AD3731C002F50F5 /* SmbFileDetailPresentationController.m */,
+				FA5245F31AD3782B002F50F5 /* SmbFileDetailTransitioner.h */,
+				FA5245F41AD3782B002F50F5 /* SmbFileDetailTransitioner.m */,
+			);
+			name = SmbFileDetailPresentation;
+			sourceTree = "<group>";
+		};
 		FA53300F1ACB891F000F3751 /* CachePresentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +367,7 @@
 		FABDBA2A1AA8631800595AFA /* SmbFileExplorerTests */ = {
 			isa = PBXGroup;
 			children = (
+				FAF6173D1AEF1D6800983B9A /* ModalTests */,
 				FABDBA2D1AA8631800595AFA /* SmbFileExplorerTests.m */,
 				FABDBA2B1AA8631800595AFA /* Supporting Files */,
 			);
@@ -283,6 +385,7 @@
 		FABDBA371AA863C700595AFA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FA5245EF1AD372AF002F50F5 /* SmbFileDetailPresentation */,
 				FA5330101ACB8997000F3751 /* TransmissionPresentation */,
 				FA53300F1ACB891F000F3751 /* CachePresentation */,
 				FABDBA381AA863C700595AFA /* SmbAuthMessageViewController.h */,
@@ -303,6 +406,8 @@
 				FAA812651AAF1C5B005142AB /* FileTransmissionViewController.m */,
 				FA53301A1ACC1938000F3751 /* SettingViewController.h */,
 				FA53301B1ACC1938000F3751 /* SettingViewController.m */,
+				FA5245EC1AD37251002F50F5 /* SmbFileDetailViewController.h */,
+				FA5245ED1AD37251002F50F5 /* SmbFileDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -392,8 +497,6 @@
 		FABDBA721AA8696300595AFA /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
-				FA3C3EC71AC0FCAE005E7569 /* KxSMBItemTransmissionFile.h */,
-				FA3C3EC81AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m */,
 				FABDBA531AA8663E00595AFA /* KxSMBProvider.h */,
 				FABDBA541AA8663E00595AFA /* KxSMBProvider.m */,
 				FABDBA551AA8663E00595AFA /* libs */,
@@ -404,9 +507,58 @@
 		FAD90A931AC56A680060D696 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				FAD90A961AC572A70060D696 /* FileType.png */,
+				FA6981141AFAFD27004A6002 /* manager_del.png */,
+				FA6981151AFAFD27004A6002 /* manager_del@2x.png */,
+				FA6981161AFAFD27004A6002 /* manager_down.png */,
+				FA6981171AFAFD27004A6002 /* manager_down@2x.png */,
+				FA6981181AFAFD27004A6002 /* manager_openfile.png */,
+				FA6981191AFAFD27004A6002 /* manager_openfile@2x.png */,
+				FA69811A1AFAFD27004A6002 /* manager_start.png */,
+				FA69811B1AFAFD27004A6002 /* manager_start@2x.png */,
+				FA69811C1AFAFD27004A6002 /* manager_stop.png */,
+				FA69811D1AFAFD27004A6002 /* manager_stop@2x.png */,
+				FA69811E1AFAFD27004A6002 /* manager_upload.png */,
+				FA69811F1AFAFD27004A6002 /* manager_upload@2x.png */,
+				FAFB7B771AF1E64000F3EA70 /* file_unknow@2x.png */,
+				FAFB7B781AF1E64000F3EA70 /* file_unknow.png */,
+				FAFB7B5B1AF1CCB600F3EA70 /* file_doc.png */,
+				FAFB7B5C1AF1CCB600F3EA70 /* file_doc@2x.png */,
+				FAFB7B5D1AF1CCB600F3EA70 /* file_exc.png */,
+				FAFB7B5E1AF1CCB600F3EA70 /* file_exc@2x.png */,
+				FAFB7B5F1AF1CCB600F3EA70 /* file_folder.png */,
+				FAFB7B601AF1CCB600F3EA70 /* file_folder@2x.png */,
+				FAFB7B611AF1CCB600F3EA70 /* file_image.png */,
+				FAFB7B621AF1CCB600F3EA70 /* file_image@2x.png */,
+				FAFB7B631AF1CCB600F3EA70 /* file_pdf.png */,
+				FAFB7B641AF1CCB600F3EA70 /* file_pdf@2x.png */,
+				FAFB7B651AF1CCB600F3EA70 /* file_ppt.png */,
+				FAFB7B661AF1CCB600F3EA70 /* file_ppt@2x.png */,
+				FAFB7B671AF1CCB600F3EA70 /* file_rar.png */,
+				FAFB7B681AF1CCB600F3EA70 /* file_rar@2x.png */,
+				FAF617521AEF2F3600983B9A /* bar_down.png */,
+				FAF617531AEF2F3600983B9A /* bar_down@2x.png */,
+				FAF617541AEF2F3600983B9A /* bar_file.png */,
+				FAF617551AEF2F3600983B9A /* bar_file@2x.png */,
+				FAF617561AEF2F3600983B9A /* bar_set.png */,
+				FAF617571AEF2F3600983B9A /* bar_set@2x.png */,
+				FAF617401AEF250600983B9A /* operate_delete.png */,
+				FAF617411AEF250600983B9A /* operate_delete@2x.png */,
+				FAF617421AEF250600983B9A /* operate_download.png */,
+				FAF617431AEF250600983B9A /* operate_download@2x.png */,
+				FAF617441AEF250600983B9A /* operate_info.png */,
+				FAF617451AEF250600983B9A /* operate_info@2x.png */,
+				FAF617461AEF250600983B9A /* operate_open.png */,
+				FAF617471AEF250600983B9A /* operate_open@2x.png */,
 			);
 			name = Resource;
+			sourceTree = "<group>";
+		};
+		FAF6173D1AEF1D6800983B9A /* ModalTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAF6173E1AEF1DA400983B9A /* ArrayDataSourceTests.m */,
+			);
+			name = ModalTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,11 +642,52 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD90A971AC572A70060D696 /* FileType.png in Resources */,
+				FA6981251AFAFD27004A6002 /* manager_openfile@2x.png in Resources */,
+				FAF6174E1AEF250600983B9A /* operate_open.png in Resources */,
+				FA6981241AFAFD27004A6002 /* manager_openfile.png in Resources */,
+				FAF6174C1AEF250600983B9A /* operate_info.png in Resources */,
+				FA6981221AFAFD27004A6002 /* manager_down.png in Resources */,
+				FA6981211AFAFD27004A6002 /* manager_del@2x.png in Resources */,
+				FAF617581AEF2F3600983B9A /* bar_down.png in Resources */,
+				FA6981261AFAFD27004A6002 /* manager_start.png in Resources */,
+				FAFB7B751AF1CCB600F3EA70 /* file_rar.png in Resources */,
+				FAF617491AEF250600983B9A /* operate_delete@2x.png in Resources */,
+				FAFB7B6E1AF1CCB600F3EA70 /* file_folder@2x.png in Resources */,
+				FAFB7B6D1AF1CCB600F3EA70 /* file_folder.png in Resources */,
 				FABDBA521AA8648C00595AFA /* Main.storyboard in Resources */,
+				FAFB7B731AF1CCB600F3EA70 /* file_ppt.png in Resources */,
+				FAF6175A1AEF2F3600983B9A /* bar_file.png in Resources */,
+				FAFB7B6F1AF1CCB600F3EA70 /* file_image.png in Resources */,
+				FAFB7B741AF1CCB600F3EA70 /* file_ppt@2x.png in Resources */,
+				FAFB7B6A1AF1CCB600F3EA70 /* file_doc@2x.png in Resources */,
+				FAFB7B6B1AF1CCB600F3EA70 /* file_exc.png in Resources */,
+				FAFB7B711AF1CCB600F3EA70 /* file_pdf.png in Resources */,
+				FAF6174D1AEF250600983B9A /* operate_info@2x.png in Resources */,
+				FA6981271AFAFD27004A6002 /* manager_start@2x.png in Resources */,
+				FAFB7B721AF1CCB600F3EA70 /* file_pdf@2x.png in Resources */,
+				FAFB7B691AF1CCB600F3EA70 /* file_doc.png in Resources */,
+				FAF6174F1AEF250600983B9A /* operate_open@2x.png in Resources */,
+				FAF617591AEF2F3600983B9A /* bar_down@2x.png in Resources */,
+				FAF6175B1AEF2F3600983B9A /* bar_file@2x.png in Resources */,
 				FA39B5011AB4277E00B26A77 /* UIDesignPlan.storyboard in Resources */,
 				FABDBA221AA8631800595AFA /* LaunchScreen.xib in Resources */,
+				FA69812B1AFAFD27004A6002 /* manager_upload@2x.png in Resources */,
+				FAF6175C1AEF2F3600983B9A /* bar_set.png in Resources */,
+				FAFB7B6C1AF1CCB600F3EA70 /* file_exc@2x.png in Resources */,
+				FAFB7B791AF1E64000F3EA70 /* file_unknow@2x.png in Resources */,
+				FA6981231AFAFD27004A6002 /* manager_down@2x.png in Resources */,
 				FABDBA1F1AA8631800595AFA /* Images.xcassets in Resources */,
+				FAF6174B1AEF250600983B9A /* operate_download@2x.png in Resources */,
+				FAFB7B7A1AF1E64000F3EA70 /* file_unknow.png in Resources */,
+				FA6981291AFAFD27004A6002 /* manager_stop@2x.png in Resources */,
+				FA6981201AFAFD27004A6002 /* manager_del.png in Resources */,
+				FAFB7B701AF1CCB600F3EA70 /* file_image@2x.png in Resources */,
+				FA69812A1AFAFD27004A6002 /* manager_upload.png in Resources */,
+				FAFB7B761AF1CCB600F3EA70 /* file_rar@2x.png in Resources */,
+				FAF6174A1AEF250600983B9A /* operate_download.png in Resources */,
+				FAF617481AEF250600983B9A /* operate_delete.png in Resources */,
+				FA6981281AFAFD27004A6002 /* manager_stop.png in Resources */,
+				FAF6175D1AEF2F3600983B9A /* bar_set@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +708,7 @@
 				FABDBA4E1AA863C700595AFA /* SmbAuth.m in Sources */,
 				FAA8126F1AAF2015005142AB /* SmbFileTransmissionDataSource.m in Sources */,
 				FA37A6A01AAC2417001BC14E /* SmbAuthArrayDataSource.m in Sources */,
+				FA5245F21AD3731C002F50F5 /* SmbFileDetailPresentationController.m in Sources */,
 				FAFA6CAE1AA9C6F800959974 /* SmbFilesArrayDataSource.m in Sources */,
 				FAA812661AAF1C5B005142AB /* FileTransmissionViewController.m in Sources */,
 				FABDBA4A1AA863C700595AFA /* SmbDetailViewController.m in Sources */,
@@ -530,6 +724,7 @@
 				FABDBA501AA863C700595AFA /* SmbAuthCell.m in Sources */,
 				FA404B6B1AB96B9400FB3D38 /* SystemStuff.m in Sources */,
 				FAA812311AAED0E7005142AB /* LocalFileViewController.m in Sources */,
+				FA5245EE1AD37251002F50F5 /* SmbFileDetailViewController.m in Sources */,
 				FAA8126C1AAF1EE2005142AB /* FileTransmissionCell.m in Sources */,
 				FA5330161ACBE813000F3751 /* LocalFileDataSource.m in Sources */,
 				FABDBA4D1AA863C700595AFA /* ArrayDataSource.m in Sources */,
@@ -538,10 +733,10 @@
 				FAE326061AAD4A8000882A4D /* SmbFileOperateViewController.m in Sources */,
 				FABDBA491AA863C700595AFA /* SmbAuthMessageViewController.m in Sources */,
 				FABDBAB21AA888DF00595AFA /* SmbManager.m in Sources */,
+				FA5245F51AD3782B002F50F5 /* SmbFileDetailTransitioner.m in Sources */,
 				FABDBA4B1AA863C700595AFA /* SmbMasterViewController.m in Sources */,
 				FABDBA141AA8631800595AFA /* main.m in Sources */,
 				FA4FA7EC1AB1C3170001F1B3 /* NetworkManager.m in Sources */,
-				FA3C3EC91AC0FCAE005E7569 /* KxSMBItemTransmissionFile.m in Sources */,
 				FA228FE91ACE8B8500786F88 /* BackgroundTask.m in Sources */,
 				FA6253A51AABD9CE00EAA782 /* PersistenceManager.m in Sources */,
 			);
@@ -551,6 +746,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAF6173F1AEF1DA400983B9A /* ArrayDataSourceTests.m in Sources */,
 				FABDBA2E1AA8631800595AFA /* SmbFileExplorerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

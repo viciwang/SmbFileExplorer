@@ -17,7 +17,33 @@
 
 @end
 
+static NSDictionary * gFileExtensionImageDic;
+
 @implementation SmbFileCell
+
+
++(NSDictionary *)FileExtensionImageDic
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        gFileExtensionImageDic = [[NSDictionary alloc]initWithObjectsAndKeys:@"file_doc.png",@"doc",
+                                  @"file_doc.png",@"docx",
+                                  @"file_pdf",@"pdf",
+                                  @"file_exc",@"xls",
+                                  @"file_exc",@"xlsx",
+                                  @"file_ppt",@"ppt",
+                                  @"file_image",@"png",
+                                  @"file_image",@"jpg",
+                                  @"file_image",@"jpeg",
+                                  @"file_image",@"bmp",
+                                  @"file_pdf",@"pdf",
+                                  @"file_rar",@"rar",
+                                  @"file_rar",@"zip",
+                                  @"file_folder",@"folder",nil];
+        //@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",@"",nil
+    });
+    return gFileExtensionImageDic;
+}
 
 - (void)awakeFromNib {
     // Initialization code
@@ -45,13 +71,23 @@
         self.fileSize.text = [SystemStuff stringFromFileSizeBytes:item.stat.size];
     }
     self.lastModifiedDate.text = [systemStuff stringFromDate:item.stat.lastModified];
-    self.fileTypePic.image = [UIImage imageNamed:[self imageNameFromFileName:self.fileName.text]];
+    NSString * fileExtension = [self.fileName.text pathExtension];
+    self.fileTypePic.image = [UIImage imageNamed:[self imageNameFromFileExtension:fileExtension]];
     
 }
 
--(NSString *)imageNameFromFileName:(NSString*)fileName
+-(NSString *)imageNameFromFileExtension:(NSString*)fileExtension
 {
-    return [NSString stringWithFormat:@"FileType%@",[fileName pathExtension]];
+    if([fileExtension isEqualToString:@""])
+    {
+        fileExtension = @"folder";
+    }
+    NSString * pic = [[SmbFileCell FileExtensionImageDic]objectForKey:fileExtension];
+    if (pic==nil)
+    {
+        pic = @"file_unknow.png";
+    }
+    return pic;
 }
 
 @end

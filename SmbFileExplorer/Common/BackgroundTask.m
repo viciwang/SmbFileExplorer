@@ -20,7 +20,6 @@ void interruptionListenerCallback (void *inUserData, UInt32 interruptionState);
         bgTask =UIBackgroundTaskInvalid;
         expirationHandler =nil;
         timer =nil;
-
     }
     return  self;
     
@@ -54,6 +53,7 @@ void interruptionListenerCallback (void *inUserData, UInt32 interruptionState);
          [self playAudio];
     });
 }
+
 - (void) audioInterrupted:(NSNotification*)notification
 {
     NSDictionary *interuptionDict = notification.userInfo;
@@ -74,10 +74,8 @@ void interruptionListenerCallback (void *inUserData, UInt32 interruptionState)
 }
 -(void) playAudio
 {
-    
     UIApplication * app = [UIApplication sharedApplication];
     NSString *version = [[UIDevice currentDevice] systemVersion];
-
     if([version floatValue] >= 6.0f)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioInterrupted:) name:AVAudioSessionInterruptionNotification object:nil];

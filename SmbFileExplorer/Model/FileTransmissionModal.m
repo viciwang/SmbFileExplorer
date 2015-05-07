@@ -17,7 +17,7 @@
 @end
 
 
-static KxSMBBlockProgress ProgressBlock = ^(KxSMBItem * item,long transferred){
+static KxSMBBlockProgress ProgressBlock = ^(KxSMBItem * item,unsigned long long transferred){
     
     [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
 };
@@ -81,6 +81,11 @@ static KxSMBBlock ResultBlock = ^(id result){
         else
         {
             self.fileBytes = [self fileSizeAtPath:self.fromPath];
+        }
+        // toPath在原地址的基础上增加“.smb”表示还没下载/上传完毕。
+        if(![self.toPath hasSuffix:@".smb"])
+        {
+            self.toPath = [self.toPath stringByAppendingString:@".smb"];
         }
     }
     return self;
@@ -285,5 +290,22 @@ static KxSMBBlock ResultBlock = ^(id result){
     }];
 }
 
-
+-(void)renameFileName
+{
+    // 重命名的时候，此处不能用[NSString stringByDeleteExtension],会导致路径出错
+    //  smb://file/123.png.smb  会变成
+    //  smb:/file/13.png        即双斜杠会变为单斜杠
+    NSUInteger index = [self.toPath rangeOfString:@".smb"].location;
+    if (self.transmissionType == FileTransmissionDownload)
+    {
+        [[NSFileManager defaultManager]moveItemAtPath:self.toPath toPath:[self.toPath substringToIndex:index] error:nil];
+    }
+    else
+    {
+        [self.smbFile close];
+        [[KxSMBProvider sharedSmbProvider]renameAtPath:self.toPath newPath:[self.toPath substringToIndex:index] block:^(id result){
+            
+        }];
+    }
+}
 @end

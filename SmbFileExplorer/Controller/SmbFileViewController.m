@@ -20,6 +20,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,strong) NSString * fileName;
 @property (nonatomic) NSInteger indexForSelectedCell;
 @property (nonatomic,strong)SmbCacheFileTransitionDelegate * smbCacheFileTransitionDelegate;
+@property (nonatomic,strong)SmbFileDetailTransitionDelegate * smbFileDetailTransitionDelegate;
 @property (nonatomic) BOOL shouldShowHiddenFile;
 
 @end
@@ -74,24 +75,40 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                                     target:self
                                                                                     action:@selector(addFolderAction)];
     
-    UIBarButtonItem * toolBarButtonItem1 = [[UIBarButtonItem alloc]initWithTitle:@"上传/下载管理"
-                                                                       style:UIBarButtonItemStylePlain
-                                                                      target:self
+    
+//    UIBarButtonItem * toolBarButtonItem1 = [[UIBarButtonItem alloc]initWithTitle:@"上传/下载管理"
+//                                                                       style:UIBarButtonItemStylePlain
+//                                                                      target:self
+//                                                                          action:@selector(showTransmissionAction:)];
+//    
+//    UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithTitle:@"本地文件"
+//                                                                           style:UIBarButtonItemStylePlain
+//                                                                          target:self
+//                                                                          action:@selector(showLocalFileAction:)];
+//    
+//    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"设置"
+//                                                                           style:UIBarButtonItemStylePlain
+//                                                                          target:self
+//                                                                          action:@selector(showSettingAction:)];
+
+    UIBarButtonItem * toolBarButtonItem1 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bar_down.png"]
+                                                                           style:UIBarButtonItemStylePlain
+                                                                          target:self
                                                                           action:@selector(showTransmissionAction:)];
     
-    UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithTitle:@"本地文件"
+    UIBarButtonItem * toolBarButtonItem2 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bar_file.png"]
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(showLocalFileAction:)];
     
-    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithTitle:@"设置"
+    UIBarButtonItem * toolBarButtonItem3 = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"bar_set.png"]
                                                                            style:UIBarButtonItemStylePlain
                                                                           target:self
                                                                           action:@selector(showSettingAction:)];
-    
     UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                   target:nil
                                                                                   action:nil];
+    
     self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1, nil];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
@@ -329,6 +346,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+
+    
     // 判断是否为文件夹
     KxSMBItem * item = [self.fileArrayDataSource itemAtIndexPath:indexPath];
     if ([item isKindOfClass:[KxSMBItemTree class]])
@@ -484,7 +503,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 }
 
 
-#pragma mark SmbFileOperateDelefate
+#pragma mark SmbFileOperateDelegate
 
 -(void)downloadSmbFile:(id)button
 {
@@ -512,8 +531,14 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     [self.fileArrayDataSource removeItemAtIndex:temIndex];
 }
 
--(void)showPropertyOfSmbFile:(id)button
+-(void)showPropertyOfSmbFile:(UIButton *)button
 {
+    SmbFileDetailViewController * smbDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileDetailViewController"];
+    smbDetail.modalPresentationStyle = UIModalPresentationCustom;
+    CGRect rect = [[button superview] convertRect:button.frame toView:self.splitViewController.view];
+    self.smbFileDetailTransitionDelegate = [[SmbFileDetailTransitionDelegate alloc]initWithOriginFrame:rect];
+    smbDetail.transitioningDelegate = self.smbFileDetailTransitionDelegate;
+    [self presentViewController:smbDetail animated:YES completion:nil];
     
 }
 
