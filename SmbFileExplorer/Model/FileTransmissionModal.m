@@ -19,7 +19,8 @@
 
 static KxSMBBlockProgress ProgressBlock = ^(KxSMBItem * item,unsigned long long transferred){
     
-    [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
+    [[[FileTransmissionViewController shareUploadVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
+    [[[FileTransmissionViewController shareDownloadVC] ftDatasource] updateSFTItemAtPath:item.path withTransferred:transferred];
 };
 
 static KxSMBBlock ResultBlock = ^(id result){
@@ -29,7 +30,8 @@ static KxSMBBlock ResultBlock = ^(id result){
     }
     else
     {
-        [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:nil];
+        [[[FileTransmissionViewController shareUploadVC] ftDatasource] removeSFTItemAtPath:nil];
+        [[[FileTransmissionViewController shareDownloadVC] ftDatasource] removeSFTItemAtPath:nil];
     }
 
 };
@@ -184,7 +186,14 @@ static KxSMBBlock ResultBlock = ^(id result){
 -(void)cancel
 {
     [self suspend];
-    [[[FileTransmissionViewController shareFileTransmissionVC] ftDatasource] removeSFTItemAtPath:(self.transmissionType == FileTransmissionDownload?self.fromPath:self.toPath)];
+    if (self.transmissionType==FileTransmissionUpload)
+    {
+        [[[FileTransmissionViewController shareUploadVC] ftDatasource] removeSFTItemAtPath:self.toPath];
+    }
+    else if (self.transmissionType == FileTransmissionDownload)
+    {
+        [[[FileTransmissionViewController shareDownloadVC] ftDatasource] removeSFTItemAtPath:self.fromPath];
+    }
 }
 
 

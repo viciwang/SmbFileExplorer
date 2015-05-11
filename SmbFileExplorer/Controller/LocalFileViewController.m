@@ -72,12 +72,12 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
     NSString * fileName = [self.localFileDataSource.items objectAtIndex:indexPath.row];
     NSString * path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
     path = [NSString stringWithFormat:@"%@/%@",path,fileName];
-    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareFileTransmissionVC].delegate currentSMBPath],[path lastPathComponent]];
+    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareUploadVC].delegate currentSMBPath],[path lastPathComponent]];
     FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload
                                                                                    fromPath:path
                                                                                      toPath:remotePath
                                                                                    withInfo:nil];
-    [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
+    [[FileTransmissionViewController shareUploadVC] addTask:modal];
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
@@ -119,12 +119,12 @@ static NSString * const LocalFileCellIdentifier = @"LocalFileCellIdentifier";
 {
     NSIndexPath * index = [self.tableView indexPathForCell:cell];
     LocalFileModal * file = (LocalFileModal *)[self.localFileDataSource itemAtIndexPath:index];
-    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareFileTransmissionVC].delegate currentSMBPath],[file.path lastPathComponent]];
+    NSString * remotePath =[NSString stringWithFormat:@"%@/%@",[[FileTransmissionViewController shareUploadVC].delegate currentSMBPath],[file.path lastPathComponent]];
     FileTransmissionModal * modal  = [[FileTransmissionModal alloc]initWithTransmissionType:FileTransmissionUpload
                                                                                    fromPath:file.path
                                                                                      toPath:remotePath
                                                                                    withInfo:nil];
-    [[FileTransmissionViewController shareFileTransmissionVC] addTask:modal];
+    [[FileTransmissionViewController shareUploadVC] addTask:modal];
 }
 
 

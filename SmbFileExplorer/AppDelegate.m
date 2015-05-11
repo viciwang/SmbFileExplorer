@@ -18,9 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSArray * array = [PersistenceManager retrievalWithKey:UserDefaultKeyForTransmissionModal];
-    if (array) {
-        [[FileTransmissionViewController shareFileTransmissionVC]reAddAllTasks:array];
+    NSArray * array1 = [PersistenceManager retrievalWithKey:UserDefaultKeyForUploadModal];
+    if (array1) {
+        [[FileTransmissionViewController shareUploadVC]reAddAllTasks:array1];
+    }
+    NSArray * array2 = [PersistenceManager retrievalWithKey:UserDefaultKeyForDownloadModal];
+    if (array2) {
+        [[FileTransmissionViewController shareDownloadVC]reAddAllTasks:array2];
     }
     self.bgTask = [[BackgroundTask alloc]init];
     [self.bgTask startBackgroundTasks:1 target:self selector:@selector(backgroundCallback:)];
@@ -51,7 +55,8 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    [[FileTransmissionViewController shareFileTransmissionVC].tableView reloadData];
+    [[FileTransmissionViewController shareUploadVC].tableView reloadData];
+    [[FileTransmissionViewController shareDownloadVC].tableView reloadData];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -61,8 +66,10 @@
 
 - (void)saveTransmissionModal
 {
-    NSArray * array = ((SmbFileTransmissionDataSource *)[FileTransmissionViewController shareFileTransmissionVC].tableView.dataSource).items;
-    [PersistenceManager saveData:array forKey:UserDefaultKeyForTransmissionModal];
+    NSArray * array1 = ((SmbFileTransmissionDataSource *)[FileTransmissionViewController shareDownloadVC].tableView.dataSource).items;
+    [PersistenceManager saveData:array1 forKey:UserDefaultKeyForDownloadModal];
+    NSArray * array2 = ((SmbFileTransmissionDataSource *)[FileTransmissionViewController shareUploadVC].tableView.dataSource).items;
+    [PersistenceManager saveData:array2 forKey:UserDefaultKeyForUploadModal];
 }
 
 @end

@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 
 static NSString * const UserDefaultKeyForSmbAuthItems = @"SmbAuthItems";
-static NSString * const UserDefaultKeyForTransmissionModal = @"TransmissionModal";
+static NSString * const UserDefaultKeyForUploadModal = @"UploadModal";
+static NSString * const UserDefaultKeyForDownloadModal = @"DownloadModal";
 
 
 @interface PersistenceManager : NSObject

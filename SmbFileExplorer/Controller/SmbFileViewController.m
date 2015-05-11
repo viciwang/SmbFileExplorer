@@ -22,6 +22,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 @property (nonatomic,strong)SmbCacheFileTransitionDelegate * smbCacheFileTransitionDelegate;
 @property (nonatomic,strong)SmbFileDetailTransitionDelegate * smbFileDetailTransitionDelegate;
 @property (nonatomic) BOOL shouldShowHiddenFile;
+@property (nonatomic,strong) UIImageView * animationImage;
+@property (nonatomic,strong) UIImageView * img;
 
 @end
 
@@ -39,7 +41,8 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 {
     //  一定要remove，不然会调用多次
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(shouldReloadPath:) name:@"ShouldReloadPath" object:nil];
-    [FileTransmissionViewController shareFileTransmissionVC].delegate = self;
+    [FileTransmissionViewController shareUploadVC].delegate = self;
+    [FileTransmissionViewController shareDownloadVC].delegate = self;
 }
 
 -(void)viewDidDisappear:(BOOL)animated
@@ -123,7 +126,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
 
     
-    UIViewController * transmissionVC = [FileTransmissionViewController shareFileTransmissionVC];
+    UIViewController * transmissionVC = [self.storyboard instantiateViewControllerWithIdentifier:@"transmissionSegmentVC"];
     
 //    transmissionVC.modalPresentationStyle = UIModalPresentationPopover;
 //    UIPopoverPresentationController * popover = transmissionVC.popoverPresentationController;
@@ -507,6 +510,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 
 -(void)downloadSmbFile:(id)button
 {
+    [self beginFileDownloadAnimation];
     
     KxSMBItemFile * file = [self.fileArrayDataSource itemAtIndexPath:[NSIndexPath indexPathForItem:self.indexForSelectedCell
                                                                                          inSection:0]];
@@ -518,10 +522,57 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                                      toPath:localPath
                                                                                    withInfo:file.stat];
     
-    FileTransmissionViewController * ftVC = [FileTransmissionViewController shareFileTransmissionVC];
+    FileTransmissionViewController * ftVC = [FileTransmissionViewController shareDownloadVC];
     
     [ftVC addTask:modal];
     
+}
+
+-(void)beginFileDownloadAnimation
+{
+    SmbFileCell * cell = (SmbFileCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:self.indexForSelectedCell inSection:0]];
+    UIImageView * origineImg = (UIImageView *)[cell viewWithTag:1];
+    CGRect rect = [[[UIApplication sharedApplication]keyWindow] convertRect:origineImg.frame fromView:cell];
+    
+    self.animationImage = [[UIImageView alloc]initWithFrame:rect];
+    self.animationImage.image = origineImg.image;
+    [[[UIApplication sharedApplication]keyWindow] addSubview:self.animationImage];
+    
+    float x = self.animationImage.center.x;
+    float y = self.animationImage.center.y;
+    
+    NSMutableArray* buttons = [[NSMutableArray alloc] init];
+    for (UIControl* btn in self.navigationController.toolbar.subviews)
+        if ([btn isKindOfClass:[UIControl class]])
+            [buttons addObject:btn];
+    UIView* item = [buttons objectAtIndex:0];
+    
+    UIWindow * kw = [[UIApplication sharedApplication]keyWindow];
+    CGPoint finalPoint = [kw convertPoint:item.center fromView:self.navigationController.toolbar];
+    
+    // create a CGPath that implements two arcs (a bounce)
+    CGMutablePathRef thePath = CGPathCreateMutable();
+    CGPathMoveToPoint(thePath,NULL,x,y);
+    CGPathAddCurveToPoint(thePath,NULL,x+200,y-200,
+                          x+400,y,
+                          finalPoint.x,finalPoint.y);
+    
+    CAKeyframeAnimation * theAnimation;
+    
+    //[theAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    // create the animation object, specifying the position property as the key path
+    // the key path is relative to the target animation object (in this case a CALayer)
+    theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
+    theAnimation.path = thePath;
+    
+    // set the duration to 5.0 seconds
+    theAnimation.duration=1.5;
+    theAnimation.delegate = self;
+    
+    [self.animationImage.layer addAnimation:theAnimation forKey:@"animation"];
+    // release the path
+    CFRelease(thePath);
 }
 
 -(void)deleteSmbFile:(id)button
@@ -627,6 +678,12 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
        [vc.fileArrayDataSource hiddenFileSettingHasChanged:self.shouldShowHiddenFile];
     }
     
+}
+
+#pragma mark animation delegate
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+{
+    [self.animationImage removeFromSuperview];
 }
 
 

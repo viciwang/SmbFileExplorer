@@ -9,7 +9,8 @@
 #import "FileTransmissionViewController.h"
 
 static NSString * const FileTrainsmissionCellIdentifier = @"FileTrainsmissionCellIdentifier";
-static FileTransmissionViewController * sFileTVC;
+static FileTransmissionViewController * downloadFileTVC;
+static FileTransmissionViewController * uploadFileTVC;
 
 @interface FileTransmissionViewController ()
 
@@ -20,7 +21,7 @@ static FileTransmissionViewController * sFileTVC;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"OK" style:UIBarButtonItemStylePlain target:self action:@selector(dismissTransmissionViewController:)];
+
     
     [self setupTableView];
     
@@ -73,20 +74,27 @@ static FileTransmissionViewController * sFileTVC;
     // Dispose of any resources that can be recreated.
 }
 
-+(FileTransmissionViewController*)shareFileTransmissionVC
++(FileTransmissionViewController*)shareDownloadVC
 {
-    static dispatch_once_t sFileTVCOnceToken;
-    dispatch_once(&sFileTVCOnceToken, ^{
-        sFileTVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FileTransmission"];
-        [sFileTVC setupTableView];
+    static dispatch_once_t dFileTVCOnceToken;
+    dispatch_once(&dFileTVCOnceToken, ^{
+        downloadFileTVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FileTransmission"];
+        [downloadFileTVC setupTableView];
     });
-    return sFileTVC;
+    return downloadFileTVC;
 }
 
--(void)dismissTransmissionViewController:(id)sender
++(FileTransmissionViewController*)shareUploadVC
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    static dispatch_once_t uFileTVCOnceToken;
+    dispatch_once(&uFileTVCOnceToken, ^{
+        uploadFileTVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"FileTransmission"];
+        [uploadFileTVC setupTableView];
+    });
+    return uploadFileTVC;
 }
+
+
 
 
 @end

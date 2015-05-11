@@ -23,7 +23,8 @@
 
 @property (nonatomic,strong) id<FileTransmissionProtocal> delegate;
 @property (nonatomic,strong) SmbFileTransmissionDataSource * ftDatasource;
-+(FileTransmissionViewController*)shareFileTransmissionVC;
++(FileTransmissionViewController*)shareDownloadVC;
++(FileTransmissionViewController*)shareUploadVC;
 -(void)addTask:(FileTransmissionModal *)modal;
 -(void)suspendAllTasks;
 -(void)resumeAllTasks;
