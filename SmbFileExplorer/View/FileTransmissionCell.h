@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *processedPercentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fileName;
 @property (nonatomic,weak) FileTransmissionModal * transmissionModal;
+@property (weak, nonatomic) IBOutlet UIImageView *fileImage;
 
 -(void)configureForTask:(FileTransmissionModal *)task;
 

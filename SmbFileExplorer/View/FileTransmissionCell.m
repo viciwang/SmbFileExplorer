@@ -30,6 +30,7 @@
     self.procressedLabel.text = [NSString stringWithFormat:@"%@/%@",[self describeForByte:task.processedBytes],[self describeForByte:task.fileBytes]];
     self.processedPercentLabel.text = [NSString stringWithFormat:@"%li%%",(long)(self.progressBar.progress*100)];
     self.fileName.text = task.fromPath.lastPathComponent;
+    self.fileImage.image = [UIImage imageNamed:[[SystemStuff shareSystemStuff]imageNameFromFileExtension:[self.fileName.text pathExtension]]];
 }
 
 
@@ -67,12 +68,12 @@
     if (self.transmissionModal.isProcessing == YES)
     {
         [self.transmissionModal suspend];
-        [button setTitle:@"开始" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"manager_start.png"] forState:UIControlStateNormal];
     }
     else
     {
         [self.transmissionModal begin];
-        [button setTitle:@"暂停" forState:UIControlStateNormal];
+        [button setImage:[UIImage imageNamed:@"manager_stop.png"] forState:UIControlStateNormal];
     }
 }
 

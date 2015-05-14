@@ -10,7 +10,7 @@
 #define INDEX_FOR_UNSELECTED_CELL  (-100)   // 如果没有选中某个cell，选中下标为-100。 Attention： 绝对不能为-1
 
 static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
-
+static CGPoint gLocation;
 
 @interface SmbFileViewController ()
 
@@ -35,6 +35,26 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     [self setupNavigationBar];
     [self reloadPath];
     
+    self.animationImage = [[UIImageView alloc]init];
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray* buttons = [[NSMutableArray alloc] init];
+        for (UIControl* btn in self.navigationController.toolbar.subviews)
+            if ([btn isKindOfClass:[UIControl class]])
+                [buttons addObject:btn];
+        UIView* item = [buttons objectAtIndex:0];
+        
+        UIWindow * kw = [[UIApplication sharedApplication]keyWindow];
+        gLocation = [kw convertPoint:item.center fromView:self.navigationController.toolbar];
+        
+    });
+    
+}
+
++(CGPoint) locationOfFirstToolbarButtonItem
+{
+    return gLocation;
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -111,7 +131,7 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     UIBarButtonItem * flexibleItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                   target:nil
                                                                                   action:nil];
-    
+
     self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:barButtonItem1, nil];
     
     [self.navigationController setToolbarHidden:NO animated:YES];
@@ -536,43 +556,12 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
     
     self.animationImage = [[UIImageView alloc]initWithFrame:rect];
     self.animationImage.image = origineImg.image;
-    [[[UIApplication sharedApplication]keyWindow] addSubview:self.animationImage];
     
-    float x = self.animationImage.center.x;
-    float y = self.animationImage.center.y;
     
-    NSMutableArray* buttons = [[NSMutableArray alloc] init];
-    for (UIControl* btn in self.navigationController.toolbar.subviews)
-        if ([btn isKindOfClass:[UIControl class]])
-            [buttons addObject:btn];
-    UIView* item = [buttons objectAtIndex:0];
-    
-    UIWindow * kw = [[UIApplication sharedApplication]keyWindow];
-    CGPoint finalPoint = [kw convertPoint:item.center fromView:self.navigationController.toolbar];
-    
-    // create a CGPath that implements two arcs (a bounce)
-    CGMutablePathRef thePath = CGPathCreateMutable();
-    CGPathMoveToPoint(thePath,NULL,x,y);
-    CGPathAddCurveToPoint(thePath,NULL,x+200,y-200,
-                          x+400,y,
-                          finalPoint.x,finalPoint.y);
-    
-    CAKeyframeAnimation * theAnimation;
-    
-    //[theAnimation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    // create the animation object, specifying the position property as the key path
-    // the key path is relative to the target animation object (in this case a CALayer)
-    theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
-    theAnimation.path = thePath;
-    
-    // set the duration to 5.0 seconds
-    theAnimation.duration=1.5;
-    theAnimation.delegate = self;
-    
-    [self.animationImage.layer addAnimation:theAnimation forKey:@"animation"];
-    // release the path
-    CFRelease(thePath);
+    [SystemStuff beginPathAnimation:self.animationImage
+                         beginPoint:self.animationImage.center
+                           endPoint:[SmbFileViewController locationOfFirstToolbarButtonItem]
+                           delegate:self];
 }
 
 -(void)deleteSmbFile:(id)button
@@ -585,6 +574,9 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
 -(void)showPropertyOfSmbFile:(UIButton *)button
 {
     SmbFileDetailViewController * smbDetail = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileDetailViewController"];
+    KxSMBItemFile * file = [self.fileArrayDataSource itemAtIndexPath:[NSIndexPath indexPathForItem:self.indexForSelectedCell
+                                                                                         inSection:0]];
+    smbDetail.file = file;
     smbDetail.modalPresentationStyle = UIModalPresentationCustom;
     CGRect rect = [[button superview] convertRect:button.frame toView:self.splitViewController.view];
     self.smbFileDetailTransitionDelegate = [[SmbFileDetailTransitionDelegate alloc]initWithOriginFrame:rect];
@@ -599,8 +591,6 @@ static NSString * const SmbFileCellIdentifier = @"SmbFileCell";
                                                                                          inSection:0]];
     NSString * cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
     cachePath = [NSString stringWithFormat:@"%@/%@",cachePath,[file.path lastPathComponent]];
-    
-    
     
     SmbFileOperateViewController * vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SmbFileOperateViewController"];
     [vc configureWithSmbFile:file delegate:self];

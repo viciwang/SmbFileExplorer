@@ -10,7 +10,7 @@
 #import "LocalFileDataSource.h"
 
 @interface LocalFileCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *fileImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *fileName;
 @property (weak, nonatomic) IBOutlet UILabel *fileSize;
 @property (weak, nonatomic) id<LocalFileDelegate> delegate;
@@ -48,6 +48,7 @@
     self.fileName.text = [file.path lastPathComponent];
     self.fileSize.text = [SystemStuff stringFromFileSizeBytes:file.fileSize];
     self.delegate = delegate;
+    self.fileImage.image = [UIImage imageNamed:[[SystemStuff shareSystemStuff]imageNameFromFileExtension:[self.fileName.text pathExtension]]];
 }
 
 @end

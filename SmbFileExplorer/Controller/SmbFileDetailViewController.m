@@ -11,7 +11,7 @@
 @interface SmbFileDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *fileName;
-@property (weak, nonatomic) IBOutlet UILabel *filePath;
+@property (weak, nonatomic) IBOutlet UITextView *filePath;
 @property (weak, nonatomic) IBOutlet UILabel *fileBuildedDate;
 @property (weak, nonatomic) IBOutlet UILabel *fileLastModifiedDate;
 @end
@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configureUIWithKxSMBItemFile:self.file];
     [self.button addTarget:self action:@selector(doing:) forControlEvents:UIControlEventTouchUpInside];
 }
 -(void)doing:(id)sender
@@ -41,7 +42,8 @@
 {
     self.fileName.text = smbFile.path.lastPathComponent;
     self.filePath.text = smbFile.path;
-    //self.fileLastModifiedDate.text = [[SystemStuff shareSystemStuff] smbFile.stat.lastModified];
+    self.fileLastModifiedDate.text = [[SystemStuff shareSystemStuff] stringFromDate:smbFile.stat.lastModified];
+    self.fileBuildedDate.text = [[SystemStuff shareSystemStuff]stringFromDate:smbFile.stat.lastAccess];
 }
 /*
 #pragma mark - Navigation

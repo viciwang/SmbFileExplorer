@@ -20,4 +20,5 @@
 
 @interface LocalFileCell : UITableViewCell
 -(void)configureForLocalFileModal:(LocalFileModal *)file andDelegate:(id<LocalFileDelegate>) delegate;
+@property (weak, nonatomic) IBOutlet UIImageView *fileImage;
 @end

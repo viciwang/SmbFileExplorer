@@ -21,5 +21,5 @@
 @interface SmbFileViewController : UITableViewController<UITextFieldDelegate,FileTransmissionProtocal,SmbFileArrayDelegate,SmbFileOperateDelegate,UIDocumentInteractionControllerDelegate,UIViewControllerTransitioningDelegate,SmbFileCacheDelegate,UIPopoverPresentationControllerDelegate,SettingDelegate>
 
 @property (nonatomic,copy) NSString * path;
-
++(CGPoint) locationOfFirstToolbarButtonItem;
 @end

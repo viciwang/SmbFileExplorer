@@ -12,5 +12,5 @@
 
 @interface SmbFileDetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *button;
--(void)configureUIWithKxSMBItemFile:(KxSMBItemFile *)smbFile;
+@property (strong,nonatomic) KxSMBItemFile * file;
 @end

@@ -15,4 +15,6 @@
 +(NSString*)stringForPathOfDocumentPath;
 -(NSString*) stringFromDate:(NSDate *)date;
 +(NSString*) stringFromFileSizeBytes:(long long)size;
+- (NSString *)imageNameFromFileExtension:(NSString*)fileExtension;
++ (void)beginPathAnimation:(UIView *)v beginPoint:(CGPoint)beginPoint endPoint:(CGPoint)endPoint delegate:(id)delegate;
 @end
